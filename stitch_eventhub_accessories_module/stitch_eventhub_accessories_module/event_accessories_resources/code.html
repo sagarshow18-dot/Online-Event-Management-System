@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventHub Pro - Accessories &amp; Resources</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#6ffbbe",
+                      "on-secondary-container": "#fffbff",
+                      "outline-variant": "#c6c6cd",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#eaddff",
+                      "on-primary-fixed": "#131b2e",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "surface-container-low": "#eff4ff",
+                      "primary": "#000000",
+                      "on-secondary-fixed": "#25005a",
+                      "on-background": "#0b1c30",
+                      "surface-container": "#e5eeff",
+                      "surface-dim": "#cbdbf5",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#009668",
+                      "on-tertiary-fixed": "#002113",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#45464d",
+                      "surface-tint": "#565e74",
+                      "background": "#f8f9ff",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-container": "#8a4cfc",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#bec6e0",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "primary-container": "#131b2e",
+                      "tertiary-container": "#002113",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#7c839b",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "outline": "#76777d",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "tertiary": "#000000",
+                      "primary-fixed": "#dae2fd",
+                      "surface": "#f8f9ff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-surface": "#0b1c30",
+                      "inverse-surface": "#213145",
+                      "error": "#ba1a1a",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface-bright": "#f8f9ff",
+                      "secondary": "#712ae2",
+                      "surface-container-high": "#dce9ff",
+                      "surface-variant": "#d3e4fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "unit": "4px",
+                      "margin-page": "40px",
+                      "gutter": "24px",
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "stack-xs": "4px",
+                      "margin-mobile": "16px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "code-sm": ["JetBrains Mono"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .shadow-ambient {
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+        }
+        .shadow-ambient-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-surface-container-lowest h-screen w-64 flex-col border-r border-outline-variant dark:border-outline fixed left-0 top-0 p-stack-md z-40">
+<div class="mb-8">
+<h1 class="font-headline-md text-headline-md font-black text-primary">EventHub Pro</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Inventory Control</p>
+</div>
+<button class="bg-secondary text-on-secondary font-label-md text-label-md rounded-lg py-3 px-4 w-full flex items-center justify-center gap-2 mb-8 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+            Add New Item
+        </button>
+<div class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings_suggest">settings_suggest</span>
+                Management
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 font-label-md text-label-md bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+                Resources
+            </a>
+</div>
+<div class="mt-auto space-y-2 pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                Account
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full">
+<!-- TopNavBar (from JSON) -->
+<header class="bg-surface dark:bg-surface w-full h-16 border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-margin-page sticky top-0 z-50">
+<div class="flex items-center gap-8 h-full">
+<span class="md:hidden font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EventHub</span>
+<nav class="hidden md:flex h-full items-center">
+<a class="px-4 h-full flex items-center font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="px-4 h-full flex items-center font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="#">Events</a>
+<a class="px-4 h-full flex items-center font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim font-bold border-b-2 border-secondary hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="#">Accessories</a>
+<a class="px-4 h-full flex items-center font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary w-64 transition-all" placeholder="Search accessories..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="Event Manager Profile" class="w-full h-full object-cover" data-alt="A professional headshot of an event manager in a well-lit modern corporate environment. Light, bright, high-quality, 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvhUJNkTJOsBfPn7eexym0yHbyR3cPxdi-xY71mOcKN6BDywxtN81iDRks2uQdt-_R1bGNHvjAxTdaJdae_bD2zriy-CJaRGwmxcJsgRkcDME7bVCUUxWy-Cr0ANIVCqrRfyMHPYAagEFg2IvofYYiQ9Xp7J9LMJx853NrWxdNpi6NzuPN8hE-i-fFEv-lM0nR17inqlypFK7A2o6HkqYT7ww-PURV3dSqIYklo7oc4OYNEKR_n_1x"/>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 p-margin-mobile md:p-margin-page bg-background">
+<!-- Page Header & Filters -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Accessories &amp; Resources</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and allocate inventory for upcoming events.</p>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-2 bg-secondary text-on-secondary font-label-md text-label-md rounded-full whitespace-nowrap">All Items</button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Seating</button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">A/V Equipment</button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Decor</button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-full whitespace-nowrap hover:bg-surface-container transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filters
+                    </button>
+</div>
+</div>
+<!-- Inventory Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<article class="bg-surface border border-[#E2E8F0] rounded-lg overflow-hidden shadow-ambient shadow-ambient-hover flex flex-col transition-all duration-300">
+<div class="aspect-[4/3] bg-surface-container-low relative border-b border-outline-variant">
+<img alt="Banquet Chair" class="w-full h-full object-cover" data-alt="A premium gold banquet chair with a white cushion, isolated against a bright studio white background. High resolution, professional product photography style, even lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIsuowhrgzS4DVWn-6kUqNmCbvUPMl-UPAiLzw37_cR8cWRYpk6fhbKOd48exP1kOnZWyE84uJ51GFB6h520_TwWEHZxuAN768B6lygAZpf7LH9bwtK74jf1qre0pcHtbIeqnrDi6K0kJkL8LFng9MfUDIlVxN17Dhzdj_DMzU63NbN4TW8Y95x7hau0IyD_HtiUsuImRK2eJJl1WZ9sfjyyXutxznXY7m5cZ57ndbAe6ayrtI2Ljc"/>
+<div class="absolute top-3 left-3 bg-[#e6f4ea] text-on-tertiary-container border border-on-tertiary-container/20 px-2 py-1 rounded font-label-md text-[12px] flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+                            Available
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-code-sm text-on-surface-variant font-code-sm">Seating</span>
+<span class="font-label-md text-label-md text-primary">₹50 / day</span>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-primary mb-3">Premium Banquet Chair</h3>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Available Qty:</span>
+<span class="font-label-md text-label-md text-on-tertiary-container">500</span>
+</div>
+<button class="w-full py-2 bg-surface border border-primary text-primary font-label-md text-label-md rounded hover:bg-surface-container transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Event
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface border border-[#E2E8F0] rounded-lg overflow-hidden shadow-ambient shadow-ambient-hover flex flex-col transition-all duration-300">
+<div class="aspect-[4/3] bg-surface-container-low relative border-b border-outline-variant">
+<img alt="PA Speaker" class="w-full h-full object-cover" data-alt="A professional PA speaker system set up on a black tripod stand in a modern, clean, bright studio environment. Product photography, sharp focus, technical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6sCVd-g7IE2lKNyXwQ-OEfs_jCSieUzaPhd2YjAFc4G5M9SyWvcJEYby01bIsaPSp-PPDJCDJQpv57L48QI0bkJ62z7ch-gTGbFvjv8F814xFkAZfV32uRnV9s5NiGE9aGVs-zhnMWa6q7In1L0Gslc7ZxX50Chiaaj7HW6BAk_2GbhCBzR9vUtrKwPV8kPm9By5b2enJavoMbm2Ii73D0MWUYqj6m8NTaM5uVuGXPW3HfmwY3JGf"/>
+<div class="absolute top-3 left-3 bg-[#e6f4ea] text-on-tertiary-container border border-on-tertiary-container/20 px-2 py-1 rounded font-label-md text-[12px] flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+                            Available
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-code-sm text-on-surface-variant font-code-sm">A/V Equipment</span>
+<span class="font-label-md text-label-md text-primary">₹1500 / day</span>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-primary mb-3">1000W Active PA Speaker</h3>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Available Qty:</span>
+<span class="font-label-md text-label-md text-on-tertiary-container">24</span>
+</div>
+<button class="w-full py-2 bg-surface border border-primary text-primary font-label-md text-label-md rounded hover:bg-surface-container transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Event
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface border border-[#E2E8F0] rounded-lg overflow-hidden shadow-ambient shadow-ambient-hover flex flex-col transition-all duration-300 opacity-75">
+<div class="aspect-[4/3] bg-surface-container-low relative border-b border-outline-variant">
+<img alt="4K Projector" class="w-full h-full object-cover grayscale opacity-80" data-alt="A sleek modern 4K digital projector sitting on a clean white desk surface, bright studio lighting, white background, high-end electronics aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9OYId6jetLYzTBd0yMBN-XiXnxngKP2_u9srDDHlAM18UVw8eoznZVbGfTO5Q2nTDvU4qooWCmXnCUDYzsB1L3qEdsnZTVq0biFtBuyW7j7otQ8VzAAYdDBUXJDugPdxllOVmuo4V5RClg3Bh09LC81ayKhjNF4mqKFoAs6I0CSAUY1PSjvlSRfrw8P0LvOghktdPF8fUG_-ql2IQhUzCb1vQDvs9vXOqK0SWZrlsCRtFZMp8cu8g"/>
+<div class="absolute top-3 left-3 bg-error-container text-on-error-container border border-on-error-container/20 px-2 py-1 rounded font-label-md text-[12px] flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                            Out of Stock
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-code-sm text-on-surface-variant font-code-sm">A/V Equipment</span>
+<span class="font-label-md text-label-md text-primary">₹3000 / day</span>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-primary mb-3">4K Laser Projector 8000L</h3>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Available Qty:</span>
+<span class="font-label-md text-label-md text-error">0</span>
+</div>
+<button class="w-full py-2 bg-surface-container border border-outline-variant text-outline font-label-md text-label-md rounded cursor-not-allowed flex justify-center items-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[18px]">block</span>
+                                Unavailable
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface border border-[#E2E8F0] rounded-lg overflow-hidden shadow-ambient shadow-ambient-hover flex flex-col transition-all duration-300">
+<div class="aspect-[4/3] bg-surface-container-low relative border-b border-outline-variant">
+<img alt="Table Linens" class="w-full h-full object-cover" data-alt="A stack of folded white premium linen tablecloths on a bright, clean surface. Corporate event decor, soft lighting, professional and pristine aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_gFsBRXK25EJDZmZEEAyg0RLCG4Ox31CJRgbidlDVTKrEeOC0PfNlEjQ3mlKT7KjS-skbrZuFoLA93Av6jQc6EofrMA3_l4zb4gguqcF7w9nlC2VEWFK0Gh9mjl8QSw-weMw3MJ1DoACglkOT7kBvut3rBmKQ2WF_IlkgJMqDFgAQGIPnEdakk3DGnTIMaQbkb3RpSLHcq2ZbjimgMfJ-NLNnrfDy1jbyP_XiLrnmNArKdUemMXHN"/>
+<div class="absolute top-3 left-3 bg-[#fff3cd] text-[#856404] border border-[#ffeeba] px-2 py-1 rounded font-label-md text-[12px] flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-[#ffc107]"></span>
+                            Low Stock
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-code-sm text-on-surface-variant font-code-sm">Decor</span>
+<span class="font-label-md text-label-md text-primary">₹150 / day</span>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-primary mb-3">Premium White Table Linens</h3>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Available Qty:</span>
+<span class="font-label-md text-label-md text-[#856404]">15</span>
+</div>
+<button class="w-full py-2 bg-surface border border-primary text-primary font-label-md text-label-md rounded hover:bg-surface-container transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Event
+                            </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-8 flex justify-center">
+<button class="px-6 py-2 border border-outline-variant text-primary font-label-md text-label-md rounded-full hover:bg-surface-container transition-colors">
+                    Load More Resources
+                </button>
+</div>
+</main>
+<!-- Footer (from JSON) -->
+<footer class="bg-surface dark:bg-surface-dim w-full py-stack-lg border-t border-outline-variant dark:border-outline flex flex-col md:flex-row justify-between items-center px-margin-page mt-auto cursor-default">
+<div class="font-label-md text-label-md text-primary mb-4 md:mb-0">
+                © 2024 EventHub Professional. All rights reserved.
+            </div>
+<div class="flex gap-4 sm:gap-6 flex-wrap justify-center font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Documentation</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">System Status</a>
+</div>
+</footer>
+</div>
+</body></html>

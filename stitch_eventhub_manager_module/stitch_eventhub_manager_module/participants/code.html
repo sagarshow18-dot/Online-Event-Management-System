@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Participants - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#c7c5d4",
+                      "tertiary-fixed-dim": "#c3c7cb",
+                      "primary-container": "#2e3192",
+                      "secondary-fixed": "#c6e7ff",
+                      "on-surface": "#0b1c30",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#464652",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-secondary-fixed": "#001e2e",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "surface-container-highest": "#d3e4fe",
+                      "primary-fixed": "#e1e0ff",
+                      "surface": "#f8f9ff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#83cfff",
+                      "on-background": "#0b1c30",
+                      "tertiary-fixed": "#dfe3e7",
+                      "surface-variant": "#d3e4fe",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "on-tertiary-container": "#a6aaae",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#43474b",
+                      "on-primary-container": "#9da1ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-primary-fixed": "#04006d",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-primary-fixed-variant": "#373a9b",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary-container": "#004867",
+                      "surface-container-low": "#eff4ff",
+                      "secondary-container": "#2fbcff",
+                      "on-secondary": "#ffffff",
+                      "outline": "#777683",
+                      "background": "#f8f9ff",
+                      "on-tertiary-fixed": "#171c1f",
+                      "tertiary": "#24292c",
+                      "secondary": "#00658d",
+                      "primary": "#15157d",
+                      "surface-tint": "#4f54b4",
+                      "on-secondary-fixed-variant": "#004c6c",
+                      "tertiary-container": "#3a3f42",
+                      "inverse-primary": "#c0c1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "container-max": "1280px",
+                      "base": "8px",
+                      "xl": "32px",
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "sm": "8px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "title-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "code": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "code": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface fixed left-0 top-0 h-full w-60 border-r border-outline-variant dark:border-outline flex flex-col py-md transition-colors duration-200 ease-in-out z-20">
+<div class="px-md pb-xl">
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-xs">EventHub</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Management Suite</p>
+</div>
+<ul class="flex-1 overflow-y-auto w-full">
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md">My Events</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="add_circle">add_circle</span>
+<span class="font-body-md text-body-md">Add Event</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-secondary font-bold border-r-4 border-secondary bg-surface-container-high dark:bg-surface-container-highest hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Participants</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Event Accessories</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="account_circle">account_circle</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary w-full transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-60 w-[calc(100%-240px)] h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center h-16 px-xl z-10">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold">EventHub Manager</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-xl pr-sm py-sm rounded border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 font-body-sm text-body-sm w-64 bg-surface-container-lowest" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-200 flex items-center justify-center p-sm rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-200 flex items-center justify-center p-sm rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Manager Avatar" class="w-8 h-8 rounded-full object-cover ml-sm border border-outline-variant" data-alt="A professional headshot of a corporate event manager, smiling subtly, well-lit, wearing a sharp navy blazer. The background is a slightly blurred modern office setting with bright, natural lighting. The overall mood is confident and efficient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6bVzTW3B8LSJjhVgsaNSd8D5e8bI8FuifSlyxlsl6n1wET9Keo2shdqb5OrT3YYx1lxv2ZL9kfxVd4FiPPgDNL5JWxyb1bhOIZbazoGH8q7yqQgrBpSqZNLLWIrwHbSxXEETzFRhUtLrrwq2qbE_uYD1irXldVNpGFyIK4YpQdgkfe8VC8cR-DVKtyVVsSmpAfjDKtTAe0bpcFsLbIwF0g22JbA_eewwelcyjj-a4OAtw7Wb6s1CYrw"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-lg bg-surface pb-xl">
+<div class="max-w-container-max mx-auto space-y-xl">
+<!-- Page Header & Controls -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-xs">Participants</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage and view all registered attendees across your events.</p>
+</div>
+<div class="flex gap-md">
+<div class="relative">
+<select class="appearance-none pl-sm pr-xl py-sm rounded border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 font-body-sm text-body-sm bg-surface-container-lowest min-w-[160px]">
+<option>All Events</option>
+<option>Tech Summit 2024</option>
+<option>Marketing Mixer</option>
+<option>Design Leadership Workshop</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="appearance-none pl-sm pr-xl py-sm rounded border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 font-body-sm text-body-sm bg-surface-container-lowest min-w-[160px]">
+<option>Sort By: Newest</option>
+<option>Sort By: Name (A-Z)</option>
+<option>Sort By: Status</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">sort</span>
+</div>
+<button class="bg-primary-container text-on-primary-container font-body-sm text-body-sm px-md py-sm rounded flex items-center gap-xs hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-variant border-b border-outline-variant">
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Participant Name</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Email</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Contact</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Booking ID</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Tickets</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Booking Date</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Status</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm h-12 flex items-center gap-sm">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small circular avatar of a young professional woman with glasses, smiling, bright corporate lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhpQJLloSzLdNwCmNv8vswYQL66kvr9lYP_xgtrzotKMlvAL_DFwxGxqx2iyaEiqIm_AlRusr9zLQdMlYA-5eEy4zyTza-OEG6DyHWVrl30qXjKtcoctfAkOMcWBCyCWGZoLXjOJWolgvSXzh7Ie3iBNaonnjKcO_2EYcIfSwWqIlsOf9tI5HUoZzSM6RAZLsYT5CModjUBHak8D3cDxzXgqxVhu_-R9c80JkNK40KuBJwN_s2k4tIwA"/>
+                                        Sarah Jenkins
+                                    </td>
+<td class="px-md py-sm">s.jenkins@example.com</td>
+<td class="px-md py-sm">+1 (555) 019-2834</td>
+<td class="px-md py-sm font-code text-code">BKG-9921</td>
+<td class="px-md py-sm">2</td>
+<td class="px-md py-sm">Oct 12, 2023</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-caps text-[10px]">Paid</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm h-12 flex items-center gap-sm">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small circular avatar of a middle-aged man with short hair, wearing a grey sweater, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCeR67tR_bJ5sOH_O7pv0r10J2r1wIWil4qEq4yzFxLQ68ZlvCJBYkT_h_vSEsHMDlP23TYVXFCpsHR5AhQF9myI92Qk8j8aT5x6iR1x-lNODcg4rbZjKPW2HyCs4gkzMnMH2W-JZtGcPIOdgAlVXdhOWyJteIiSsz0YiMVWIQtIL1MZGeImRUiiPcQ7KbQb_Rh-PkblD0gRD7k7riW2t_IirKvc0tdXfDBOxRL0g0kZhmFL54XB9lRQ"/>
+                                        Michael Chen
+                                    </td>
+<td class="px-md py-sm">mchen.design@studio.co</td>
+<td class="px-md py-sm">+1 (555) 332-9011</td>
+<td class="px-md py-sm font-code text-code">BKG-9922</td>
+<td class="px-md py-sm">1</td>
+<td class="px-md py-sm">Oct 12, 2023</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-[10px]">Pending</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm h-12 flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-label-caps text-[10px]">AR</div>
+                                        Alex Rodriguez
+                                    </td>
+<td class="px-md py-sm">alex.r@corpnet.io</td>
+<td class="px-md py-sm">+44 7700 900077</td>
+<td class="px-md py-sm font-code text-code">BKG-9923</td>
+<td class="px-md py-sm">5</td>
+<td class="px-md py-sm">Oct 11, 2023</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-caps text-[10px]">Paid</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm h-12 flex items-center gap-sm">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small circular avatar of a young man with a beard, wearing a white t-shirt, outdoors lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZm_LcuB1Qw6nUbG4aWqAn6zIvOWjCGfEnDvLbicLNp5e3BYFAsNJWmYsQxoleO5QiGVEcvVNI7-Oq9qlHGeHfN1FW370rmkR91WDv43ouLmMlor87zRvwRpc5ChATYyeNzGGy_8TBcQSCfl16BRPeGQYu9gWLwXxOVKNxudqD8kuJWQPe8eqVtpn3mMZ-W67aWsQjvux0Pl50xtOLIfW-3jhFKGt5dv-rTWOef8t4mWEWvFOHwxmNow"/>
+                                        David Kim
+                                    </td>
+<td class="px-md py-sm">dkim88@mail.com</td>
+<td class="px-md py-sm">+1 (555) 887-2114</td>
+<td class="px-md py-sm font-code text-code">BKG-9924</td>
+<td class="px-md py-sm">1</td>
+<td class="px-md py-sm">Oct 11, 2023</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-[10px]">Failed</span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-md py-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 4 of 48 participants</span>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-secondary text-on-secondary font-body-sm text-body-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low font-body-sm text-body-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low font-body-sm text-body-sm">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventHub Pro - Manage Accessories</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-secondary-container": "#fffbff",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#25005a",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "surface-tint": "#565e74",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#8a4cfc",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "primary-container": "#131b2e",
+                        "tertiary-container": "#002113",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "outline": "#76777d",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary": "#000000",
+                        "primary-fixed": "#dae2fd",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#712ae2",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin-page": "40px",
+                        "gutter": "24px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "stack-xs": "4px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar (Shared Component Blueprint) -->
+<nav class="bg-surface-container-low text-secondary font-label-md text-label-md h-screen w-64 flex flex-col border-r border-outline-variant fixed left-0 top-0 p-stack-md z-40 hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-stack-md mb-stack-lg px-stack-sm">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">EventHub Pro</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Inventory Control</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-secondary text-on-secondary py-2 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-highest transition-all duration-200 ease-in-out mb-stack-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+            Add New Item
+        </button>
+<!-- Main Nav -->
+<ul class="flex flex-col gap-unit flex-1">
+<li>
+<a class="flex items-center gap-stack-sm px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                    Inventory
+                </a>
+</li>
+<li>
+<!-- ACTIVE STATE: Intent match for "Manage Accessories" -->
+<a class="flex items-center gap-stack-sm px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings_suggest">settings_suggest</span>
+                    Management
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+                    Resources
+                </a>
+</li>
+</ul>
+<!-- Footer Nav -->
+<ul class="flex flex-col gap-unit mt-auto border-t border-outline-variant pt-stack-md">
+<li>
+<a class="flex items-center gap-stack-sm px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                    Support
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                    Account
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col md:ml-64 h-screen overflow-y-auto w-full bg-background relative">
+<!-- TopNavBar (Shared Component Blueprint) -->
+<header class="bg-surface text-primary font-body-md text-body-md w-full h-16 border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-page sticky top-0 z-50">
+<!-- Mobile Brand/Menu -->
+<div class="flex items-center gap-stack-md md:hidden">
+<button class="text-on-surface-variant p-2 -ml-2 rounded-full hover:bg-surface-container transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">EventHub</span>
+</div>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center h-full gap-stack-lg">
+<a class="h-full flex items-center text-on-surface-variant hover:bg-surface-container transition-colors px-2 cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="h-full flex items-center text-on-surface-variant hover:bg-surface-container transition-colors px-2 cursor-pointer active:opacity-80" href="#">Events</a>
+<!-- ACTIVE STATE: Exact Match -->
+<a class="h-full flex items-center text-secondary font-bold border-b-2 border-secondary hover:bg-surface-container transition-colors px-2 cursor-pointer active:opacity-80" href="#">Accessories</a>
+<a class="h-full flex items-center text-on-surface-variant hover:bg-surface-container transition-colors px-2 cursor-pointer active:opacity-80" href="#">Settings</a>
+</nav>
+<!-- Search (Search Bar logic: on_left conceptually within the trailing section to keep layout clean, or standalone if space permits. Placing next to actions) -->
+<div class="flex items-center gap-stack-md ml-auto">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-sm font-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 border border-outline-variant cursor-pointer">
+<img alt="Event Manager Profile" class="w-full h-full object-cover" data-alt="A professional headshot of an event manager in a well-lit office, wearing business casual attire, warm approachable expression, corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGrJuSDSiCUDVTsjZTTHRDnGetyGSH66iJ3Jk-aP9uzrcfXc6H01LcSxrdlkadeLL-q_JBci0dQ6iJ3QDdADSEjoc0YlNULzRT8ZcIkntvAAK4ESWuio1zwaSHZjzg9bNyEFoj73N7XHW9kZ4RdN6GVJbRJCSGOsi71SrHPjPrXDnDwwPq0gpb9taAhA_qqL8hylyKEZgl1hiE959Dfj7pnKGuMYgnu4WZXaZ7pIVvVdh6_AwD59Zu"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-mobile md:p-margin-page max-w-container-max mx-auto w-full">
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-stack-md mb-stack-lg">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-1">Manage Accessories</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">View and update event equipment inventory.</p>
+</div>
+<div class="flex gap-stack-sm w-full sm:w-auto">
+<!-- Mobile Search Trigger (Alternative to full bar) -->
+<button class="lg:hidden p-2 border border-outline-variant rounded-lg text-on-surface-variant flex items-center justify-center bg-surface hover:bg-surface-container">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:shadow-[0_10px_15px_-3px_rgba(15,23,42,0.08)] transition-all flex-1 sm:flex-none">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add New Accessory
+                    </button>
+</div>
+</div>
+<!-- Mobile Search Bar (Visible only on smaller screens if they need to search here) -->
+<div class="mb-stack-lg lg:hidden relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-sm font-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all shadow-sm" placeholder="Search accessories, SKUs..." type="text"/>
+</div>
+<!-- Data Table Container (Level 1 Card) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_6px_rgba(15,23,42,0.05)] overflow-hidden flex flex-col">
+<!-- Table Filters / Toolbar (Optional but good for context) -->
+<div class="px-stack-lg py-stack-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<div class="flex gap-stack-sm overflow-x-auto pb-1 no-scrollbar">
+<button class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md whitespace-nowrap">All Items (124)</button>
+<button class="px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors">Lighting</button>
+<button class="px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors">Audio</button>
+<button class="px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors">Staging</button>
+</div>
+<button class="text-on-surface-variant flex items-center gap-1 hover:text-secondary font-label-md text-label-md hidden sm:flex">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+</div>
+<!-- The Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-[#F1F5F9] border-b border-outline-variant">
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky left-0 bg-[#F1F5F9] z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.05)]">Accessory</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">SKU</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Price / Day</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Quantity</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-stack-lg py-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-sm text-body-sm text-on-background">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-4 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low transition-colors z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-end professional LED stage spotlight on a stand, clean white background, studio lighting, sharp focus, technical product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHSGtjKfkVnWKykWBBUagl4lnK82kpcKizl3wFUQE1YjH2CjcDsh2neACN7HExcOHHvmOJ_BER0c2i8PhVbYk6FYlaje_WIGZvYtpwmC4VMRceb32AnYXGX8V5K_7c2USP1pPYnePcQ0t1kmtbb0v7gZ_PfFr5DVIyeiJkZTiCRlVVXPTJ9JTK4dtKuZPzyNANqQR3yWAnmiruEM9hU2GNNz0TBIOxLguRcgqFE-tGkVXceWQOaOox"/>
+</div>
+<div>
+<p class="font-medium text-primary mb-0.5">ProPar LED Spotlight</p>
+<p class="text-on-surface-variant text-xs">RGBW Color Mixing</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-code-sm text-code-sm text-on-surface-variant">LGT-PRP-01</td>
+<td class="px-stack-lg py-4">Lighting</td>
+<td class="px-stack-lg py-4 text-right font-medium">$45.00</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+                                        24
+                                    </div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-tertiary-fixed-dim/20 text-on-tertiary-fixed-variant border border-tertiary-fixed-dim/30">Available</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 text-on-surface-variant">
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="View Details"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 hover:text-error hover:bg-error-container rounded transition-colors" title="Delete"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-4 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low transition-colors z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">speaker</span>
+</div>
+<div>
+<p class="font-medium text-primary mb-0.5">Line Array Module X1</p>
+<p class="text-on-surface-variant text-xs">Active 2-way 10"</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-code-sm text-code-sm text-on-surface-variant">AUD-LAX-10</td>
+<td class="px-stack-lg py-4">Audio</td>
+<td class="px-stack-lg py-4 text-right font-medium">$120.00</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                                        2
+                                    </div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-error-container text-on-error-container border border-error/20">Low Stock</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 text-on-surface-variant">
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="View Details"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 hover:text-error hover:bg-error-container rounded transition-colors" title="Delete"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-4 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low transition-colors z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">chair</span>
+</div>
+<div>
+<p class="font-medium text-primary mb-0.5">Banquet Chair Premium</p>
+<p class="text-on-surface-variant text-xs">Black / Gold Frame</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-code-sm text-code-sm text-on-surface-variant">FURN-BC-BG</td>
+<td class="px-stack-lg py-4">Furniture</td>
+<td class="px-stack-lg py-4 text-right font-medium">$5.50</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+                                        450
+                                    </div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-tertiary-fixed-dim/20 text-on-tertiary-fixed-variant border border-tertiary-fixed-dim/30">Available</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 text-on-surface-variant">
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="View Details"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1 hover:text-secondary hover:bg-surface-variant rounded transition-colors" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 hover:text-error hover:bg-error-container rounded transition-colors" title="Delete"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-stack-lg py-3 border-t border-outline-variant bg-surface flex items-center justify-between">
+<span class="text-body-sm text-on-surface-variant">Showing 1 to 3 of 124 results</span>
+<div class="flex gap-1">
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container text-on-surface-variant disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
+<button class="px-3 py-1 border border-outline-variant bg-secondary-container text-on-secondary-container rounded font-medium text-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container rounded font-medium text-sm">2</button>
+<button class="px-3 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container rounded font-medium text-sm">3</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

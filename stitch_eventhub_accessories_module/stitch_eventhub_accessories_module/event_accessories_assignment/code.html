@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Accessories - EventHub</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-secondary-container": "#fffbff",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#25005a",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "surface-tint": "#565e74",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#8a4cfc",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "primary-container": "#131b2e",
+                        "tertiary-container": "#002113",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "outline": "#76777d",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary": "#000000",
+                        "primary-fixed": "#dae2fd",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#712ae2",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin-page": "40px",
+                        "gutter": "24px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "stack-xs": "4px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex h-screen w-64 flex-col bg-surface-container-low text-secondary font-label-md border-r border-outline-variant fixed left-0 top-0 p-stack-md z-40">
+<!-- Header -->
+<div class="flex items-center gap-stack-sm mb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden flex-shrink-0">
+<img alt="EventHub Logo" class="w-full h-full object-cover" data-alt="A clean, minimalist logo mark for EventHub Pro, featuring stylized overlapping geometric shapes in dark corporate slate and subtle purple accents, representing interconnected event logistics and solid structure on a bright white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPHmpd4JH7sJfKVPHgYm-6Xz4xTTdg3F4rpzvP9QqU1THG4jqz0-SJXGxE4bb392Z5lWAYYTtKcSg63I9q6H00Ge4MJsWDYgXOzfxWVNtk49epeh9-KX6Ar4z_JE2GhZNpcwj-D3GRUW7kzKnVe-ByUMGM7Z3vRx9Ln2cUVfahDtwQmPy4POaZSGRxFwQRGhiB1afrRcySyVKBY5Ydd2NLVJSybgTIZoGsUGBhS6vam9Z0AhQetef_"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">EventHub Pro</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Inventory Control</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-secondary text-on-secondary rounded-lg py-2 px-4 mb-stack-lg flex items-center justify-center gap-2 hover:shadow-[0_10px_15px_-3px_rgba(15,23,42,0.08)] transition-all duration-200">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">add</span>
+            Add New Item
+        </button>
+<!-- Main Navigation -->
+<div class="flex flex-col gap-1 flex-grow">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">settings_suggest</span>
+                Management
+            </a>
+<!-- Active Tab based on 'Resources / Accessories' -->
+<a class="flex items-center gap-3 p-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">hub</span>
+                Resources
+            </a>
+</div>
+<!-- Footer Navigation -->
+<div class="flex flex-col gap-1 mt-auto pt-stack-md border-t border-outline-variant">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">support_agent</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+                Account
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="w-full h-16 bg-surface text-primary font-body-md border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-page sticky top-0 z-50">
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden p-2 text-on-surface-variant rounded-full hover:bg-surface-container transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<!-- Brand / Mobile Only -->
+<div class="md:hidden font-headline-md text-headline-md font-bold text-primary">
+                EventHub
+            </div>
+<!-- Main Nav (Desktop) -->
+<nav class="hidden md:flex items-center h-full gap-stack-lg">
+<div class="font-headline-md text-headline-md font-bold text-primary mr-stack-lg">EventHub</div>
+<a class="h-full flex items-center px-2 text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 border-b-2 border-transparent" href="#">Dashboard</a>
+<a class="h-full flex items-center px-2 text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 border-b-2 border-transparent" href="#">Events</a>
+<!-- Active Tab -->
+<a class="h-full flex items-center px-2 text-secondary font-bold border-b-2 border-secondary hover:bg-surface-container transition-colors cursor-pointer active:opacity-80" href="#">Accessories</a>
+<a class="h-full flex items-center px-2 text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 border-b-2 border-transparent" href="#">Settings</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 text-on-surface-variant rounded-full hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<button class="hidden md:flex p-2 text-on-surface-variant rounded-full hover:bg-surface-container transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full ml-stack-sm bg-surface-container-high border border-outline-variant overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+<img alt="Event Manager Profile" class="w-full h-full object-cover" data-alt="Professional headshot of an event manager, a woman in her 30s with dark hair tied back, wearing a sharp grey blazer over a crisp white shirt, softly lit in a modern office environment with blurred glass partitions in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9pyiT1ChLGdrvdYdMNIocp_PV3EYrk88nSWMORlY0mYMNDwUQIHH9TfM2pdZr-iKz1uMQX3OTK05bwwMExDIwOp00V-b2hHYACgO6kE3PkbKcB9hJ8OGN2XSs3LBCPC90I0QuBLnLyLWe9yps_vZWfGDn6QlKiiGT9XJjOGp4tx7pz0eVmYU5Thn3myFsF_MSRWGUudViTM9TipyVaWXhul6yTo3HxsO9cEa7WcoepMMM5VFrABmG"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-margin-mobile md:p-margin-page max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-stack-lg">
+<div class="text-label-md font-label-md text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">event</span>
+                    Tech Innovators Summit 2024
+                </div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-background">Event Accessories</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Manage and allocate resources for this specific event. Ensure quantities align with expected attendance.</p>
+</div>
+<!-- Content Grid / Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Table Area -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_6px_rgba(15,23,42,0.05)] overflow-hidden flex flex-col h-full">
+<div class="p-stack-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-background">Selected Accessories</h3>
+<button class="text-secondary font-label-md text-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#F1F5F9] font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="p-stack-md font-medium border-b border-outline-variant w-12 text-center">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox"/>
+</th>
+<th class="p-stack-md font-medium border-b border-outline-variant">Accessory Name</th>
+<th class="p-stack-md font-medium border-b border-outline-variant text-right">Quantity</th>
+<th class="p-stack-md font-medium border-b border-outline-variant text-right">Unit Price</th>
+<th class="p-stack-md font-medium border-b border-outline-variant text-right">Total Price</th>
+<th class="p-stack-md font-medium border-b border-outline-variant w-12 text-center"></th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="p-stack-md text-center">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-stack-md font-medium text-on-background flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center flex-shrink-0 border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, isolated product shot of a modern, stackable banquet chair with a black metal frame and dark grey padded seat, set against a stark white background with a subtle drop shadow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgqqYQxMHoQSyJpuU3qXE7hZichTItP8MHs2SOqgMFI0fA7PwiZA0W1y-IVqDhSsB8AOTbccRpEDoNmHdw60JHejNZDPKxe_AANbUS5iPe83Jx1m3uj5_BXNKf2XMZ34HyTlsi7ZYAYulDrLYRY5TGF44d-rLxLgsQHAsiea01CfBu6zMO1ldHE_ybv5nyr2AqYZGsyoPHKC48UA3kj7WMBjL9VpLk0pa_O26CfQ1IbVU9Wz3PER9J"/>
+</div>
+                                            Chairs
+                                        </td>
+<td class="p-stack-md text-right">
+<div class="inline-flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest">
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<input class="w-12 text-center border-none bg-transparent p-0 text-body-sm focus:ring-0 font-code-sm" readonly="" type="text" value="300"/>
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</td>
+<td class="p-stack-md text-right text-on-surface-variant font-code-sm">₹20</td>
+<td class="p-stack-md text-right font-medium text-on-background font-code-sm">₹6000</td>
+<td class="p-stack-md text-center text-on-surface-variant">
+<button class="p-1 hover:text-error transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="p-stack-md text-center">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-stack-md font-medium text-on-background flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center flex-shrink-0 border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, isolated product shot of a professional audio PA speaker, black casing with a prominent metal grille, set against a stark white background with high-key lighting emphasizing its texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIArEqJ7aEgA2eL8SZyvVR89X0UbZvdI88GM9pJFxJonKnt54LKR0j_nXsQOLB1mJISHBoXPnTa03vZtgKhGvN0uDjYeadh5IIHzl5JShKzhErlgWz2UAU_5ETbzQnUOCjPFF4UYSusRd5Oft9KqzKfTdN9lbqO35QJGMw85AJzwNNTJAbX6dbhd6FDHRWjgGDrzQWrip-ZuRaS6AXUqymp2wJaw0Pd56XQO37dZAwr8glYNpGOLB9"/>
+</div>
+                                            Speakers
+                                        </td>
+<td class="p-stack-md text-right">
+<div class="inline-flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest">
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<input class="w-12 text-center border-none bg-transparent p-0 text-body-sm focus:ring-0 font-code-sm" readonly="" type="text" value="4"/>
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</td>
+<td class="p-stack-md text-right text-on-surface-variant font-code-sm">₹1000</td>
+<td class="p-stack-md text-right font-medium text-on-background font-code-sm">₹4000</td>
+<td class="p-stack-md text-center text-on-surface-variant">
+<button class="p-1 hover:text-error transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="p-stack-md text-center">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-stack-md font-medium text-on-background flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center flex-shrink-0 border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, isolated product shot of a high-lumens corporate digital projector, white casing with a large front lens, angled slightly, set against a stark white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCI1clg7YHUX3qSEqdAq7MCJN_eZ1vP_XVspksOpuW6RWD1gAV_wAJP1-OwvyLpZoQWbZpryOyW9Sq1RA2rVtTPnFUm5zc6KLb0pGfuXpHfN9-2uvaqTnFiJvrVvR7pnd_5DRe4tGpJqAXSHkVO8lJX6AnMSv1INulTJU6huL6WwZoqJ3qItWoPQK3kEftjP2jJLF8cNs4iyklqwghVi05b_lqsOEJu85ioAJ9I5jQ_WLc3hSIQjbX"/>
+</div>
+                                            Projector
+                                        </td>
+<td class="p-stack-md text-right">
+<div class="inline-flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest">
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<input class="w-12 text-center border-none bg-transparent p-0 text-body-sm focus:ring-0 font-code-sm" readonly="" type="text" value="2"/>
+<button class="px-2 py-1 text-on-surface-variant hover:text-secondary hover:bg-surface transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</td>
+<td class="p-stack-md text-right text-on-surface-variant font-code-sm">₹1500</td>
+<td class="p-stack-md text-right font-medium text-on-background font-code-sm">₹3000</td>
+<td class="p-stack-md text-center text-on-surface-variant">
+<button class="p-1 hover:text-error transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Actions -->
+<div class="p-stack-md bg-surface-container-low border-t border-outline-variant mt-auto flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">info</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 items selected</span>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+                                    Remove Selected
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Sidebar Area -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Cost Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_6px_rgba(15,23,42,0.05)] p-stack-lg relative overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-surface-variant rounded-full opacity-50 blur-2xl pointer-events-none"></div>
+<h3 class="font-headline-md text-headline-md text-on-background border-b border-outline-variant pb-stack-sm mb-stack-md relative z-10">Resource Summary</h3>
+<div class="flex flex-col gap-3 font-body-sm text-body-sm mb-stack-lg relative z-10">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Subtotal (3 items)</span>
+<span class="font-code-sm">₹13,000</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Logistics &amp; Handling</span>
+<span class="font-code-sm">₹0</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Taxes</span>
+<span class="font-code-sm text-on-surface-variant italic">Calculated at checkout</span>
+</div>
+<div class="border-t border-outline-variant pt-3 mt-1 flex justify-between items-end">
+<span class="font-label-md text-label-md text-on-background">Total Resource Cost</span>
+<span class="font-display-lg text-[32px] md:text-[40px] leading-tight font-bold text-primary font-code-sm tracking-tighter">₹13,000</span>
+</div>
+</div>
+<!-- Primary Actions -->
+<div class="flex flex-col gap-3 relative z-10">
+<button class="w-full bg-secondary text-on-secondary py-3 px-4 rounded-lg font-label-md text-label-md font-bold shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(15,23,42,0.08)] hover:-translate-y-[1px] transition-all flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">save</span>
+                                Save Resources
+                            </button>
+<button class="w-full bg-surface-container-lowest border border-primary text-primary py-3 px-4 rounded-lg font-label-md text-label-md font-bold hover:bg-surface-container-low transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">add_shopping_cart</span>
+                                Add Resource
+                            </button>
+</div>
+</div>
+<!-- Quick Insights (Bonus Glassmorphism Card) -->
+<div class="bg-gradient-to-br from-surface-container-low to-surface border border-outline-variant/50 rounded-xl p-stack-md relative overflow-hidden backdrop-blur-sm">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center flex-shrink-0 text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-background mb-1">Budget On Track</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Current accessory allocation is 15% under the projected ₹15,294 budget for this category.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

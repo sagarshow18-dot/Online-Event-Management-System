@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventHub Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#faf9fd",
+                    "surface-bright": "#faf9fd",
+                    "primary-container": "#1a73e8",
+                    "tertiary-fixed-dim": "#6ddd81",
+                    "tertiary-container": "#008939",
+                    "inverse-on-surface": "#f1f0f4",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#dde0e6",
+                    "surface-variant": "#e3e2e6",
+                    "surface-container-low": "#f4f3f7",
+                    "outline": "#727785",
+                    "on-primary-fixed": "#001a41",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#efedf1",
+                    "on-tertiary-fixed-variant": "#005320",
+                    "on-background": "#1a1b1e",
+                    "tertiary-fixed": "#89fa9b",
+                    "secondary-fixed-dim": "#c3c7cc",
+                    "tertiary": "#006d2c",
+                    "on-tertiary-container": "#ffffff",
+                    "secondary": "#5b5f64",
+                    "primary": "#005bbf",
+                    "on-secondary-fixed-variant": "#43474c",
+                    "secondary-fixed": "#dfe3e8",
+                    "on-tertiary-fixed": "#002108",
+                    "surface-container-high": "#e9e7eb",
+                    "inverse-primary": "#adc7ff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1a1b1e",
+                    "primary-fixed-dim": "#adc7ff",
+                    "error-container": "#ffdad6",
+                    "background": "#faf9fd",
+                    "surface-container-highest": "#e3e2e6",
+                    "surface-dim": "#dbd9dd",
+                    "on-secondary-container": "#5f6368",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2f3033",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#414754",
+                    "outline-variant": "#c1c6d6",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#005bc0",
+                    "on-secondary-fixed": "#181c20",
+                    "on-primary-container": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shadow-ambient {
+            box-shadow: 0 1px 2px rgba(60,64,67, 0.3), 0 1px 3px 1px rgba(60,64,67, 0.15);
+        }
+        .card-hover:hover {
+            box-shadow: 0 1px 2px rgba(60,64,67, 0.3), 0 1px 3px 1px rgba(60,64,67, 0.15);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Header (Shared Component) -->
+<header class="bg-surface border-b border-outline-variant w-full h-16 transition-all duration-200 ease-in-out fixed top-0 z-50">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-gutter">
+<div class="flex items-center gap-2 text-headline-md font-headline-md font-bold text-primary">
+<img alt="EventHub Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXYMDNqPHqhJATnr6uO17tSJitw-bU89BN7jw4LnjfFwkyJCESK6_6aja6Ha8901w0LOzI-RqCoOEhEprzO4dGjPEDJwPtxPIXxLvszVZkLTkHifLrJie4uyzF6KDj2ijOj-2hOfNxiwfiRwuUFURUlowFuG4fxPKchm8XD4FD8gofGJgDKeMPxGvs5lfWkrIYvbaeAW7BnT5ctt9bvkKQno10NJwE8Monzp-21cNwSFMMKaY6sr2"/>
+<span class="hidden sm:block">EventHub</span>
+</div>
+<div class="hidden md:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-4 py-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none text-body-sm font-body-sm text-on-surface placeholder-on-surface-variant w-48 focus:ring-0 p-0" placeholder="Search events..." type="text"/>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-stack-lg font-body-md text-body-md">
+<a class="text-primary border-b-2 border-primary pb-1 font-bold hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Events</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="hidden sm:block text-primary font-label-md text-label-md hover:bg-surface-container rounded-full px-4 py-2 transition-colors">Login</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md rounded-full px-6 py-2 hover:bg-surface-tint shadow-ambient transition-all">Explore Events</button>
+</div>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 flex flex-col items-center text-center">
+<h1 class="font-display-lg text-display-lg md:text-[56px] md:leading-[64px] font-bold text-on-surface max-w-4xl mb-stack-lg">
+                Discover Events. <br/><span class="text-primary">Create Experiences.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-stack-lg">
+                The modern platform for finding local gatherings, managing ticket sales, and bringing your community together with ease.
+            </p>
+<div class="flex flex-col sm:flex-row gap-stack-md">
+<button class="bg-primary text-on-primary font-label-md text-label-md rounded-full px-8 py-3 shadow-ambient hover:bg-surface-tint transition-all">
+                    Explore Events
+                </button>
+<button class="bg-surface text-primary border border-primary font-label-md text-label-md rounded-full px-8 py-3 hover:bg-primary-fixed transition-all">
+                    Create an Event
+                </button>
+</div>
+</section>
+<!-- Search Bar -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop -mt-8 relative z-10">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-2 md:p-4 shadow-ambient flex flex-col md:flex-row gap-stack-sm md:items-center">
+<div class="flex-1 flex items-center bg-surface-container-low rounded-lg px-4 py-3 border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">search</span>
+<input class="w-full bg-transparent border-none outline-none text-body-md font-body-md placeholder-on-surface-variant focus:ring-0 p-0" placeholder="Search events, locations, categories..." type="text"/>
+</div>
+<div class="flex-none flex items-center bg-surface-container-low rounded-lg px-4 py-3 border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">location_on</span>
+<input class="w-full bg-transparent border-none outline-none text-body-md font-body-md placeholder-on-surface-variant focus:ring-0 p-0" placeholder="Location" type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md rounded-lg px-8 py-3 hover:bg-surface-tint transition-colors flex-none">
+                    Search
+                </button>
+</div>
+</section>
+<!-- Featured Events Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mb-2">Featured Events</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Discover the most popular upcoming experiences.</p>
+</div>
+<a class="hidden md:flex items-center text-primary font-label-md text-label-md hover:underline" href="#">
+                    View all <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Event Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden card-hover transition-all duration-300 flex flex-col">
+<div class="bg-cover bg-center w-full aspect-video" data-alt="A modern tech conference stage with bright, clean, high-key lighting, featuring a minimalist podium and a large glowing digital display. The room is filled with attendees in business casual attire. The overall aesthetic is professional, sharp, and Google-inspired with subtle blue accents in the stage lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpE9YmKhO2vUMHj_AsB6qiylTXXt4OhqSsi2V2tYiwbrM5OyqBpk8-ibV6oLiGRkjg_GnKrmOdbpNa5CpJB7v4aY5GTicaTAwnZhMa3E3U8vqHVznnjg6wk3nHTv6fSeY2MvW_uCuDOz2SJc04wIzue2cqf8WeCsP9Rvcus3t_DyBvJEbTcUPuJpkeCLI-3EW5ywTJ3PsQeXklCBp8OtEJ8OM2HxrLmPO-2P0HYHpnHlU30OLbUoc0')"></div>
+<div class="p-stack-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm text-label-sm uppercase tracking-wider">Technology</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">$299</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface mb-2">Global Tech Summit 2024</h3>
+<div class="space-y-1 mb-4 flex-grow">
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">calendar_today</span>
+                                Oct 15 - 17, 2024
+                            </div>
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">location_on</span>
+                                San Francisco, CA
+                            </div>
+</div>
+<button class="w-full bg-surface-container text-primary font-label-md text-label-md rounded-lg py-2 hover:bg-primary hover:text-on-primary transition-colors border border-outline-variant">
+                            View Details
+                        </button>
+</div>
+</article>
+<!-- Event Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden card-hover transition-all duration-300 flex flex-col">
+<div class="bg-cover bg-center w-full aspect-video" data-alt="An outdoor music festival during a bright, sunny afternoon. A large, clean, modern stage setup with crisp white acoustic paneling and subtle blue lighting rigs. A joyful crowd enjoying the music. The aesthetic is clean, vibrant, and energetic, fitting a modern professional platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9hSTkmg6WPPpyjSpCBd6DqmJx0Z8FSViqs7Xioz4NHX9xhtEce_jaTCOf7dMiLxDN-K9dbL1P16jG5ieMTocX-YC2y2v4EcQEdZXcJdxoOL7fpOjMbJecUf_z8E0WjIeobjs3MxKe9YpNmdlhc0zz5jzjBJWFDhPj-7V37SK3iwcZDtwDKlbAoX1hS8j4tl0b9X4lS9w92xPCBXIhH7LhnqOSwCffVPA5gsyYNHm5OWBO-q66fEFi')"></div>
+<div class="p-stack-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm text-label-sm uppercase tracking-wider">Music &amp; Arts</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">$85</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface mb-2">Summer Sounds Festival</h3>
+<div class="space-y-1 mb-4 flex-grow">
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">calendar_today</span>
+                                Aug 22, 2024
+                            </div>
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">location_on</span>
+                                Austin, TX
+                            </div>
+</div>
+<button class="w-full bg-surface-container text-primary font-label-md text-label-md rounded-lg py-2 hover:bg-primary hover:text-on-primary transition-colors border border-outline-variant">
+                            View Details
+                        </button>
+</div>
+</article>
+<!-- Event Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden card-hover transition-all duration-300 flex flex-col">
+<div class="bg-cover bg-center w-full aspect-video" data-alt="A brightly lit, modern culinary workshop kitchen with stainless steel appliances and white countertops. Professional chefs instructing attendees in a clean, minimalist environment. High-key lighting, sharp focus, with subtle accents of primary blue in the aprons or utensils to match the brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7OBPxYsGCNwzDao5-IDJC8gKLRLuN9ifd11nF5xprfYBI_mWyuTO1UCVeQxH0qpdsSH-HgbH4nBiXHiw0UYLL11VxqLg_mNNR6EInYw17Q3eyOcCIwtXEu4Oy8g5qexaJJz3P8rW6Lyhs46Jcgos39db3QKEBbMbZ4Yo8jFOXCvmYXNW4pkThQM2VYX6rq4LAdnxE8nlIxVzgclsxBRq8Wg_fPdVIsXH8ECCjWkdt6Y9bJTurUtsU')"></div>
+<div class="p-stack-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm text-label-sm uppercase tracking-wider">Food &amp; Drink</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Free</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface mb-2">Culinary Masterclass</h3>
+<div class="space-y-1 mb-4 flex-grow">
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">calendar_today</span>
+                                Sep 05, 2024
+                            </div>
+<div class="flex items-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] mr-2">location_on</span>
+                                New York, NY
+                            </div>
+</div>
+<button class="w-full bg-surface-container text-primary font-label-md text-label-md rounded-lg py-2 hover:bg-primary hover:text-on-primary transition-colors border border-outline-variant">
+                            View Details
+                        </button>
+</div>
+</article>
+</div>
+<div class="mt-8 text-center md:hidden">
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center justify-center mx-auto">
+                    View all events <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container w-full py-stack-lg border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-stack-md md:space-y-0">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface">
+                EventHub
+            </div>
+<nav class="flex flex-wrap justify-center gap-4 font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:text-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Cookie Settings</a>
+</nav>
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+                © 2024 EventHub. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

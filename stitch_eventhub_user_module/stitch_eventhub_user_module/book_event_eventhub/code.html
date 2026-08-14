@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventHub - Book Event</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#656d84",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "surface-bright": "#f7f9fb",
+                      "on-surface": "#191c1e",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#d0e1fb",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-tint": "#0053db",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-container": "#eceef0",
+                      "primary": "#004ac6",
+                      "on-background": "#191c1e",
+                      "inverse-primary": "#b4c5ff",
+                      "tertiary": "#4d556b",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary-fixed-dim": "#bec6e0",
+                      "tertiary-fixed": "#dae2fd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface": "#f7f9fb",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "on-surface-variant": "#434655",
+                      "on-secondary-container": "#54647a",
+                      "on-tertiary-fixed": "#131b2e",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d3e4fe",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#eeefff",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "primary-container": "#2563eb",
+                      "outline-variant": "#c3c6d7",
+                      "surface-container-high": "#e6e8ea",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-secondary-fixed": "#0b1c30",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-container": "#eef0ff",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container-low": "#f2f4f6",
+                      "outline": "#737686",
+                      "on-primary-fixed": "#00174b",
+                      "secondary": "#505f76",
+                      "on-tertiary-fixed-variant": "#3f465c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "stack-lg": "24px",
+                      "margin-desktop": "32px",
+                      "gutter": "24px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-on-surface font-body-md bg-background antialiased min-h-screen flex flex-col">
+<!-- Suppressed Top Nav as this is a linear/transactional checkout flow -->
+<header class="w-full h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-lowest border-b border-outline-variant shadow-sm z-50">
+<div class="flex items-center gap-4">
+<button aria-label="Go back" class="p-2 text-secondary hover:text-primary transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="text-headline-md font-headline-md font-bold text-primary">EventHub</span>
+</div>
+<div class="hidden md:flex items-center gap-2 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">lock</span> Secure Checkout
+        </div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Event Summary -->
+<div class="w-full lg:w-5/12 flex flex-col gap-stack-lg">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="h-48 w-full relative">
+<img alt="Event Cover" class="w-full h-full object-cover" data-alt="A professional photography shot of a modern, bright conference hall setup for a tech summit. The lighting is soft and natural, highlighting clean lines and corporate aesthetic. Dominant colors are crisp whites, subtle slate grays, and accents of professional blue. The mood is expectant and polished, suitable for a high-end corporate event interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7PzKhXeJ_ghs7Nq0ziKLxpuBt010DP01PlV1kQ9P-uJyHoFpDPxZ8uCn0kBUT0tJ8sd2mhzk-1KA65_wJojWr496w3VhAhxGQqLwng338E3pPwfUswnnXsvtRdOPIDMjGbim-yURH7KDe7BOkUAFwAjnyuYSIAgRJqf6QH_CQsq4dFTZl7wPm3VUv8MsyGiaguhUAzR8yL7d3aBSTX5HdMzOGFLnJTXRsxhbFNS1XffIYV8U9E9tc_Q"/>
+</div>
+<div class="p-stack-lg flex flex-col gap-stack-md">
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-2">Global Tech Summit 2024</h1>
+<span class="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px]">confirmation_number</span>
+                            Selling Fast
+                        </span>
+</div>
+<div class="flex flex-col gap-3 mt-2">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">calendar_month</span>
+<div>
+<p class="text-body-md font-body-md text-on-surface font-medium">October 15 - 17, 2024</p>
+<p class="text-body-sm font-body-sm text-secondary">09:00 AM - 05:00 PM PST</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">location_on</span>
+<div>
+<p class="text-body-md font-body-md text-on-surface font-medium">Moscone Center</p>
+<p class="text-body-sm font-body-sm text-secondary">San Francisco, CA, USA</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Organizer Info (Optional visual weight) -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm p-stack-md flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+<img alt="Organizer Logo" class="w-full h-full object-cover" data-alt="A clean, minimalist abstract logo design for a tech company, featuring geometric shapes in professional blue on a pure white background. The design is sleek, modern, and suitable for a corporate brand identity avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBacON8GQAGzU39UWePQeJRxTlK90isIskERb_1IOXH3i3wLbY6_LAhna3Z-_hWMMr1W1-jRiM-Q6tgSXBV6z8yoH6FvW6JNPZOhQKE_V5cLm-TzYIaogybRKoacPmCNmTWK1qk2p5WW5qtKtehnPLLlzlBD5S2Ut2JGR7Jb8f7bmk2QWAU9M86l88Edo95i25eUma4VN962ncwHrSYmhD9FCna7hoVUsMPt6Y5veHQbcNjxuQCY5_LbQ"/>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Organized by</p>
+<p class="text-body-md font-body-md font-medium text-on-surface">TechCorp International</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Booking Form & Checkout -->
+<div class="w-full lg:w-7/12 flex flex-col gap-stack-lg">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm p-stack-lg lg:p-[32px] flex flex-col gap-stack-lg">
+<div class="border-b border-outline-variant pb-stack-md">
+<h2 class="text-headline-md font-headline-md text-on-surface">Select Tickets</h2>
+<p class="text-body-sm font-body-sm text-secondary mt-1">Choose the number of tickets you wish to purchase.</p>
+</div>
+<!-- Ticket Selection -->
+<div class="flex flex-col gap-stack-md">
+<div class="flex items-center justify-between p-stack-md border border-outline-variant rounded-lg bg-surface hover:border-primary transition-colors group">
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg font-medium text-on-surface">General Admission</span>
+<span class="text-body-sm font-body-sm text-secondary">Access to all keynotes and expo hall.</span>
+<span class="text-primary font-label-md text-label-md mt-1">$299.00</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-lowest border border-outline-variant rounded-lg p-1">
+<button aria-label="Decrease quantity" class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary" id="btn-decrease">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<input aria-label="Ticket quantity" class="w-12 text-center border-none bg-transparent p-0 text-body-md font-body-md font-medium focus:ring-0 focus:outline-none" id="ticket-quantity" max="10" min="1" readonly="" type="number" value="1"/>
+<button aria-label="Increase quantity" class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary" id="btn-increase">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Buyer Info (Simplified) -->
+<div class="flex flex-col gap-stack-md mt-stack-sm">
+<h3 class="text-body-lg font-body-lg font-medium text-on-surface">Buyer Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col relative">
+<label class="absolute -top-2 left-2 bg-surface-container-lowest px-1 text-label-sm font-label-sm text-secondary" for="firstName">First Name</label>
+<input class="h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md transition-all" id="firstName" type="text" value="Jane"/>
+</div>
+<div class="flex flex-col relative">
+<label class="absolute -top-2 left-2 bg-surface-container-lowest px-1 text-label-sm font-label-sm text-secondary" for="lastName">Last Name</label>
+<input class="h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md transition-all" id="lastName" type="text" value="Doe"/>
+</div>
+<div class="flex flex-col relative md:col-span-2">
+<label class="absolute -top-2 left-2 bg-surface-container-lowest px-1 text-label-sm font-label-sm text-secondary" for="email">Email Address</label>
+<input class="h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md transition-all" id="email" type="email" value="jane.doe@example.com"/>
+</div>
+</div>
+</div>
+<!-- Order Summary & Checkout -->
+<div class="mt-stack-lg border-t border-outline-variant pt-stack-lg flex flex-col gap-stack-md">
+<h3 class="text-body-lg font-body-lg font-medium text-on-surface">Order Summary</h3>
+<div class="bg-surface rounded-lg p-stack-md flex flex-col gap-2">
+<div class="flex justify-between items-center text-body-sm font-body-sm text-secondary">
+<span>General Admission x <span id="summary-qty">1</span></span>
+<span id="summary-subtotal">$299.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm font-body-sm text-secondary">
+<span>Taxes &amp; Fees</span>
+<span>$24.50</span>
+</div>
+<div class="w-full h-px bg-outline-variant my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-body-lg font-body-lg font-medium text-on-surface">Total</span>
+<span class="text-headline-md font-headline-md font-bold text-primary" id="summary-total">$323.50</span>
+</div>
+</div>
+<button class="w-full h-12 mt-4 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-semibold hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span>Confirm Booking</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<p class="text-center text-label-sm font-label-sm text-secondary mt-2">By confirming, you agree to our Terms of Service and Privacy Policy.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Suppressed Footer for transactional page to maintain focus -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ticketPrice = 299.00;
+            const taxesAndFees = 24.50;
+            
+            const qtyInput = document.getElementById('ticket-quantity');
+            const btnDecrease = document.getElementById('btn-decrease');
+            const btnIncrease = document.getElementById('btn-increase');
+            
+            const summaryQty = document.getElementById('summary-qty');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryTotal = document.getElementById('summary-total');
+
+            function updateTotals() {
+                const qty = parseInt(qtyInput.value, 10);
+                const subtotal = qty * ticketPrice;
+                const total = subtotal + taxesAndFees;
+
+                summaryQty.textContent = qty;
+                summarySubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                summaryTotal.textContent = `$${total.toFixed(2)}`;
+            }
+
+            btnDecrease.addEventListener('click', () => {
+                let currentVal = parseInt(qtyInput.value, 10);
+                if (currentVal > 1) {
+                    qtyInput.value = currentVal - 1;
+                    updateTotals();
+                }
+            });
+
+            btnIncrease.addEventListener('click', () => {
+                let currentVal = parseInt(qtyInput.value, 10);
+                if (currentVal < 10) {
+                    qtyInput.value = currentVal + 1;
+                    updateTotals();
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Reports &amp; Analytics - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c7c5d4",
+                        "tertiary-fixed-dim": "#c3c7cb",
+                        "primary-container": "#2e3192",
+                        "secondary-fixed": "#c6e7ff",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#464652",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#001e2e",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed": "#e1e0ff",
+                        "surface": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#83cfff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#dfe3e7",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-container": "#a6aaae",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#43474b",
+                        "on-primary-container": "#9da1ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed": "#04006d",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-container": "#004867",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-container": "#2fbcff",
+                        "on-secondary": "#ffffff",
+                        "outline": "#777683",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#171c1f",
+                        "tertiary": "#24292c",
+                        "secondary": "#00658d",
+                        "primary": "#15157d",
+                        "surface-tint": "#4f54b4",
+                        "on-secondary-fixed-variant": "#004c6c",
+                        "tertiary-container": "#3a3f42",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .chart-bar { transition: height 0.3s ease; }
+        .chart-bar:hover { filter: brightness(0.9); cursor: pointer; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface h-full flex flex-col md:flex-row antialiased overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen py-md bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline fixed left-0 top-0 h-full w-60 z-20">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">EventHub</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Management Suite</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-sm px-sm">
+<!-- Dashboard -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+</li>
+<!-- My Events -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
+<span class="font-title-sm text-title-sm">My Events</span>
+</a>
+</li>
+<!-- Add Event -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+<span class="font-title-sm text-title-sm">Add Event</span>
+</a>
+</li>
+<!-- Participants -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">groups</span>
+<span class="font-title-sm text-title-sm">Participants</span>
+</a>
+</li>
+<!-- Bookings -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">confirmation_number</span>
+<span class="font-title-sm text-title-sm">Bookings</span>
+</a>
+</li>
+<!-- Event Accessories -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+<span class="font-title-sm text-title-sm">Event Accessories</span>
+</a>
+</li>
+<!-- Reports - ACTIVE -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-secondary font-bold border-r-4 border-secondary bg-surface-container-high dark:bg-surface-container-highest transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-title-sm text-title-sm">Reports</span>
+</a>
+</li>
+<!-- Profile -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+<span class="font-title-sm text-title-sm">Profile</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="px-sm mt-auto">
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-title-sm text-title-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-60 h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-xl bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm z-10 w-full shrink-0">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Button (Visible only on md-) -->
+<button class="md:hidden text-on-surface-variant p-sm rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-title-sm text-title-sm text-primary dark:text-primary-fixed font-bold">EventHub Manager</span>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Search (on_right) -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-body-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all w-64" placeholder="Search..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="p-sm rounded-full text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+<!-- Profile -->
+<div class="ml-sm w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden shrink-0 cursor-pointer">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot of an event manager with a neutral expression, well-lit in a modern office setting. The style is a clean, realistic photograph with sharp focus, suitable for a corporate profile avatar. Colors are natural and slightly muted to fit a professional UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGp1CVMjUzD-m_Iu-8BBkMGulCIyjmhaNbBKFAQBrJCB4TvUp38sHmiEzsv2dE0pCnFDb-89fdQ2FpJQBunuP-FAWFm1SBui_0uVIBKlgRLs3G2jDYI_I0jOuS32ChlMTBpFauiG3T7Lx5_WriWQWgbu2qnPmSnSjSF3CwyekpzhEAFX5ur73uX71HhUC0MTcvK8PcCufb-4ONc_bxBH-EKoBY11biFocaSQvLnm6gfaepHKJs48V5bw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-lg bg-surface-bright">
+<div class="max-w-container-max mx-auto space-y-xl">
+<!-- Page Header -->
+<div>
+<h2 class="font-display-lg text-display-lg md:font-display-lg text-on-surface">Reports &amp; Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Overview of your event performance and key metrics.</p>
+</div>
+<!-- Stats Grid (Bento Style Top Row) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Stat Card 1: Total Events -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Events</span>
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-size: 20px;">event</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface group-hover:text-primary transition-colors">124</div>
+<div class="mt-sm flex items-center text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-emerald-600 mr-xs" style="font-size: 16px;">trending_up</span>
+<span class="text-emerald-600 font-semibold mr-xs">+12%</span> vs last month
+                        </div>
+</div>
+<!-- Stat Card 2: Participants -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Participants</span>
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-size: 20px;">groups</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface group-hover:text-primary transition-colors">8,432</div>
+<div class="mt-sm flex items-center text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-emerald-600 mr-xs" style="font-size: 16px;">trending_up</span>
+<span class="text-emerald-600 font-semibold mr-xs">+5.4%</span> vs last month
+                        </div>
+</div>
+<!-- Stat Card 3: Bookings -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Bookings</span>
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-size: 20px;">confirmation_number</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface group-hover:text-primary transition-colors">1,205</div>
+<div class="mt-sm flex items-center text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-rose-600 mr-xs" style="font-size: 16px;">trending_down</span>
+<span class="text-rose-600 font-semibold mr-xs">-2.1%</span> vs last month
+                        </div>
+</div>
+<!-- Stat Card 4: Revenue -->
+<div class="bg-primary p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden text-on-primary">
+<!-- Decorative bg -->
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+<div class="flex justify-between items-start mb-sm relative z-10">
+<span class="font-label-caps text-label-caps text-on-primary/80 uppercase tracking-wider">Revenue YTD</span>
+<div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-size: 20px;">payments</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg relative z-10">$142.5k</div>
+<div class="mt-sm flex items-center text-body-sm text-on-primary/80 relative z-10">
+<span class="material-symbols-outlined text-white mr-xs" style="font-size: 16px;">trending_up</span>
+<span class="text-white font-semibold mr-xs">+18%</span> vs last year
+                        </div>
+</div>
+</div>
+<!-- Main Charts Area (Bento Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Bar Chart: Event Performance (Spans 2 cols on lg) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col h-96">
+<div class="flex justify-between items-center mb-xl">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Event Performance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attendance across categories</p>
+</div>
+<button class="text-secondary font-label-caps text-label-caps uppercase hover:underline">View Details</button>
+</div>
+<!-- Simulated Bar Chart (CSS based) -->
+<div class="flex-1 flex items-end justify-around gap-2 mt-auto border-b border-surface-container-high pb-sm pt-xl px-sm relative">
+<!-- Y-axis labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-label-caps text-on-surface-variant pr-2 text-right w-8 -ml-4">
+<span>1k</span>
+<span>500</span>
+<span>0</span>
+</div>
+<!-- Bars -->
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[40%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Tech</span>
+</div>
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[85%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Music</span>
+</div>
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[30%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Art</span>
+</div>
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[60%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Food</span>
+</div>
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[75%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Sport</span>
+</div>
+<div class="w-12 bg-secondary/20 rounded-t-sm h-[50%] relative group chart-bar">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-sm h-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-on-surface-variant text-[10px]">Biz</span>
+</div>
+</div>
+</div>
+<!-- Line Chart / Mini Stats: Booking Trends -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col h-96">
+<div class="mb-md">
+<h3 class="font-title-sm text-title-sm text-on-surface">Booking Trends</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last 7 days</p>
+</div>
+<!-- Simple visual representation of a line chart using SVG path (simulated) -->
+<div class="flex-1 w-full relative bg-surface-container-high/30 rounded-lg p-sm flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 50">
+<path d="M0,40 C20,35 30,45 50,20 C70,-5 80,30 100,10 L100,50 L0,50 Z" fill="url(#grad)" opacity="0.2"></path>
+<path d="M0,40 C20,35 30,45 50,20 C70,-5 80,30 100,10" fill="none" stroke="#2e3192" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<circle class="animate-pulse" cx="50" cy="20" fill="#2e3192" r="3"></circle>
+<defs>
+<lineargradient id="grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2e3192"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="mt-md flex justify-between items-center bg-surface p-sm rounded border border-outline-variant">
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant">Peak Day</span>
+<span class="font-title-sm text-title-sm text-on-surface">Thursday</span>
+</div>
+<div class="text-right">
+<span class="block font-label-caps text-label-caps text-on-surface-variant">Volume</span>
+<span class="font-title-sm text-title-sm text-primary">342</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Popular Events List & Action Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md pb-xl">
+<!-- Popular Events List (Spans 2 cols) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-md border-b border-surface-container-high bg-surface-bright flex justify-between items-center">
+<h3 class="font-title-sm text-title-sm text-on-surface">Popular Events</h3>
+<button class="p-xs hover:bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-sm px-md font-label-caps text-label-caps text-on-surface-variant uppercase">Event Name</th>
+<th class="py-sm px-md font-label-caps text-label-caps text-on-surface-variant uppercase">Date</th>
+<th class="py-sm px-md font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+<th class="py-sm px-md font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Revenue</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-lowest/50 transition-colors h-12">
+<td class="py-sm px-md font-body-sm text-on-surface font-semibold">Global Tech Summit 2024</td>
+<td class="py-sm px-md font-body-sm text-on-surface-variant">Oct 12-14</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                                Active
+                                            </span>
+</td>
+<td class="py-sm px-md font-code text-right text-on-surface">$45,200</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest/50 transition-colors h-12">
+<td class="py-sm px-md font-body-sm text-on-surface font-semibold">City Marathon</td>
+<td class="py-sm px-md font-body-sm text-on-surface-variant">Nov 05</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                                                Upcoming
+                                            </span>
+</td>
+<td class="py-sm px-md font-code text-right text-on-surface">$18,450</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest/50 transition-colors h-12">
+<td class="py-sm px-md font-body-sm text-on-surface font-semibold">Design Leadership Conference</td>
+<td class="py-sm px-md font-body-sm text-on-surface-variant">Sep 28</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant border border-outline-variant">
+                                                Completed
+                                            </span>
+</td>
+<td class="py-sm px-md font-code text-right text-on-surface">$32,100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Action / Insight Card -->
+<div class="bg-secondary-fixed rounded-xl border border-secondary-fixed-dim shadow-sm p-lg flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-on-secondary-fixed" style="font-size: 32px;">lightbulb</span>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-secondary-fixed mb-sm">Generate Full Report</h4>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant mb-md">Compile all analytics into a comprehensive PDF for stakeholder review.</p>
+<button class="bg-primary text-on-primary font-title-sm text-title-sm px-md py-sm rounded-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm w-full">
+                            Export PDF
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

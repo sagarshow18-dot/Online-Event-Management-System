@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Details - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#656d84",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#4d556b",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-container": "#2563eb",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-low": "#f2f4f6",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-16">
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-surface-container-lowest dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline fixed top-0 w-full z-50 h-16 flex items-center justify-between px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-gutter">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">EventHub</a>
+<div class="hidden md:flex gap-gutter items-center h-full">
+<a class="text-secondary dark:text-secondary-fixed-dim font-label-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200 h-full flex items-center" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200 h-full flex items-center pt-1" href="#">Events</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-label-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200 h-full flex items-center" href="#">My Bookings</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="text-primary dark:text-primary-fixed-dim p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of an event attendee, lit softly against a neutral background. The lighting is flattering, emphasizing a bright, modern corporate aesthetic. The subject is smiling slightly, conveying a sense of approachability and readiness for a business conference." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3VDDKNegCHzr2ntNE0FJ6eEXT_Ksw_nM0ax38LjCRIaayUWxhfqGYZiQm8xDtN-RhRijkKKIkxNV7bAo06jhIIvK5UMpGAMD2nGPRnrSq0fetQ4wW5bIVM_PfCQEp6ZyYVJe4euM42kSYcoxwQITGAFFbQuEM3HoAKo7PJMU3GIl8SKj2ZqVL8ZVGzbhwksxae85eirbFnZ-w6f0_a4h8RKu8SKEdxyQAdBkP_2ao1zj5cECjHu4ryA"/>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col gap-stack-lg">
+<!-- Hero Image Section -->
+<section class="w-full h-64 md:h-[400px] rounded-xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover absolute inset-0" data-alt="A high-quality, wide-angle photograph of a large, modern corporate event venue. The space is filled with warm, inviting lighting, sleek staging, and rows of empty, comfortable seating waiting for attendees. The aesthetic is highly professional, clean, and optimistic, capturing the anticipation of a major industry conference." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzqAY2Jy3p4xMn0Lb1HWdvMQW10Kr_iZmHhqKOzqNuXIcrw9FfVctjppVgkBZwURzh6iicH5QyV_ZBOY_TMX-tfIbEwhfAiQ6ug2gOeZp21feAYZhFvQ7lefCHMRcOAKSOYs8lKOTP2nLwnFw1ZgbOAe5Bp483WbHFd2v1kNzy8PMKhMcgFBelQw3MthEFVgyAmCpj4JVSRoGBWYAfhl0vBPrwyKIaA3SNYv_zZDpxTt9dtipm0kJ2Lg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-stack-lg left-stack-lg text-white">
+<div class="inline-block px-3 py-1 bg-surface-tint/20 backdrop-blur-md rounded-full text-label-sm font-label-sm text-white mb-stack-sm border border-white/20">Technology Conference</div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg font-bold text-white mb-stack-sm drop-shadow-md">Global Tech Innovators Summit 2024</h1>
+<p class="text-body-md font-body-md text-white/90 drop-shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span> Oct 15 - 17, 2024
+                </p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Details -->
+<div class="lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- About Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-stack-md md:p-stack-lg shadow-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-stack-md">About This Event</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-stack-md leading-relaxed">
+                        Join industry leaders, visionaries, and practitioners for three days of immersive learning, networking, and inspiration at the Global Tech Innovators Summit. This year's focus is on Artificial Intelligence, sustainable tech infrastructure, and the future of remote collaboration platforms. 
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                        Expect keynote speeches from top executives, hands-on workshops with emerging technologies, and unparalleled opportunities to connect with peers who are shaping the digital landscape of tomorrow. Whether you're a developer, a product manager, or a C-level executive, you'll find actionable insights to drive your organization forward.
+                    </p>
+</div>
+<!-- Bento Grid Details -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md">
+<!-- Date & Time -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-stack-md shadow-sm flex items-start gap-stack-md">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-lg flex-shrink-0">
+<span class="material-symbols-outlined" data-weight="fill">schedule</span>
+</div>
+<div>
+<h3 class="text-label-md font-label-md text-on-surface mb-1">Date &amp; Time</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Tuesday, Oct 15, 2024<br/>9:00 AM - 5:00 PM PST</p>
+</div>
+</div>
+<!-- Location -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-stack-md shadow-sm flex items-start gap-stack-md">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-lg flex-shrink-0">
+<span class="material-symbols-outlined" data-weight="fill">location_on</span>
+</div>
+<div>
+<h3 class="text-label-md font-label-md text-on-surface mb-1">Location</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Moscone Center<br/>747 Howard St, San Francisco, CA</p>
+<a class="text-primary text-label-sm font-label-sm hover:underline mt-1 inline-block" href="#">View Map</a>
+</div>
+</div>
+</div>
+<!-- Organizer Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-stack-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden border border-outline-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">corporate_fare</span>
+</div>
+<div>
+<h3 class="text-label-md font-label-md text-on-surface">TechNexus Events Inc.</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Event Organizer</p>
+</div>
+</div>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors">Contact</button>
+</div>
+</div>
+<!-- Right Column: Booking Widget -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-stack-lg shadow-sm sticky top-24">
+<div class="mb-stack-lg pb-stack-md border-b border-outline-variant">
+<p class="text-body-sm font-body-sm text-on-surface-variant uppercase tracking-wider mb-1">General Admission</p>
+<div class="flex items-end gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface">$299.00</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mb-1">/ person</span>
+</div>
+</div>
+<div class="flex justify-between items-center mb-stack-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">confirmation_number</span>
+<span class="text-label-md font-label-md text-on-surface">Available Seats</span>
+</div>
+<div class="bg-error-container/20 px-3 py-1 rounded-full border border-error-container">
+<span class="text-label-sm font-label-sm text-error">Only 42 left</span>
+</div>
+</div>
+<!-- Quantity Selector (Simulated) -->
+<div class="mb-stack-lg">
+<label class="block text-label-md font-label-md text-on-surface mb-2">Quantity</label>
+<div class="flex items-center justify-between border border-outline-variant rounded-lg p-2 bg-surface-container-lowest">
+<button class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-body-md font-body-md text-on-surface font-medium">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<button class="w-full h-12 bg-primary-container text-white rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                        Book Now
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<p class="text-center text-body-sm font-body-sm text-on-surface-variant mt-stack-md">Secure checkout provided by Stripe</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-auto">
+<div class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-headline-sm font-headline-sm text-primary font-bold">EventHub</span>
+<span class="text-body-sm font-body-sm text-on-surface dark:text-inverse-on-surface">© 2024 EventHub. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="text-label-sm font-label-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Sitemap</a>
+<a class="text-label-sm font-label-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Contact Us</a>
+<a class="text-label-sm font-label-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm font-label-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

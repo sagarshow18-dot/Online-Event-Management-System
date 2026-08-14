@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - EventHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9fd",
+                        "surface-bright": "#faf9fd",
+                        "primary-container": "#1a73e8",
+                        "tertiary-fixed-dim": "#6ddd81",
+                        "tertiary-container": "#008939",
+                        "inverse-on-surface": "#f1f0f4",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#dde0e6",
+                        "surface-variant": "#e3e2e6",
+                        "surface-container-low": "#f4f3f7",
+                        "outline": "#727785",
+                        "on-primary-fixed": "#001a41",
+                        "on-primary-fixed-variant": "#004493",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efedf1",
+                        "on-tertiary-fixed-variant": "#005320",
+                        "on-background": "#1a1b1e",
+                        "tertiary-fixed": "#89fa9b",
+                        "secondary-fixed-dim": "#c3c7cc",
+                        "tertiary": "#006d2c",
+                        "on-tertiary-container": "#ffffff",
+                        "secondary": "#5b5f64",
+                        "primary": "#005bbf",
+                        "on-secondary-fixed-variant": "#43474c",
+                        "secondary-fixed": "#dfe3e8",
+                        "on-tertiary-fixed": "#002108",
+                        "surface-container-high": "#e9e7eb",
+                        "inverse-primary": "#adc7ff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1b1e",
+                        "primary-fixed-dim": "#adc7ff",
+                        "error-container": "#ffdad6",
+                        "background": "#faf9fd",
+                        "surface-container-highest": "#e3e2e6",
+                        "surface-dim": "#dbd9dd",
+                        "on-secondary-container": "#5f6368",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2f3033",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#414754",
+                        "outline-variant": "#c1c6d6",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005bc0",
+                        "on-secondary-fixed": "#181c20",
+                        "on-primary-container": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        [data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+            opacity: 0;
+        }
+        .faq-answer.open {
+            max-height: 500px; /* Arbitrary large max-height */
+            opacity: 1;
+            padding-top: 16px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.open {
+            transform: rotate(180deg);
+        }
+        
+        /* Subtle shadow for form inputs on focus */
+        .input-focus-ring:focus {
+            box-shadow: 0 1px 2px rgba(60,64,67, 0.3), 0 1px 3px 1px rgba(60,64,67, 0.15);
+            border-color: transparent;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Rendered directly to ensure structural accuracy based on JSON) -->
+<header class="w-full h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center px-margin-desktop max-w-container-max mx-auto z-50 relative">
+<!-- Search & Brand Area -->
+<div class="flex items-center gap-gutter">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight" href="#">EventHub</a>
+<div class="hidden md:flex items-center relative ml-4">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[20px]" data-icon="search">search</span>
+<input class="h-12 pl-10 pr-4 rounded-lg border border-outline-variant bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:border-primary transition-shadow text-body-sm w-64 input-focus-ring" placeholder="Search events..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-gutter h-full">
+<a class="h-full flex items-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">Home</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">Events</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">About</a>
+<!-- Active State Navigation -->
+<a class="h-full flex items-center text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 font-bold transition-all duration-200 ease-in-out font-body-md text-body-md" href="#">Contact</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-stack-md">
+<button class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-full bg-primary text-on-primary font-label-md transition-shadow hover:shadow-md">Create Event</button>
+<button class="text-primary font-label-md hover:underline hidden md:block">Login</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg md:py-16">
+<!-- Page Header -->
+<div class="mb-12 max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-stack-sm md:font-display-lg md:text-display-lg font-headline-lg-mobile text-headline-lg-mobile">Get in touch</h1>
+<p class="font-body-lg text-body-lg text-secondary">We're here to help. Send us a message and we'll respond as soon as possible.</p>
+</div>
+<!-- Bento Grid Layout for Contact & Form -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-16">
+<!-- Contact Information Side (Left) -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Info Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant flex flex-col gap-stack-lg shadow-sm">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Contact Information</h3>
+<div class="flex flex-col gap-stack-md">
+<!-- Email -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Email Us</p>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="mailto:support@eventhub.com">support@eventhub.com</a>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Call Us</p>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="tel:+18005550199">+1 (800) 555-0199</a>
+</div>
+</div>
+<!-- Location -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Visit Us</p>
+<p class="font-body-md text-body-md text-secondary">123 Event Lane<br/>San Francisco, CA 94103</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Placeholder Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden h-64 relative group">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A modern, high-contrast digital map interface showing a pinpoint location in San Francisco. The style is clean, corporate modernism with subtle gray roads and a bright primary blue marker pin. The lighting is flat and minimalist, suitable for a light-mode UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcMJ4gT_iASFkii9qywQ12-WYu2fEz72NCxmNZJucVHiozkhRkYBHts1IEzUEF90RDSWehZBwnJ-O06TrMY_0d8EaD-dNIIJGBoHAF1Qu6jULf2Qut7Nxipnhvqzg5qSeJ2mqBjh0_lXbUY_hzklUz_ggRVn420r8rI_QVSiYivWrOL7JChX6N-iFE-ddZT61yNtC2sd5GnO4gxgW3zIvGf0BrKAMttEqbTk19ghR6Zzzn_1LQ2KzD"/>
+</div>
+</div>
+<!-- Form Side (Right) -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant shadow-sm h-full">
+<form action="#" class="flex flex-col gap-gutter" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Name Input -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface" for="name">Full Name</label>
+<input class="h-12 px-4 rounded-lg border border-outline-variant bg-surface-bright focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md w-full input-focus-ring" id="name" name="name" placeholder="Jane Doe" required="" type="text"/>
+</div>
+<!-- Email Input -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email Address</label>
+<input class="h-12 px-4 rounded-lg border border-outline-variant bg-surface-bright focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md w-full input-focus-ring" id="email" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Subject Input -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface" for="subject">Subject</label>
+<input class="h-12 px-4 rounded-lg border border-outline-variant bg-surface-bright focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md w-full input-focus-ring" id="subject" name="subject" placeholder="How can we help you?" required="" type="text"/>
+</div>
+<!-- Message Textarea -->
+<div class="flex flex-col gap-1 flex-grow">
+<label class="font-label-md text-label-md text-on-surface" for="message">Message</label>
+<textarea class="p-4 rounded-lg border border-outline-variant bg-surface-bright focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md w-full resize-y input-focus-ring" id="message" name="message" placeholder="Please describe your inquiry in detail..." required="" rows="5"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="pt-4">
+<button class="w-full md:w-auto px-8 h-12 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-tint transition-all hover:shadow-md active:scale-[0.98]" type="submit">
+<span>Send Message</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- FAQ Section -->
+<div class="max-w-3xl mx-auto pt-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface text-center mb-8">Frequently Asked Questions</h2>
+<div class="flex flex-col gap-4">
+<!-- FAQ Item 1 -->
+<div class="border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden transition-all hover:border-primary">
+<button class="w-full px-6 py-4 flex justify-between items-center focus:outline-none faq-toggle text-left">
+<span class="font-label-md text-label-md text-on-surface pr-4">How quickly do you respond to support inquiries?</span>
+<span class="material-symbols-outlined text-secondary faq-icon" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-4 faq-answer font-body-md text-body-md text-secondary bg-surface-bright">
+                        We aim to respond to all inquiries within 24 hours during standard business days. For urgent matters related to an ongoing event, please use the phone support line.
+                    </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden transition-all hover:border-primary">
+<button class="w-full px-6 py-4 flex justify-between items-center focus:outline-none faq-toggle text-left">
+<span class="font-label-md text-label-md text-on-surface pr-4">Can I change my event details after publishing?</span>
+<span class="material-symbols-outlined text-secondary faq-icon" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-4 faq-answer font-body-md text-body-md text-secondary bg-surface-bright">
+                        Yes, you can edit most event details from your dashboard. However, changes to date or venue will automatically notify registered attendees.
+                    </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden transition-all hover:border-primary">
+<button class="w-full px-6 py-4 flex justify-between items-center focus:outline-none faq-toggle text-left">
+<span class="font-label-md text-label-md text-on-surface pr-4">How do payouts work for ticket sales?</span>
+<span class="material-symbols-outlined text-secondary faq-icon" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-4 faq-answer font-body-md text-body-md text-secondary bg-surface-bright">
+                        Payouts are processed automatically 3 days after your event concludes. Funds will be deposited directly into your linked bank account.
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline flat no shadows flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto space-y-stack-md md:space-y-0 mt-auto">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface-variant font-body-md text-body-md">
+            EventHub
+        </div>
+<nav class="flex flex-wrap justify-center gap-gutter">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary opacity-80 hover:opacity-100 transition-opacity font-body-sm text-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary opacity-80 hover:opacity-100 transition-opacity font-body-sm text-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary opacity-80 hover:opacity-100 transition-opacity font-body-sm text-body-sm" href="#">Help Center</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary opacity-80 hover:opacity-100 transition-opacity font-body-sm text-body-sm" href="#">Cookie Settings</a>
+</nav>
+<div class="font-body-sm text-body-sm text-secondary">
+            © 2024 EventHub. All rights reserved.
+        </div>
+</footer>
+<script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggles = document.querySelectorAll('.faq-toggle');
+            
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const answer = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('.faq-icon');
+                    
+                    // Close others (optional, for accordion style)
+                    /*
+                    document.querySelectorAll('.faq-answer').forEach(a => {
+                        if(a !== answer) a.classList.remove('open');
+                    });
+                    document.querySelectorAll('.faq-icon').forEach(i => {
+                        if(i !== icon) i.classList.remove('open');
+                    });
+                    */
+
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#656d84",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#4d556b",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-container": "#2563eb",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-low": "#f2f4f6",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="text-on-surface flex flex-col md:flex-row min-h-screen">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden lg:flex flex-col h-full py-stack-lg h-screen w-64 rounded-r-lg bg-surface-container-low border-r border-outline-variant shadow-sm shrink-0 fixed z-10 left-0 top-0">
+<div class="px-margin-desktop mb-stack-lg">
+<h1 class="text-headline-md font-headline-md text-primary">EventHub</h1>
+</div>
+<div class="px-margin-desktop mb-stack-lg flex items-center gap-stack-sm">
+<img alt="User Avatar" class="w-10 h-10 rounded-full bg-surface-container-highest object-cover" data-alt="A small circular avatar placeholder image showing a generic user silhouette in soft blue tones suitable for a modern corporate application. The background is white and the style is clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW9IGcnvnY68d2t6T2hu-h2qCLJQZzgTXw0yhFq88Vo8TMSIRHICyceZF8dZ0Ky7gusCLRnoIXLKpJIW7lkffH0xdb528sMNtIEyunBOveV80NrrduVMV9imxNBqBOJYE79sjPp1rLS210KgTKcR9KONhoFIchFFQkyg6wlzz_iOBT39TO5yVmA5SRXmPLAzzDKBTbwN-dqxN_rqgB3nZ8jeFN8Q-GBp3zWe-kDucRrowugStHRdBZOw"/>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Attendee Name</p>
+<p class="text-body-sm font-body-sm text-secondary">Member since 2023</p>
+</div>
+</div>
+<ul class="flex flex-col gap-base px-stack-md">
+<li>
+<a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg px-stack-md py-stack-sm text-label-md font-label-md translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="person">person</span>
+                    Profile
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md text-secondary px-stack-md py-stack-sm text-label-md font-label-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Mobile Top Nav (Simulated TopNavBar for responsive) -->
+<header class="lg:hidden fixed top-0 w-full z-50 h-16 flex items-center justify-between px-margin-mobile bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<h1 class="text-headline-md font-headline-md font-bold text-primary">EventHub</h1>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 pt-20 lg:pt-0 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<div class="mb-stack-lg">
+<h2 class="text-headline-lg font-headline-lg text-on-surface">User Profile</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Manage your personal information and contact details.</p>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-stack-lg">
+<!-- Left Column: Avatar & Quick Info (Bento Style) -->
+<div class="xl:col-span-1 space-y-stack-lg">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-stack-lg flex flex-col items-center text-center">
+<div class="relative mb-stack-md group cursor-pointer">
+<img alt="Profile Picture" class="w-32 h-32 rounded-full object-cover border-4 border-surface" data-alt="A professional headshot of a person looking friendly and approachable, set against a clean, light grey background. The lighting is soft and studio-quality, suitable for a corporate event profile picture. The style is modern and realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzR25byBysfz_B2ke4iHm4jZ0qrFf9G0SyAGo5xPwmxhp0_KZWBAB2dr1IGa4fO9niwdlzRsH2atUZ0m9CO-OouOosbR91l1e7FeTY5iXKpIIpz_8g6uE-59UaPr-tBke0uPth8-HqGseBEg5IcXQyoX5zbip_iUw3FIAjd-0m-5B-Dejawwb_rUsEgM7MWgUCTzkzRXVVBxcZhcJ7tApSE-QwEhzvKzot5dbQOUsSK8obAxlDXQ5fPQ"/>
+<div class="absolute inset-0 bg-on-surface/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<span class="material-symbols-outlined text-white" data-icon="edit">edit</span>
+</div>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Attendee Name</h3>
+<p class="text-body-sm font-body-sm text-secondary mb-stack-md">Software Engineer @ TechCorp</p>
+<button class="w-full bg-surface-container-low border border-outline-variant text-on-surface-variant font-label-md text-label-md py-2 rounded-lg hover:bg-surface-container-high transition-colors">
+                        Change Photo
+                    </button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-stack-lg">
+<h4 class="text-label-md font-label-md text-on-surface mb-stack-md">Public Profile URL</h4>
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-body-sm font-body-sm text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" readonly="" type="text" value="eventhub.com/u/attendee"/>
+<button class="p-2 border border-outline-variant rounded-lg text-secondary hover:text-primary hover:border-primary transition-colors" title="Copy URL">
+<span class="material-symbols-outlined text-[20px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Form Edit Area -->
+<div class="xl:col-span-2">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-stack-lg">
+<div class="flex items-center justify-between mb-stack-lg border-b border-outline-variant pb-stack-sm">
+<h3 class="text-headline-md font-headline-md text-on-surface">Personal Information</h3>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span> Edit Profile
+                        </button>
+</div>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">First Name</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" type="text" value="Attendee"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">Last Name</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" type="text" value="Name"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">Email Address</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" type="email" value="attendee@example.com"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">Phone Number</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" type="tel" value="+1 (555) 123-4567"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">Job Title / Company</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" type="text" value="Software Engineer @ TechCorp"/>
+</div>
+<div class="pt-stack-lg border-t border-outline-variant mt-stack-lg flex justify-end gap-stack-sm">
+<button class="px-4 py-2 border border-outline-variant rounded-lg text-secondary font-label-md text-label-md hover:bg-surface-container-low transition-colors" type="button">
+                                Cancel
+                            </button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors" type="button">
+                                Save Changes
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+</body></html>

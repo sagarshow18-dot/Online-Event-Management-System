@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Explore All Events - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface": "#faf9fd",
+                            "surface-bright": "#faf9fd",
+                            "primary-container": "#1a73e8",
+                            "tertiary-fixed-dim": "#6ddd81",
+                            "tertiary-container": "#008939",
+                            "inverse-on-surface": "#f1f0f4",
+                            "on-tertiary": "#ffffff",
+                            "secondary-container": "#dde0e6",
+                            "surface-variant": "#e3e2e6",
+                            "surface-container-low": "#f4f3f7",
+                            "outline": "#727785",
+                            "on-primary-fixed": "#001a41",
+                            "on-primary-fixed-variant": "#004493",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-container": "#efedf1",
+                            "on-tertiary-fixed-variant": "#005320",
+                            "on-background": "#1a1b1e",
+                            "tertiary-fixed": "#89fa9b",
+                            "secondary-fixed-dim": "#c3c7cc",
+                            "tertiary": "#006d2c",
+                            "on-tertiary-container": "#ffffff",
+                            "secondary": "#5b5f64",
+                            "primary": "#005bbf",
+                            "on-secondary-fixed-variant": "#43474c",
+                            "secondary-fixed": "#dfe3e8",
+                            "on-tertiary-fixed": "#002108",
+                            "surface-container-high": "#e9e7eb",
+                            "inverse-primary": "#adc7ff",
+                            "on-primary": "#ffffff",
+                            "on-surface": "#1a1b1e",
+                            "primary-fixed-dim": "#adc7ff",
+                            "error-container": "#ffdad6",
+                            "background": "#faf9fd",
+                            "surface-container-highest": "#e3e2e6",
+                            "surface-dim": "#dbd9dd",
+                            "on-secondary-container": "#5f6368",
+                            "on-error-container": "#93000a",
+                            "inverse-surface": "#2f3033",
+                            "primary-fixed": "#d8e2ff",
+                            "on-secondary": "#ffffff",
+                            "on-surface-variant": "#414754",
+                            "outline-variant": "#c1c6d6",
+                            "on-error": "#ffffff",
+                            "surface-tint": "#005bc0",
+                            "on-secondary-fixed": "#181c20",
+                            "on-primary-container": "#ffffff",
+                            "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "unit": "4px",
+                            "container-max": "1280px",
+                            "stack-lg": "32px",
+                            "stack-sm": "8px",
+                            "margin-desktop": "32px",
+                            "gutter": "24px",
+                            "stack-md": "16px",
+                            "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                            "label-md": ["Inter"],
+                            "headline-lg-mobile": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "display-lg": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "body-sm": ["Inter"],
+                            "body-md": ["Inter"],
+                            "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                            "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "display-lg": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<header class="w-full h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flat no shadows transition-all duration-200 ease-in-out">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center space-x-gutter">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary" href="#">EventHub</a>
+<div class="hidden md:flex items-center space-x-stack-lg border border-outline-variant rounded-full px-4 py-1.5 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+<input class="border-none bg-transparent focus:ring-0 text-body-sm font-body-sm w-48 p-0" placeholder="Search events..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center space-x-stack-lg font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 font-bold hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Events</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">About</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center space-x-stack-md font-body-md text-body-md">
+<button class="hidden md:block text-on-surface hover:text-primary transition-colors">Login</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md hover:bg-primary-container transition-colors">Explore Events</button>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Page Header & Filters -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-stack-md">Explore All Events</h1>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-md shadow-sm">
+<div class="flex flex-col md:flex-row md:items-end gap-stack-md">
+<!-- Search -->
+<div class="flex-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit">Search</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-12 pl-10 pr-3 rounded border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md font-body-md bg-surface" placeholder="Keywords..." type="text"/>
+</div>
+</div>
+<!-- Category -->
+<div class="w-full md:w-48">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit">Category</label>
+<select class="w-full h-12 rounded border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md font-body-md bg-surface">
+<option>All Categories</option>
+<option>Technology</option>
+<option>Design</option>
+<option>Business</option>
+<option>Arts</option>
+</select>
+</div>
+<!-- Date -->
+<div class="w-full md:w-48">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit">Date</label>
+<input class="w-full h-12 rounded border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md font-body-md bg-surface" type="date"/>
+</div>
+<!-- Location -->
+<div class="w-full md:w-48">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit">Location</label>
+<select class="w-full h-12 rounded border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md font-body-md bg-surface">
+<option>Any Location</option>
+<option>New York</option>
+<option>San Francisco</option>
+<option>London</option>
+<option>Remote</option>
+</select>
+</div>
+</div>
+<!-- Sort & Additional Filters Row -->
+<div class="flex justify-between items-center mt-stack-md pt-stack-md border-t border-outline-variant">
+<div class="flex items-center gap-stack-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span>More Filters</span>
+</div>
+<div class="flex items-center gap-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant hidden md:block">Sort by:</label>
+<select class="h-10 rounded border border-outline-variant focus:border-primary text-body-sm font-body-sm bg-surface">
+<option>Popularity</option>
+<option>Date: Upcoming</option>
+<option>Price: Low to High</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Events Grid (Bento/Card style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Event Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_1px_2px_rgba(60,64,67,0.3),0_1px_3px_1px_rgba(60,64,67,0.15)] transition-shadow duration-200 flex flex-col group">
+<div class="relative w-full aspect-video">
+<img class="w-full h-full object-cover" data-alt="A brightly lit, modern conference hall filled with tech professionals attending a keynote speech. The setting is a large glass-walled auditorium overlooking a city skyline. The mood is energetic and focused, reflecting a premium corporate technology event. High-key lighting emphasizes the clean, minimalist architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA93EEYEGOAiWIkbY645B0sPllZk9OCkvomYtodVAHa9ecXakzgfbOL-gp8lMIkd2fQ1l_87v6Cbl8VKSI2Ies8xl0sXk8nTtSApjT9uJCrVecajo-j-PKcaxaCJb4EJme4CJrLFFltLUYl6Mgx4uO371o6_mRbZbk5gTW1gOwrbbB2WPWQcFdaPNKJg2Ne9dDpLgnOh79JPDQGIXUj0PMupC3RHHDScUR8Hf2Km9fmRuTS2hjY4CQb"/>
+<div class="absolute top-2 right-2 bg-surface text-on-surface px-2 py-1 rounded text-label-sm font-label-sm shadow-sm">
+                        Technology
+                    </div>
+</div>
+<div class="p-stack-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-unit">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Global Tech Summit 2024</h3>
+<span class="font-label-md text-label-md text-primary font-bold ml-2 whitespace-nowrap">$299</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-unit gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Oct 15, 2024 • 9:00 AM</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-stack-md gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Moscone Center, SF</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-stack-md flex-grow">
+                        Join industry leaders for a three-day exploration of AI, sustainable computing, and the future of cloud architecture.
+                    </p>
+<div class="flex justify-between items-center mt-auto pt-stack-sm border-t border-outline-variant">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">event_seat</span>
+<span>42 seats left</span>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_1px_2px_rgba(60,64,67,0.3),0_1px_3px_1px_rgba(60,64,67,0.15)] transition-shadow duration-200 flex flex-col group">
+<div class="relative w-full aspect-video">
+<img class="w-full h-full object-cover" data-alt="A collaborative design workshop in a spacious, sunlit industrial loft. creative professionals are gathered around large wooden tables with laptops, colorful sticky notes, and wireframe printouts. The aesthetic is modern, warm, and highly collaborative, emphasizing a clean, light-mode startup vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhE6ygb92Cl-fIHO5rC-7qcMPRvPj2w9WDVBOh3LWuP_COcn1qHJLkRMKAi5LODN69l0eEOHqryIj7IvG2Ji5Ff4WOFzh0Pti3msh2LSsBk6FskrHicSbzf_irRTpdCrnDdoXzwc7gVhXG7VSWw78wAQ51rkWEATgki_lOoeyLXCzDpE7JjTA2WsZsyizjjus6lNefzRfDtEtUeCAAcj4YPxDWzXR3v43WEyVQjlGG_wpsFvWVdMvs"/>
+<div class="absolute top-2 right-2 bg-surface text-on-surface px-2 py-1 rounded text-label-sm font-label-sm shadow-sm">
+                        Design
+                    </div>
+</div>
+<div class="p-stack-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-unit">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-2 group-hover:text-primary transition-colors">UX Design Masterclass</h3>
+<span class="font-label-md text-label-md text-primary font-bold ml-2 whitespace-nowrap">$149</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-unit gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Nov 02, 2024 • 10:00 AM</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-stack-md gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Remote (Zoom)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-stack-md flex-grow">
+                        An intensive virtual workshop focused on advanced prototyping techniques and user research methodologies.
+                    </p>
+<div class="flex justify-between items-center mt-auto pt-stack-sm border-t border-outline-variant">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">event_seat</span>
+<span>Unlimited</span>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_1px_2px_rgba(60,64,67,0.3),0_1px_3px_1px_rgba(60,64,67,0.15)] transition-shadow duration-200 flex flex-col group">
+<div class="relative w-full aspect-video">
+<img class="w-full h-full object-cover" data-alt="A sleek, modern corporate boardroom during a high-stakes business pitch. Executives in tailored suits are seated around a glass table, looking at a digital presentation screen showing charts. The lighting is crisp and cool, reflecting a professional, trustworthy, and modern business environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa3wfb_giASdq57uC_OLRbhsDwD3El9jb3RY0XSsUeOPIO1-ahyx9T6xD9lp63lhQIuFJdzlUAutUfYnrkzrmAKzSnrENuktBWj1A4PtRMkl_wZCROPUN6bGu-UiZtVamOM0wA0Jy3ilEPTK3_5WzozndnGYgekEVERRlpQhHTscpNVxLbFWjGdh2qLlg4YEmugfX8FIRiKqCOqNdbffvy18MNY0rfPJMZOMh2c2K1m_hIHMXa3v57"/>
+<div class="absolute top-2 right-2 bg-surface text-on-surface px-2 py-1 rounded text-label-sm font-label-sm shadow-sm">
+                        Business
+                    </div>
+</div>
+<div class="p-stack-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-unit">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Founders Pitch Night</h3>
+<span class="font-label-md text-label-md text-tertiary font-bold ml-2 whitespace-nowrap">Free</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-unit gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Nov 15, 2024 • 6:30 PM</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-stack-md gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>WeWork, London</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-stack-md flex-grow">
+                        Watch 5 promising early-stage startups pitch their ideas to a panel of top-tier venture capitalists.
+                    </p>
+<div class="flex justify-between items-center mt-auto pt-stack-sm border-t border-outline-variant">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">event_seat</span>
+<span>12 seats left</span>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<!-- Event Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_1px_2px_rgba(60,64,67,0.3),0_1px_3px_1px_rgba(60,64,67,0.15)] transition-shadow duration-200 flex flex-col group">
+<div class="relative w-full aspect-video">
+<img class="w-full h-full object-cover" data-alt="A modern art gallery exhibition opening. Attendees are viewing contemporary abstract digital art displayed on large screens. The space is minimalist with polished concrete floors and bright gallery lighting. The atmosphere is sophisticated and culturally rich, embodying a modern, clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoHY0LF2ftGp2JSEQonBldxFtGmDB01KrI__mLOvFU4aAHrICBYRGTG8K8kRpNJfte8dc9VIRakHWinm_R_L-wb5HfXaeZ9LZOokvCMlsQ7OVbE1rGeaPvEPu9FrWBdeVfX-mhyG8-DbvtiTRY6TvgDRr_3A4HenUoDKUxVu0OpzoIfpKh3wnnudG0q9dvCCeAb9kYR1w3OtNB7THntXfiAZ9ZTtmRt8YONTmP7hs-UPTfTg0iO4Jx"/>
+<div class="absolute top-2 right-2 bg-surface text-on-surface px-2 py-1 rounded text-label-sm font-label-sm shadow-sm">
+                        Arts
+                    </div>
+</div>
+<div class="p-stack-md flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-unit">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Digital Art Biennale</h3>
+<span class="font-label-md text-label-md text-primary font-bold ml-2 whitespace-nowrap">$45</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-unit gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Dec 01, 2024 • 11:00 AM</span>
+</div>
+<div class="flex items-center text-body-sm font-body-sm text-secondary mb-stack-md gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>MoMA, New York</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-stack-md flex-grow">
+                        Experience the cutting edge of digital, generative, and AI-assisted art from global creators.
+                    </p>
+<div class="flex justify-between items-center mt-auto pt-stack-sm border-t border-outline-variant">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">event_seat</span>
+<span>150 seats left</span>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination (Simple) -->
+<div class="flex justify-center mt-stack-lg gap-unit">
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">&lt;</button>
+<button class="px-3 py-1 border border-primary bg-primary text-on-primary rounded font-label-md">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-container transition-colors font-label-md">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-container transition-colors font-label-md">3</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container transition-colors">&gt;</button>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-stack-lg bg-surface-container dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline flat no shadows opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto space-y-stack-md md:space-y-0">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface-variant">
+                EventHub
+            </div>
+<div class="font-body-sm text-body-sm text-primary dark:text-inverse-primary text-center md:text-left">
+                © 2024 EventHub. All rights reserved.
+            </div>
+<nav class="flex flex-wrap justify-center md:justify-end gap-stack-md font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Help Center</a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Cookie Settings</a>
+</nav>
+</div>
+</footer>
+</body></html>

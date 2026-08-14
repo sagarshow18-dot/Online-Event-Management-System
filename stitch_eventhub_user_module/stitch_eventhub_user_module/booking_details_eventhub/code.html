@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Details - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#656d84",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#4d556b",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-container": "#2563eb",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-low": "#f2f4f6",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant shadow-sm fixed top-0 w-full z-50 h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto left-0 right-0">
+<div class="flex items-center gap-stack-lg">
+<span class="text-headline-md font-headline-md font-bold text-primary">EventHub</span>
+<nav class="hidden md:flex gap-stack-md">
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-200 py-4" href="#">Dashboard</a>
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-200 py-4" href="#">Events</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md mt-1" href="#">My Bookings</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular avatar placeholder for a user profile picture in a sleek digital interface. The image should feature a minimal, modern abstract pattern in cool blue tones to fit a professional corporate event management platform. It represents a user logged into a modern web application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGFaZHGfnE2dkqNQUa1oVO-akuVuEFXjo2fBmqPzHA5NzXvrDRh5ba3q-AjpJKuWS1Uvz-_SCxsq3UdNJp02nC54DTQ6w62bIt0bWPpG1mCrraWGsBid6L-4iq8RpiWMud6W9hxkv7akwnfgFdlemGc0lZAHkgxNaj_r7S-KrpVo0zxwul7bhrUmNVg0jvGKYCNO8fB8cawSza0v0jCG7GL3i1KsQzGvSbBuRmesKUlj6x3uXVqCrP8Q"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[96px] pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Breadcrumb & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-stack-sm">
+<div class="flex items-center gap-2 text-secondary font-body-sm text-body-sm">
+<a class="hover:text-primary transition-colors" href="#">My Bookings</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Booking #EH-89241A</span>
+</div>
+<div class="flex gap-stack-sm w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 h-10 border border-outline-variant rounded-lg text-secondary font-label-md text-label-md bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Download PDF
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Details -->
+<div class="lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- Event Header Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_1px_3px_0_rgba(0,0,0,0.05)] flex flex-col md:flex-row gap-stack-lg">
+<div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional corporate conference setting. High-quality photography showing a sleek, modern auditorium with ambient lighting. A speaker is on stage presenting to an engaged audience. The overall tone is sophisticated, professional, and well-lit, fitting a high-end event management platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Eb2JDCixzYj8G7ta_pt9boLCkaO3X82yIz9W6m5Mh_AtDzqtgJhc1j8AwtACWrRSaGRyY4rs6ZVrhJtLrc6Y5q_fHZsi9oTq2nLFDxjJZTnoVzHN5toJHxa8w18p9JnfbyW3sgsFRjNTvBi1ovZJ4wiRpyw8sFYM6TbdwyggskiJdvKOrZLcaf9Ar5t1M8Qv_VNQim4L14bZwJ5ziso5-Uz_sMIP53nYjkugeE2HNtixEVj_V0QLUg"/>
+</div>
+<div class="flex flex-col justify-between py-2">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 bg-primary/10 text-primary font-label-sm text-label-sm rounded-full">Confirmed</span>
+<span class="text-secondary font-body-sm text-body-sm">Purchased on Oct 12, 2023</span>
+</div>
+<h1 class="text-headline-md font-headline-md text-on-surface mb-2">Global Tech Leadership Summit 2024</h1>
+<p class="text-secondary font-body-md text-body-md mb-4 flex items-start gap-2">
+<span class="material-symbols-outlined text-[20px] mt-0.5">location_on</span>
+                                Moscone Center, San Francisco, CA<br/>South Hall, Level 2
+                            </p>
+</div>
+<div class="flex items-center gap-6 text-on-surface font-body-md text-body-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">calendar_today</span>
+<span>Nov 15 - 17, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">schedule</span>
+<span>09:00 AM PST</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid for Details -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- User & Ticket Info -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<h2 class="text-label-md font-label-md text-secondary uppercase tracking-wider mb-stack-md">Attendee Information</h2>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Name</span>
+<span class="text-on-surface font-medium font-body-sm text-body-sm">Alex Mercer</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Email</span>
+<span class="text-on-surface font-medium font-body-sm text-body-sm">alex.m@example.com</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Company</span>
+<span class="text-on-surface font-medium font-body-sm text-body-sm">Acme Corp</span>
+</div>
+<div class="flex justify-between">
+<span class="text-secondary font-body-sm text-body-sm">Ticket Type</span>
+<span class="text-on-surface font-medium font-body-sm text-body-sm">VIP All-Access Pass</span>
+</div>
+</div>
+</div>
+<!-- Payment Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<h2 class="text-label-md font-label-md text-secondary uppercase tracking-wider mb-stack-md">Payment Summary</h2>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Base Ticket Price</span>
+<span class="text-on-surface font-body-sm text-body-sm">$499.00</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Taxes &amp; Fees</span>
+<span class="text-on-surface font-body-sm text-body-sm">$45.50</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-3">
+<span class="text-secondary font-body-sm text-body-sm">Discount Applied (EARLYBIRD)</span>
+<span class="text-primary font-body-sm text-body-sm">-$50.00</span>
+</div>
+<div class="flex justify-between pt-2">
+<span class="text-on-surface font-label-md text-label-md">Total Paid</span>
+<span class="text-on-surface font-headline-md text-headline-md-mobile md:text-headline-md">$494.50</span>
+</div>
+<div class="flex items-center gap-2 mt-4 text-secondary font-body-sm text-body-sm bg-surface-container p-3 rounded-lg">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+                                Paid via Visa ending in •••• 4242
+                            </div>
+</div>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="bg-surface-container-lowest border border-error-container rounded-xl p-stack-lg shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<h2 class="text-label-md font-label-md text-error uppercase tracking-wider mb-2">Cancel Booking</h2>
+<p class="text-secondary font-body-sm text-body-sm mb-4">Cancellations are permitted up to 7 days before the event. A 10% processing fee will apply to refunds.</p>
+<button class="h-10 px-4 border border-error text-error rounded-lg font-label-md text-label-md hover:bg-error-container transition-colors">
+                        Request Cancellation
+                    </button>
+</div>
+</div>
+<!-- Right Column: Digital Ticket & Map -->
+<div class="lg:col-span-4 flex flex-col gap-stack-lg">
+<!-- Digital Ticket Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_1px_3px_0_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="bg-primary text-on-primary p-stack-md text-center">
+<h3 class="font-headline-md text-headline-md-mobile">Digital Ticket</h3>
+<p class="font-body-sm text-body-sm opacity-80 mt-1">Present this QR code at check-in</p>
+</div>
+<div class="p-stack-lg flex flex-col items-center border-b border-dashed border-outline-variant">
+<div class="w-48 h-48 bg-white border-2 border-outline-variant rounded-lg p-2 flex items-center justify-center mb-4">
+<img class="w-full h-full object-contain" data-alt="A high-contrast, crisp QR code graphic centered in a white box. The QR code represents a digital ticket for an event. The design is stark and modern, utilizing only black and white to ensure scanability, fitting perfectly within a professional event platform interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-frG3xR8BL_3GYy6M3prAQ1ESI3xzPMcnuQBOTb0kPiNrg-jYVIqQmMwvZysWprCoDSy2lf3ec5DO2_7V-ABXgBtESX7s0au9yOsPTzewHn5HDC8CHTCIkSad6FY1HdEr_B5rtxT6MGJHZ8_GT88SbBsyfibnH9VKgtYL1NxHQ1_-KKLTfh8CLd6EGdYZy-rf-wcy9EbYor4F9_C1tVusI91-RibJuUAS8DfHWrRmBAP9Q6zCz5wF_g"/>
+</div>
+<p class="text-on-surface font-label-md text-label-md">Booking ID: <span class="font-mono bg-surface-container px-2 py-1 rounded text-primary">EH-89241A</span></p>
+</div>
+<div class="p-stack-md bg-surface flex justify-center">
+<button class="flex items-center gap-2 text-primary font-label-md text-label-md hover:text-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_to_home_screen</span>
+                            Add to Apple Wallet
+                        </button>
+</div>
+</div>
+<!-- Location Map -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<h3 class="font-label-md text-label-md text-secondary mb-3">Location</h3>
+<div class="w-full h-40 bg-surface-container rounded-lg overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="A clean, modern digital map showing a precise location pin in San Francisco. The map style is minimalist, using soft greys, whites, and subtle blues typical of modern UI map embeds. It clearly indicates an urban conference center location." data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQWlUfa0R16ctzhFAm1acxoYLRVydA-ZXqedSBaz22XJXO_pBc_q4cydEE1_Eue_l-xydA-0Aki5x8Zku_y3HCM3TdXl0l7lAx9L1Dmspm-A5yqS7L2toL6YNRVcXWWZsDMdfm9410D6KFFqyKXlzoUxg8PscSEKxrGNhENyBgsDmCnaHbL3AE42f_rH8kLVE4i6lNFOYI4TV5BSIREe1yMVbN3zs8UOGiGvDMq0t4MteNkCvZ4vF9eg"/>
+</div>
+<a class="text-primary font-body-sm text-body-sm flex items-center gap-1 hover:underline" href="#">
+                        Get Directions <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg px-margin-mobile md:px-margin-desktop mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="text-primary font-headline-sm text-[20px] font-semibold">EventHub</div>
+<div class="flex gap-stack-md text-secondary font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Sitemap</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="text-secondary font-body-sm text-body-sm">
+                © 2024 EventHub. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

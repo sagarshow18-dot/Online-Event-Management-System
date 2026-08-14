@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#656d84",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#4d556b",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-container": "#2563eb",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-low": "#f2f4f6",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased flex flex-col md:flex-row">
+<!-- TopNavBar for Mobile -->
+<nav class="md:hidden fixed top-0 w-full z-50 h-16 flex items-center justify-between px-margin-mobile bg-surface-container-lowest border-b border-outline-variant shadow-sm transition-transform duration-300">
+<div class="text-headline-md font-headline-md font-bold text-primary">EventHub</div>
+<div class="flex items-center gap-stack-md">
+<button class="text-secondary hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors duration-200" id="mobile-menu-btn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar for Desktop -->
+<aside class="hidden lg:flex flex-col h-screen w-64 rounded-r-lg bg-surface-container-low border-r border-outline-variant shadow-sm py-stack-lg sticky top-0">
+<div class="px-margin-desktop mb-stack-lg">
+<h1 class="text-headline-md font-headline-md text-primary font-bold">EventHub</h1>
+</div>
+<div class="px-margin-desktop mb-stack-lg flex items-center gap-stack-sm">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A small, professional portrait of a business event attendee with a warm smile, wearing a dark blazer over a light shirt. The background is a soft, blurred corporate office setting with high-key lighting, matching a clean, modern UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvsAGhrdwdKQsfMsOyJLNEID3gFGbbaJ3KV-w83w1o30WMykayUM3KGgYgYg48sG_j-E8mEeIM_dtpt3tUu9UFW86XEz10yhbSnVVeFFdfOd15Bqc4_zawEe6VAkQsAVAgq4P3cZhE1IGsdk0y5GhDXjtW20BaQ6nGJYnDIRf_ORBk3_suJxIuehyIBWdPc2ow-PRScz7gHXP_lBk9535TIfXVvof_duvFbDTQs4S-AwAILKJZYng78A"/>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Alex Morgan</p>
+<p class="text-body-sm font-body-sm text-secondary">Member since 2023</p>
+</div>
+</div>
+<nav class="flex-1 px-stack-md flex flex-col gap-base">
+<a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg px-stack-md py-stack-sm opacity-80 scale-95 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md text-secondary px-stack-md py-stack-sm hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-label-md font-label-md">Events</span>
+</a>
+<a class="flex items-center gap-stack-md text-secondary px-stack-md py-stack-sm hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">book_online</span>
+<span class="text-label-md font-label-md">My Bookings</span>
+</a>
+<a class="flex items-center gap-stack-md text-secondary px-stack-md py-stack-sm hover:bg-surface-container-highest transition-colors rounded-lg mt-auto" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-stack-md text-secondary px-stack-md py-stack-sm hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 max-w-container-max mx-auto w-full pt-20 pb-stack-lg px-margin-mobile md:px-margin-desktop md:pt-stack-lg">
+<!-- Header -->
+<header class="mb-stack-lg hidden md:flex justify-between items-end">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Welcome back, Alex!</h2>
+<p class="text-body-md font-body-md text-secondary mt-base">Here's a quick overview of your event activity.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-secondary hover:text-primary hover:border-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="md:hidden mb-stack-lg">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Welcome back, Alex!</h2>
+<p class="text-body-md font-body-md text-secondary mt-base">Here's your event overview.</p>
+</div>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-stack-md mb-stack-lg">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">local_activity</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Total Bookings</p>
+<p class="text-headline-md font-headline-md text-on-surface">24</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">event</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Upcoming Events</p>
+<p class="text-headline-md font-headline-md text-on-surface">3</p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-[#e6f4ea] flex items-center justify-center text-[#137333]">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Confirmed Tickets</p>
+<p class="text-headline-md font-headline-md text-on-surface">18</p>
+</div>
+</div>
+</section>
+<!-- Main Dashboard Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Left Column (Wider) -->
+<div class="lg:col-span-2 flex flex-col gap-stack-lg">
+<!-- Upcoming Events -->
+<section>
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="text-body-lg font-headline-md text-on-surface font-semibold">Upcoming Events</h3>
+<a class="text-label-md font-label-md text-primary hover:underline" href="#">View all</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Event Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] hover:border-outline transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-32 w-full relative overflow-hidden">
+<img alt="Tech Conference" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern tech conference stage with bright, dynamic lighting. The stage features a large screen displaying abstract network graphics. The audience is blurred in the foreground, focusing on the sleek, professional setup typical of a high-end corporate event. Clean, light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD4lG1qrT2lzUDMIYUq_X1zHjnPCAvFQHUronf0wm937IGzaa5Y5Y8-n77BZBZZ32skN2MI9pPCnlVPYztLPxRq4pOeToOmEnRbmDhofFknOOejHCp0XyHgvvxxwyxRjwFXj33pPJXTJ53wXr8Cqak7h6oXxmslT297R_Acged76LLX3FL3VDj5_eo4hEqPAeewG8FmqngOlEzK9gsmZT8YeXy1wK7LRLRRTIb9nZCkQWmtizbY1xHNw"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm font-semibold text-primary border border-surface-container-highest shadow-sm">
+                                    Oct 15
+                                </div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#e6f4ea] text-[#137333] text-[10px] font-semibold uppercase tracking-wide">Confirmed</span>
+<span class="text-label-sm font-label-sm text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 09:00 AM</span>
+</div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface mb-1">Global Tech Summit 2024</h4>
+<p class="text-body-sm font-body-sm text-secondary mb-4 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Moscone Center, SF</p>
+<button class="mt-auto w-full py-2 px-4 bg-surface-container text-on-surface-variant font-label-md text-label-md rounded-lg border border-outline-variant hover:bg-surface-container-highest transition-colors">View Details</button>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] hover:border-outline transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="h-32 w-full relative overflow-hidden">
+<img alt="Networking Mixer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated networking mixer in a modern, sunlit atrium with glass walls. Small groups of professionals are engaging in conversation over sleek, high-top tables. The scene is bright, crisp, and professional, adhering to a minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbVkmTeIi27OJyM42gZ_Q09rNd_d5H7ghrJvW6omn5tTZJ0AGdi2cgHol7S_hqC9Xn6jCaBdxF3Jovux2m5dO4lfcqCsAdymacGBQSd7cgCZmMItcp7e-NGIC5d0sB_k2E245BVtY-F4KLl5S17nPdJJak53xlIJsvhyr0m0-z-hh2755B099UteSCynPRe24OM3IrrI1qhhdQ7VcltUfyfPGTLeDnA1_EpyoQcr6yf8TeOJUOX7s9WA"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm font-semibold text-primary border border-surface-container-highest shadow-sm">
+                                    Nov 02
+                                </div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#fef7e0] text-[#b06000] text-[10px] font-semibold uppercase tracking-wide">Pending</span>
+<span class="text-label-sm font-label-sm text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 06:00 PM</span>
+</div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface mb-1">Design Leadership Mixer</h4>
+<p class="text-body-sm font-body-sm text-secondary mb-4 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> The Grand Hotel, NY</p>
+<button class="mt-auto w-full py-2 px-4 bg-surface-container text-on-surface-variant font-label-md text-label-md rounded-lg border border-outline-variant hover:bg-surface-container-highest transition-colors">Complete Booking</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Bookings Table (Glassmorphism inspired container) -->
+<section>
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="text-body-lg font-headline-md text-on-surface font-semibold">Recent Transactions</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-secondary text-label-sm font-label-sm uppercase tracking-wider border-b border-outline-variant">
+<th class="py-3 px-stack-md font-semibold">Event Name</th>
+<th class="py-3 px-stack-md font-semibold">Date Booked</th>
+<th class="py-3 px-stack-md font-semibold">Tickets</th>
+<th class="py-3 px-stack-md font-semibold text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm text-on-surface divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-stack-md font-medium">Global Tech Summit 2024</td>
+<td class="py-3 px-stack-md text-secondary">Sep 12, 2024</td>
+<td class="py-3 px-stack-md">2 VIP</td>
+<td class="py-3 px-stack-md text-right">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#e6f4ea] text-[#137333] text-[10px] font-semibold uppercase tracking-wide">Confirmed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-stack-md font-medium">Design Leadership Mixer</td>
+<td class="py-3 px-stack-md text-secondary">Sep 10, 2024</td>
+<td class="py-3 px-stack-md">1 General</td>
+<td class="py-3 px-stack-md text-right">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#fef7e0] text-[#b06000] text-[10px] font-semibold uppercase tracking-wide">Pending</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-stack-md font-medium">Marketing ROI Workshop</td>
+<td class="py-3 px-stack-md text-secondary">Aug 28, 2024</td>
+<td class="py-3 px-stack-md">3 Standard</td>
+<td class="py-3 px-stack-md text-right">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#fce8e6] text-[#c5221f] text-[10px] font-semibold uppercase tracking-wide">Cancelled</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column (Sidebar-esque) -->
+<div class="flex flex-col gap-stack-lg">
+<!-- Quick Actions -->
+<section class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-sm">
+<h3 class="text-body-md font-headline-md text-on-surface font-semibold mb-stack-md">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-stack-sm">
+<button class="flex flex-col items-center justify-center gap-2 p-stack-sm rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-lowest text-secondary hover:text-primary transition-all group">
+<div class="w-10 h-10 rounded-full bg-surface-container group-hover:bg-primary-container group-hover:text-on-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<span class="text-label-sm font-label-sm text-center">Find Events</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-stack-sm rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-lowest text-secondary hover:text-primary transition-all group">
+<div class="w-10 h-10 rounded-full bg-surface-container group-hover:bg-primary-container group-hover:text-on-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+</div>
+<span class="text-label-sm font-label-sm text-center">Scan Ticket</span>
+</button>
+</div>
+</section>
+<!-- Recommended Events -->
+<section>
+<h3 class="text-body-md font-headline-md text-on-surface font-semibold mb-stack-md">Recommended for You</h3>
+<div class="flex flex-col gap-stack-sm">
+<!-- Rec Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant shadow-sm flex items-center gap-3 hover:bg-surface-container-highest transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden shrink-0">
+<img alt="Architecture Event" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A close-up abstract view of modern architecture, featuring clean geometric lines and soft white daylight bouncing off glass panels. Very minimal, professional, and sophisticated light-mode corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDou2rMD4sqtN9dfFiNb5kio_LE2x8OJL-_yv2PULuA07KfTdwWwHeXozutpIt5j1cgSerqoqHAzazhyLrMvy15Ai4oAAgeDSBjkUks01vEUbV7av-LYceDpl_4fkI3DbYs9FdN1x4d5N-D5itBBPSQkSTFO8LqVURCFpfBemkZLAlgJu9kPlNFgjNM9yX98_OVy1h5NjbK1cGMeylB7lym-3bPyuAc1S_7iJy27DulBC_d24A0RFeopA"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-label-md font-label-md text-on-surface truncate">Future of Urban Design</h4>
+<p class="text-label-sm font-label-sm text-secondary mt-1">Dec 10 • Virtual</p>
+</div>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-secondary hover:text-primary hover:border-primary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+<!-- Rec Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant shadow-sm flex items-center gap-3 hover:bg-surface-container-highest transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden shrink-0">
+<img alt="Productivity Seminar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-quality top-down shot of a clean, organized desk setup with a laptop, a notebook, and a small potted plant, lit by soft natural light. The aesthetic is extremely neat, professional, and aligned with a modern corporate tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUCBtYEaC8Z0IJDlR6fngXTV_Ub5SnF3_4De3bNNSr0HSPfw7n2hc9DW7Yb4EdCVWhMkzjqzwyaX0j-kP5BtVax4lBDwO0Ngh7-R-D6RRWkcFTW8nR7da2rjOiZpc_deKMElTe_7wO6rj2wgghFL-1TDorTbP_sz4PCWhuWo2B0xNd_bVjv06KSi91ZCjkJsYK4NaVV98ZRCkLH5iy58X9uK7I54CE4CISgSRJrvqIcPGYjacQb9qVag"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-label-md font-label-md text-on-surface truncate">Productivity Masters</h4>
+<p class="text-label-sm font-label-sm text-secondary mt-1">Jan 15 • London</p>
+</div>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-secondary hover:text-primary hover:border-primary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer (Using JSON logic, but mostly for mobile/page bottom context) -->
+<footer class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center border-t border-outline-variant bg-surface-container-highest mt-auto lg:hidden">
+<div class="text-headline-sm font-headline-sm text-primary mb-4 md:mb-0 font-bold">EventHub</div>
+<div class="flex flex-wrap justify-center gap-4 text-label-sm font-label-sm text-secondary">
+<a class="hover:text-primary transition-colors" href="#">Sitemap</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="text-body-sm font-body-sm text-secondary mt-4 md:mt-0">
+            © 2024 EventHub. All rights reserved.
+        </div>
+</footer>
+</body></html>
