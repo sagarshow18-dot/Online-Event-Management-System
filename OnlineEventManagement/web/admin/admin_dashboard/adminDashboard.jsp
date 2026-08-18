@@ -90,6 +90,99 @@
         out.println(e);
     }
 %>
+
+<%
+    int totalBookings = 0;
+
+    try {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection con4 = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:XE",
+            "system",
+            "manager"
+        );
+
+        Statement stmt4 = con4.createStatement();
+
+        ResultSet rs4 = stmt4.executeQuery(
+            "SELECT COUNT(*) FROM BOOKINGS"
+        );
+
+        if (rs4.next()) {
+            totalBookings = rs4.getInt(1);
+        }
+
+        rs4.close();
+        stmt4.close();
+        con4.close();
+
+    } catch (Exception e) {
+        out.println(e);
+    }
+%>
+
+<%
+    double totalRevenue = 0;
+
+    try {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection con5 = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:XE",
+            "system",
+            "manager"
+        );
+
+        Statement stmt5 = con5.createStatement();
+
+        ResultSet rs5 = stmt5.executeQuery(
+            "SELECT NVL(SUM(TOTAL_AMOUNT), 0) FROM BOOKINGS"
+        );
+
+        if (rs5.next()) {
+            totalRevenue = rs5.getDouble(1);
+        }
+
+        rs5.close();
+        stmt5.close();
+        con5.close();
+
+    } catch (Exception e) {
+        out.println(e);
+    }
+%>
+
+<%
+    int totalAccessories = 0;
+
+    try {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection con6 = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:XE",
+            "system",
+            "manager"
+        );
+
+        Statement stmt6 = con6.createStatement();
+
+        ResultSet rs6 = stmt6.executeQuery(
+            "SELECT COUNT(*) FROM ACCESSORIES"
+        );
+
+        if (rs6.next()) {
+            totalAccessories = rs6.getInt(1);
+        }
+
+        rs6.close();
+        stmt6.close();
+        con6.close();
+
+    } catch (Exception e) {
+        out.println(e);
+    }
+%>
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -218,27 +311,29 @@
 </a>
 </li>
 <li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="users.jsp">
 <span class="material-symbols-outlined">group</span>
 <span>Users</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="event-managers.jsp">
 <span class="material-symbols-outlined">badge</span>
 <span>Event Managers</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="events.jsp">
 <span class="material-symbols-outlined">calendar_today</span>
 <span>Events</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
-<span class="material-symbols-outlined">inventory_2</span>
-<span>Accessories</span>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+   href="accessories.jsp">
+
+    <span class="material-symbols-outlined">inventory_2</span>
+    <span>Accessories</span>
 </a>
 </li>
 <li>
@@ -370,7 +465,7 @@
 <span class="material-symbols-outlined text-on-surface-variant opacity-50">confirmation_number</span> 
 </div> 
 <div> 
-<p class="font-title-md text-title-md font-bold text-on-surface">142,093</p> 
+<p class="font-title-md text-title-md font-bold text-on-surface"><%= totalBookings %></p> 
 <div class="flex items-center gap-xs mt-xs text-xs"> 
 <span class="material-symbols-outlined text-[#10B981] text-[14px]">trending_up</span> 
 <span class="text-[#10B981] font-semibold">+18.7%</span> 
@@ -385,7 +480,9 @@
 <span class="material-symbols-outlined text-on-surface-variant opacity-50">payments</span> 
 </div> 
 <div> 
-<p class="font-title-md text-title-md font-bold text-on-surface">$3.2M</p> 
+<p class="font-title-md text-title-md font-bold text-on-surface">
+    ₹<%= String.format("%.2f", totalRevenue) %>
+</p> 
 <div class="flex items-center gap-xs mt-xs text-xs"> 
 <span class="material-symbols-outlined text-[#10B981] text-[14px]">trending_up</span> 
 <span class="text-[#10B981] font-semibold">+8.4%</span> 
@@ -400,7 +497,9 @@
 <span class="material-symbols-outlined text-on-surface-variant opacity-50">inventory_2</span> 
 </div> 
 <div> 
-<p class="font-title-md text-title-md font-bold text-on-surface">15,302</p> 
+<p class="font-title-md text-title-md font-bold text-on-surface">
+    <%= totalAccessories %>
+</p> 
 <div class="flex items-center gap-xs mt-xs text-xs"> 
 <span class="material-symbols-outlined text-error text-[14px]">trending_down</span> 
 <span class="text-error font-semibold">-1.2%</span> 
