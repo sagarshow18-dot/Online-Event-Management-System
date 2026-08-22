@@ -349,9 +349,9 @@
 </a>
 </li>
 <li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
-<span class="material-symbols-outlined">account_circle</span>
-<span>Profile</span>
+<a class="..." href="<%= request.getContextPath() %>/AdminProfileServlet">
+    <span class="material-symbols-outlined">account_circle</span>
+    <span>Profile</span>
 </a>
 </li>
 </ul>
