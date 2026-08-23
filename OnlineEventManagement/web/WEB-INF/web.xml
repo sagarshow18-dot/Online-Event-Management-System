@@ -16,6 +16,14 @@
         <servlet-name>ManageEventManagersServlet</servlet-name>
         <servlet-class>newpackage.ManageEventManagersServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddManagerServlet</servlet-name>
+        <servlet-class>newpackage.AddManagerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <servlet-class>newpackage.ManageUsersServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminDashboard</servlet-name>
         <url-pattern>/AdminDashboard</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>ManageEventManagersServlet</servlet-name>
         <url-pattern>/ManageEventManagersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddManagerServlet</servlet-name>
+        <url-pattern>/AddManagerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <url-pattern>/ManageUsersServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>admin/admin_login/adminLogin.html</welcome-file>

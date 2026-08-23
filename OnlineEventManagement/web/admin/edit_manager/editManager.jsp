@@ -161,52 +161,83 @@ tailwind.config = {
 
     <nav class="flex flex-col gap-xs flex-1">
 
+        <!-- Dashboard -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
+           href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
+
             <span class="material-symbols-outlined">dashboard</span>
             <span class="font-title-md text-title-md">Dashboard</span>
+
         </a>
 
+
+        <!-- Users -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
+           href="<%= request.getContextPath() %>/ManageUsersServlet">
+
             <span class="material-symbols-outlined">group</span>
             <span class="font-title-md text-title-md">Users</span>
+
         </a>
 
+
+        <!-- Event Managers - Active -->
         <a class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low"
-           href="#">
+           href="<%= request.getContextPath() %>/ManageEventManagersServlet">
+
             <span class="material-symbols-outlined">badge</span>
             <span class="font-title-md text-title-md">Event Managers</span>
+
         </a>
 
+
+        <!-- Events - Not connected yet -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
            href="#">
+
             <span class="material-symbols-outlined">calendar_today</span>
             <span class="font-title-md text-title-md">Events</span>
+
         </a>
 
+
+        <!-- Accessories - Not connected yet -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
            href="#">
+
             <span class="material-symbols-outlined">inventory_2</span>
             <span class="font-title-md text-title-md">Accessories</span>
+
         </a>
 
+
+        <!-- Bookings - Not connected yet -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
            href="#">
+
             <span class="material-symbols-outlined">confirmation_number</span>
             <span class="font-title-md text-title-md">Bookings</span>
+
         </a>
 
+
+        <!-- Reports - Not connected yet -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
            href="#">
+
             <span class="material-symbols-outlined">assessment</span>
             <span class="font-title-md text-title-md">Reports</span>
+
         </a>
 
+
+        <!-- Profile -->
         <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
            href="<%= request.getContextPath() %>/AdminProfileServlet">
+
             <span class="material-symbols-outlined">account_circle</span>
             <span class="font-title-md text-title-md">Profile</span>
+
         </a>
 
     </nav>
@@ -214,22 +245,25 @@ tailwind.config = {
     <div class="mt-auto px-sm pt-lg border-t border-outline-variant flex items-center gap-md">
 
         <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+
             <img
                 alt="Admin User Profile"
                 class="w-full h-full object-cover"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXbo7iHtHm56FOHVT4C1vUyEUQG-VGONo2CCY-E-WKciOZwQylZ_Jt5gx9MzNPgb9hTl-54QpfG6B05ab4EEPawSl8otvoWweyzhWsbIVyscu_BV2WBs8NQY_1kiHqDVJwZZiDtBoySmJugK47iPei6pL1RA4JsmlrBMd6U9VzGUAdAi38D1K7dAQD_VWFVk_mHGbp-rvHJh8FFHCCfzOrRU1C5VRLkh46QuybtUSlX-tOVS4cGfnrLg"/>
+
         </div>
 
         <div class="overflow-hidden">
+
             <p class="font-body-md text-body-md font-bold truncate">
                 Admin User
             </p>
+
         </div>
 
     </div>
 
 </aside>
-
 
 <!-- Main Content Area -->
 <div class="flex-1 flex flex-col md:ml-[280px] w-full min-w-0">

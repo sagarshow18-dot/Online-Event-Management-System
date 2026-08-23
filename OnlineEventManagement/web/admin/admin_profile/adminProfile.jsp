@@ -157,99 +157,162 @@ tailwind.config = {
 
 <nav class="hidden md:flex bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-on-primary-fixed font-body-md text-body-md fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline-variant flex-col py-lg px-md z-20">
 
-<div class="mb-xl flex items-center gap-md px-md">
+    <div class="mb-xl flex items-center gap-md px-md">
 
-<img
-alt="Admin User Profile"
-class="w-10 h-10 rounded-lg object-cover"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWsP8cPfcxEBGsxEEwc2o0V6ympZvHBgXqb55h38cWju89-7-ByFOXpxFtSCDm1DTT8oky5tRojLd03AlvNMrZfv4lctaXGv4FIbv9dNiNkO1QPr7QZ4TXtYzg5dXDfTgHSQO8tRIV4q2RAUXECAkhTIy4oY_wNqitOKZAHL1OMBdRWiC531ZFs-qi2UrwczICp4zWPSzv5I9K_QJoSBRX8rfP3O_l0JuGp4zN1qbWZIUP041xWoWnRQ"/>
+        <img
+            alt="Admin User Profile"
+            class="w-10 h-10 rounded-lg object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWsP8cPfcxEBGsxEEwc2o0V6ympZvHBgXqb55h38cWju89-7-ByFOXpxFtSCDm1DTT8oky5tRojLd03AlvNMrZfv4lctaXGv4FIbv9dNiNkO1QPr7QZ4TXtYzg5dXDfTgHSQO8tRIV4q2RAUXECAkhTIy4oY_wNqitOKZAHL1OMBdRWiC531ZFs-qi2UrwczICp4zWPSzv5I9K_QJoSBRX8rfP3O_l0JuGp4zN1qbWZIUP041xWoWnRQ"/>
 
-<div>
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-on-primary-fixed">
-EventHub
-</h1>
+        <div>
+            <h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-on-primary-fixed">
+                EventHub
+            </h1>
 
-<p class="font-label-caps text-label-caps text-on-surface-variant">
-Enterprise Admin
-</p>
-</div>
+            <p class="font-label-caps text-label-caps text-on-surface-variant">
+                Enterprise Admin
+            </p>
+        </div>
 
-</div>
+    </div>
 
-<div class="flex-1 space-y-sm">
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="../admin_dashboard/adminDashboard.jsp">
+    <div class="flex-1 space-y-sm">
 
-<span class="material-symbols-outlined">dashboard</span>
-<span>Dashboard</span>
+        <!-- Dashboard -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
 
-</a>
+            <span class="material-symbols-outlined">
+                dashboard
+            </span>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
+            <span>
+                Dashboard
+            </span>
 
-<span class="material-symbols-outlined">group</span>
-<span>Users</span>
+        </a>
 
-</a>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
+        <!-- Users -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageUsersServlet">
 
-<span class="material-symbols-outlined">badge</span>
-<span>Event Managers</span>
+            <span class="material-symbols-outlined">
+                group
+            </span>
 
-</a>
+            <span>
+                Users
+            </span>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
+        </a>
 
-<span class="material-symbols-outlined">calendar_today</span>
-<span>Events</span>
 
-</a>
+        <!-- Event Managers -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageEventManagersServlet">
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
+            <span class="material-symbols-outlined">
+                badge
+            </span>
 
-<span class="material-symbols-outlined">inventory_2</span>
-<span>Accessories</span>
+            <span>
+                Event Managers
+            </span>
 
-</a>
+        </a>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
 
-<span class="material-symbols-outlined">confirmation_number</span>
-<span>Bookings</span>
+        <!-- Events -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
 
-</a>
+            <span class="material-symbols-outlined">
+                calendar_today
+            </span>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-href="#">
+            <span>
+                Events
+            </span>
 
-<span class="material-symbols-outlined">assessment</span>
-<span>Reports</span>
+        </a>
 
-</a>
 
-<a class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low opacity-80"
-href="#">
+        <!-- Accessories -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
 
-<span class="material-symbols-outlined"
-style="font-variation-settings: 'FILL' 1;">
-account_circle
-</span>
+            <span class="material-symbols-outlined">
+                inventory_2
+            </span>
 
-<span>Profile</span>
+            <span>
+                Accessories
+            </span>
 
-</a>
+        </a>
 
-</div>
+
+        <!-- Bookings -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+
+            <span class="material-symbols-outlined">
+                confirmation_number
+            </span>
+
+            <span>
+                Bookings
+            </span>
+
+        </a>
+
+
+        <!-- Reports -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+
+            <span class="material-symbols-outlined">
+                assessment
+            </span>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+
+        <!-- Profile - Active -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low opacity-80"
+            href="<%= request.getContextPath() %>/AdminProfileServlet">
+
+            <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">
+
+                account_circle
+
+            </span>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+    </div>
 
 </nav>
-
 
 <!-- TopNavBar -->
 

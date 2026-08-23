@@ -182,16 +182,23 @@ tailwind.config = {
         </li>
 
         <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-               href="#">
 
-                <span class="material-symbols-outlined text-[20px]">
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ManageUsersServlet">
+
+                <span class="material-symbols-outlined">
                     group
                 </span>
 
-                Users
+                <span>
+                    Users
+                </span>
+
             </a>
+
         </li>
+
 
         <li>
             <a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low/50"

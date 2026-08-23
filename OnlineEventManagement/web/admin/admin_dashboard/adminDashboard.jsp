@@ -296,74 +296,232 @@
 <body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
 <!-- SideNavBar -->
 <nav class="bg-surface-container-lowest fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant flex flex-col py-lg px-md z-20 transition-all duration-300 md:translate-x-0 -translate-x-full" id="sideNav">
-<div class="mb-xl flex items-center gap-sm px-sm">
-<span class="material-symbols-outlined text-primary text-[32px]">event</span>
-<div>
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary">EventHub</h1>
-<p class="font-label-caps text-label-caps text-on-surface-variant">Enterprise Admin</p>
-</div>
-</div>
-<ul class="flex-1 space-y-sm overflow-y-auto pr-sm custom-scrollbar">
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-l-4 border-primary bg-surface-container-low transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span>Dashboard</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="users.jsp">
-<span class="material-symbols-outlined">group</span>
-<span>Users</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="event-managers.jsp">
-<span class="material-symbols-outlined">badge</span>
-<span>Event Managers</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="events.jsp">
-<span class="material-symbols-outlined">calendar_today</span>
-<span>Events</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-   href="accessories.jsp">
 
-    <span class="material-symbols-outlined">inventory_2</span>
-    <span>Accessories</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
-<span class="material-symbols-outlined">confirmation_number</span>
-<span>Bookings</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span>Reports</span>
-</a>
-</li>
-<li>
-<a class="..." href="<%= request.getContextPath() %>/AdminProfileServlet">
-    <span class="material-symbols-outlined">account_circle</span>
-    <span>Profile</span>
-</a>
-</li>
-</ul>
-<div class="mt-auto pt-lg border-t border-outline-variant">
-<div class="flex items-center gap-sm px-sm">
-<img alt="Admin User Profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A small circular profile picture of an administrative user in a professional setting. The image is brightly lit, showcasing a clean, modern aesthetic with neutral tones, fitting a corporate light mode interface. The person looks approachable yet professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmWjQlQiPT8Ht2WgZJpB_njmItpaOXp-B1oTvE5Za_BiCmajL8RB-qViARSzD9fLXEA3yrLN0ruKBK7kjRYfmM4YxLuMe7mY3_OK71h91h6MgqKksIekcrnhr1KzVsNf6AI-g-zvikNJ4IRzwtz8zQaIJ-D7z7vRCxAaSLTwkPdf8h-1R08oy5_tJ3dgCI677-sY221NVbD7JlqICG8-2TmtFj9QntD74AL23ddCkEKCLIwNFtjotvPw"/> 
-<div> 
-<p class="font-body-sm text-body-sm font-semibold">Jane Doe</p> 
-<p class="font-label-caps text-label-caps text-on-surface-variant">System Admin</p> 
-</div> 
-</div> 
-</div> 
+    <div class="mb-xl flex items-center gap-sm px-sm">
+
+        <span class="material-symbols-outlined text-primary text-[32px]">
+            event
+        </span>
+
+        <div>
+
+            <h1 class="font-headline-lg text-headline-lg font-bold text-primary">
+                EventHub
+            </h1>
+
+            <p class="font-label-caps text-label-caps text-on-surface-variant">
+                Enterprise Admin
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <ul class="flex-1 space-y-sm overflow-y-auto pr-sm custom-scrollbar">
+
+
+        <!-- Dashboard - Active -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-l-4 border-primary bg-surface-container-low transition-colors duration-200"
+                href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
+
+                <span
+                    class="material-symbols-outlined"
+                    style="font-variation-settings: 'FILL' 1;">
+
+                    dashboard
+
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Users -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ManageUsersServlet">
+
+                <span class="material-symbols-outlined">
+                    group
+                </span>
+
+                <span>
+                    Users
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Event Managers -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet">
+
+                <span class="material-symbols-outlined">
+                    badge
+                </span>
+
+                <span>
+                    Event Managers
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Events - Not connected yet -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="#">
+
+                <span class="material-symbols-outlined">
+                    calendar_today
+                </span>
+
+                <span>
+                    Events
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Accessories - Not connected yet -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="#">
+
+                <span class="material-symbols-outlined">
+                    inventory_2
+                </span>
+
+                <span>
+                    Accessories
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Bookings - Not connected yet -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="#">
+
+                <span class="material-symbols-outlined">
+                    confirmation_number
+                </span>
+
+                <span>
+                    Bookings
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Reports - Not connected yet -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="#">
+
+                <span class="material-symbols-outlined">
+                    assessment
+                </span>
+
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Profile -->
+
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/AdminProfileServlet">
+
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <!-- Admin User -->
+
+    <div class="mt-auto pt-lg border-t border-outline-variant">
+
+        <div class="flex items-center gap-sm px-sm">
+
+            <img
+                alt="Admin User Profile"
+                class="w-10 h-10 rounded-full object-cover border border-outline-variant"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmWjQlQiPT8Ht2WgZJpB_njmItpaOXp-B1oTvE5Za_BiCmajL8RB-qViARSzD9fLXEA3yrLN0ruKBK7kjRYfmM4YxLuMe7mY3_OK71h91h6MgqKksIekcrnhr1KzVsNf6AI-g-zvikNJ4IRzwtz8zQaIJ-D7z7vRCxAaSLTwkPdf8h-1R08oy5_tJ3dgCI677-sY221NVbD7JlqICG8-2TmtFj9QntD74AL23ddCkEKCLIwNFtjotvPw"/>
+
+            <div>
+
+                <p class="font-body-sm text-body-sm font-semibold">
+                    Jane Doe
+                </p>
+
+                <p class="font-label-caps text-label-caps text-on-surface-variant">
+                    System Admin
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </nav> 
 <!-- Main Content Area --> 
 <div class="flex-1 flex flex-col md:ml-[280px] w-full h-full overflow-hidden relative"> 
