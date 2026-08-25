@@ -306,45 +306,53 @@ tailwind.config = {
         </a>
 
 
-        <!-- Events -->
+       <!-- Events  -->
 
-        <a
-            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+        <li>
 
-            <span class="material-symbols-outlined">
-                calendar_today
-            </span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                 href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-            <span>
-                Events
-            </span>
+                <span class="material-symbols-outlined">
+                    calendar_today
+                </span>
 
-        </a>
+                <span>
+                    Events
+                </span>
+
+            </a>
+
+        </li>
 
 
         <!-- Accessories -->
 
-        <a
-            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+        <li>
 
-            <span class="material-symbols-outlined">
-                inventory_2
-            </span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/AccessoriesServlet">
 
-            <span>
-                Accessories
-            </span>
+                <span class="material-symbols-outlined">
+                    inventory_2
+                </span>
 
-        </a>
+                <span>
+                    Accessories
+                </span>
+
+            </a>
+
+        </li>
 
 
         <!-- Bookings -->
 
         <a
             class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+             href="<%= request.getContextPath() %>/ManageBookingsServlet">
 
             <span class="material-symbols-outlined">
                 confirmation_number
@@ -359,19 +367,25 @@ tailwind.config = {
 
         <!-- Reports -->
 
-        <a
-            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+        <!-- Reports -->
 
-            <span class="material-symbols-outlined">
-                assessment
-            </span>
+        <li>
 
-            <span>
-                Reports
-            </span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ReportsServlet">
 
-        </a>
+                <span class="material-symbols-outlined">
+                    assessment
+                </span>
+
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+        </li>
 
 
         <!-- Profile -->

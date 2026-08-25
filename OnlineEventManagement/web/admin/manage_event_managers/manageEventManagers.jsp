@@ -202,7 +202,7 @@ tailwind.config = {
 
         <li>
             <a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low/50"
-               href="#">
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet">
 
                 <span class="material-symbols-outlined text-[20px]">
                     badge
@@ -212,33 +212,47 @@ tailwind.config = {
             </a>
         </li>
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-               href="#">
+        <!-- Events - Not connected yet -->
 
-                <span class="material-symbols-outlined text-[20px]">
+        <li>
+
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                 href="<%= request.getContextPath() %>/ManageEventsServlet">
+
+                <span class="material-symbols-outlined">
                     calendar_today
                 </span>
 
-                Events
+                <span>
+                    Events
+                </span>
+
             </a>
+
         </li>
 
         <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-               href="#">
 
-                <span class="material-symbols-outlined text-[20px]">
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/AccessoriesServlet">
+
+                <span class="material-symbols-outlined">
                     inventory_2
                 </span>
 
-                Accessories
+                <span>
+                    Accessories
+                </span>
+
             </a>
+
         </li>
 
         <li>
             <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-               href="#">
+                href="<%= request.getContextPath() %>/ManageBookingsServlet">
 
                 <span class="material-symbols-outlined text-[20px]">
                     confirmation_number
@@ -246,18 +260,24 @@ tailwind.config = {
 
                 Bookings
             </a>
-        </li>
+         <!-- Reports -->
 
         <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-               href="#">
 
-                <span class="material-symbols-outlined text-[20px]">
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ReportsServlet">
+
+                <span class="material-symbols-outlined">
                     assessment
                 </span>
 
-                Reports
+                <span>
+                    Reports
+                </span>
+
             </a>
+
         </li>
 
         <li>

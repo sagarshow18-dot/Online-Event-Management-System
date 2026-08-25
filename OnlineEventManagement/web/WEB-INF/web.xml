@@ -24,6 +24,22 @@
         <servlet-name>ManageUsersServlet</servlet-name>
         <servlet-class>newpackage.ManageUsersServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccessoriesServlet</servlet-name>
+        <servlet-class>newpackage.AccessoriesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageBookingsServlet</servlet-name>
+        <servlet-class>newpackage.ManageBookingsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageEventsServlet</servlet-name>
+        <servlet-class>newpackage.ManageEventsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportsServlet</servlet-name>
+        <servlet-class>newpackage.ReportsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminDashboard</servlet-name>
         <url-pattern>/AdminDashboard</url-pattern>
@@ -47,6 +63,22 @@
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccessoriesServlet</servlet-name>
+        <url-pattern>/AccessoriesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageBookingsServlet</servlet-name>
+        <url-pattern>/ManageBookingsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageEventsServlet</servlet-name>
+        <url-pattern>/ManageEventsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportsServlet</servlet-name>
+        <url-pattern>/ReportsServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>admin/admin_login/adminLogin.html</welcome-file>

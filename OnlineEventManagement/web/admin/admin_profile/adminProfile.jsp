@@ -227,26 +227,31 @@ tailwind.config = {
         </a>
 
 
-        <!-- Events -->
-        <a
-            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+        <!-- Events - Not connected yet -->
 
-            <span class="material-symbols-outlined">
-                calendar_today
-            </span>
+        <li>
 
-            <span>
-                Events
-            </span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                 href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-        </a>
+                <span class="material-symbols-outlined">
+                    calendar_today
+                </span>
+
+                <span>
+                    Events
+                </span>
+
+            </a>
+
+        </li>
 
 
         <!-- Accessories -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+            href="<%= request.getContextPath() %>/AccessoriesServlet">
 
             <span class="material-symbols-outlined">
                 inventory_2
@@ -262,7 +267,7 @@ tailwind.config = {
         <!-- Bookings -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+            href="<%= request.getContextPath() %>/ManageBookingsServlet">
 
             <span class="material-symbols-outlined">
                 confirmation_number
@@ -276,20 +281,25 @@ tailwind.config = {
 
 
         <!-- Reports -->
-        <a
-            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-            href="#">
+      <!-- Reports -->
 
-            <span class="material-symbols-outlined">
-                assessment
-            </span>
+        <li>
 
-            <span>
-                Reports
-            </span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/ReportsServlet">
 
-        </a>
+                <span class="material-symbols-outlined">
+                    assessment
+                </span>
 
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+        </li>
 
         <!-- Profile - Active -->
         <a

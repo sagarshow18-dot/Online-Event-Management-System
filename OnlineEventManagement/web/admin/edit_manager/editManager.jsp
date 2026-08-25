@@ -201,14 +201,24 @@ tailwind.config = {
         </a>
 
 
-        <!-- Accessories - Not connected yet -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
+        <!-- Accessories  -->
+        <li>
 
-            <span class="material-symbols-outlined">inventory_2</span>
-            <span class="font-title-md text-title-md">Accessories</span>
+            <a
+                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                href="<%= request.getContextPath() %>/AccessoriesServlet">
 
-        </a>
+                <span class="material-symbols-outlined">
+                    inventory_2
+                </span>
+
+                <span>
+                    Accessories
+                </span>
+
+            </a>
+
+        </li>
 
 
         <!-- Bookings - Not connected yet -->
