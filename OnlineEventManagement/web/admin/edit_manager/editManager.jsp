@@ -398,7 +398,7 @@ tailwind.config = {
 
                             <button
                                 type="submit"
-                                class="px-md py-2 bg-primary text-on-primary rounded font-body-sm text-body-sm font-semibold hover:bg-primary/90 transition-colors shadow-sm">
+                                class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
                                 Save Changes
                             </button>
 

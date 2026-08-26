@@ -689,7 +689,7 @@ tailwind.config = {
 
 
                     <button
-                        class="px-lg py-2 font-label-caps text-label-caps font-bold text-on-primary bg-primary rounded-lg hover:bg-inverse-surface transition-colors flex items-center gap-sm"
+                        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm"
                         type="submit">
 
                         <span class="material-symbols-outlined text-[16px]">

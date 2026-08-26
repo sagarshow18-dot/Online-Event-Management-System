@@ -1,9 +1,20 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%
+    java.util.List<java.util.Map<String, Object>> userList =
+        (java.util.List<java.util.Map<String, Object>>)
+        request.getAttribute("userList");
+
+    if (userList == null) {
+        userList = new java.util.ArrayList<>();
+    }
+%>
+
 <!DOCTYPE html>
 
 <html class="light" lang="en">
+
 <head>
 
 <meta charset="utf-8"/>
@@ -13,15 +24,20 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
 <script id="tailwind-config">
+
 tailwind.config = {
+
     darkMode: "class",
+
     theme: {
+
         extend: {
+
             colors: {
                 "on-secondary-fixed-variant": "#3a485c",
                 "on-secondary-container": "#57657b",
@@ -48,8 +64,7 @@ tailwind.config = {
                 "tertiary-fixed-dim": "#7bd0ff",
                 "on-tertiary-container": "#008ebf",
                 "on-secondary": "#ffffff",
-                "inverse-on-surface": "#eff1f3",
-                "on-error-container": "#93000a",
+                "tertiary-fixed": "#c4e7ff",
                 "surface-container-lowest": "#ffffff",
                 "on-primary-fixed": "#131b2e",
                 "on-surface-variant": "#45464d",
@@ -59,8 +74,6 @@ tailwind.config = {
                 "surface-dim": "#d8dadc",
                 "primary-fixed": "#dae2fd",
                 "secondary-fixed": "#d5e3fd",
-                "on-secondary-fixed": "#0d1c2f",
-                "inverse-primary": "#bec6e0",
                 "background": "#f7f9fb",
                 "on-tertiary": "#ffffff",
                 "primary": "#000000",
@@ -69,14 +82,14 @@ tailwind.config = {
                 "on-tertiary-fixed-variant": "#004c69"
             },
 
-            borderRadius: {
+            "borderRadius": {
                 "DEFAULT": "0.125rem",
                 "lg": "0.25rem",
                 "xl": "0.5rem",
                 "full": "0.75rem"
             },
 
-            spacing: {
+            "spacing": {
                 "margin-mobile": "16px",
                 "gutter": "24px",
                 "base": "4px",
@@ -88,7 +101,7 @@ tailwind.config = {
                 "xs": "4px"
             },
 
-            fontFamily: {
+            "fontFamily": {
                 "headline-lg": ["Hanken Grotesk"],
                 "title-md": ["Hanken Grotesk"],
                 "body-md": ["Inter"],
@@ -99,7 +112,8 @@ tailwind.config = {
                 "headline-lg-mobile": ["Hanken Grotesk"]
             },
 
-            fontSize: {
+            "fontSize": {
+
                 "headline-lg": [
                     "32px",
                     {
@@ -169,10 +183,12 @@ tailwind.config = {
             }
         }
     }
-}
+};
+
 </script>
 
 <style>
+
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
@@ -181,7 +197,6 @@ tailwind.config = {
     font-variation-settings: 'FILL' 1;
 }
 
-/* Custom scrollbar for tables */
 .table-container::-webkit-scrollbar {
     height: 8px;
     width: 8px;
@@ -199,11 +214,14 @@ tailwind.config = {
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #76777d;
 }
+
 </style>
 
 </head>
 
+
 <body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden antialiased flex flex-col md:flex-row">
+
 
 <!-- SideNavBar -->
 
@@ -229,16 +247,17 @@ tailwind.config = {
             <img
                 alt="Admin User Profile"
                 class="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZBbefcqGnMmILB3aFlU4bKG419JImIKGtBNkuyelWGLO23H2p31-eX9gTHvxIGsigBOkexzlrD9Wx9h4YglqzUGyteGIGNEtaS9F3Snp3N_JYl59676AghMxYIo_9SkACOF1EWxuqAWSpwgnQdfnqirp_joKJf8DgN9to1_V_nGRMW-NPyDxeZ5JZU6sn6xF_qa1cE3fpgivPiVvQ3NgGubo-BqZyYBVXQxRaGw5ROh5R2Lt41R0CRQ"
-            />
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZBbefcqGnMmILB3aFlU4bKG419JImIKGtBNkuyelWGLO23H2p31-eX9gTHvxIGsigBOkexzlrD9Wx9h4YglqzUGyteGIGNEtaS9F3Snp3N_JYl59676AghMxYIo_9SkACOF1EWxuqAWSpwgnQdfnqirp_joKJf8DgN9to1_V_nGRMW-NPyDxeZ5JZU6sn6xF_qa1cE3fpgivPiVvQ3NgGubo-BqZyYBVXQxRaGw5ROh5R2Lt41R0CRQ"/>
 
         </div>
 
         <div class="flex flex-col">
 
             <span class="font-title-md text-title-md text-on-surface truncate max-w-[180px]">
-                Jane Doe
-            </span>
+    <%= session.getAttribute("adminName") != null
+            ? session.getAttribute("adminName")
+            : "Admin User" %>
+</span>
 
             <span class="font-label-caps text-label-caps text-on-surface-variant">
                 Enterprise Admin
@@ -250,6 +269,7 @@ tailwind.config = {
 
 
     <div class="flex-1 overflow-y-auto pr-sm flex flex-col gap-xs">
+
 
         <!-- Dashboard -->
 
@@ -306,53 +326,45 @@ tailwind.config = {
         </a>
 
 
-       <!-- Events  -->
+        <!-- Events -->
 
-        <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                 href="<%= request.getContextPath() %>/ManageEventsServlet">
+            <span class="material-symbols-outlined">
+                calendar_today
+            </span>
 
-                <span class="material-symbols-outlined">
-                    calendar_today
-                </span>
+            <span>
+                Events
+            </span>
 
-                <span>
-                    Events
-                </span>
-
-            </a>
-
-        </li>
+        </a>
 
 
         <!-- Accessories -->
 
-        <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/AccessoriesServlet">
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/AccessoriesServlet">
+            <span class="material-symbols-outlined">
+                inventory_2
+            </span>
 
-                <span class="material-symbols-outlined">
-                    inventory_2
-                </span>
+            <span>
+                Accessories
+            </span>
 
-                <span>
-                    Accessories
-                </span>
-
-            </a>
-
-        </li>
+        </a>
 
 
         <!-- Bookings -->
 
         <a
             class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-             href="<%= request.getContextPath() %>/ManageBookingsServlet">
+            href="<%= request.getContextPath() %>/ManageBookingsServlet">
 
             <span class="material-symbols-outlined">
                 confirmation_number
@@ -367,25 +379,19 @@ tailwind.config = {
 
         <!-- Reports -->
 
-        <!-- Reports -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ReportsServlet">
 
-        <li>
+            <span class="material-symbols-outlined">
+                assessment
+            </span>
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/ReportsServlet">
+            <span>
+                Reports
+            </span>
 
-                <span class="material-symbols-outlined">
-                    assessment
-                </span>
-
-                <span>
-                    Reports
-                </span>
-
-            </a>
-
-        </li>
+        </a>
 
 
         <!-- Profile -->
@@ -409,7 +415,7 @@ tailwind.config = {
 </nav>
 
 
-<!-- Mobile Nav Header -->
+<!-- Mobile Nav -->
 
 <header class="md:hidden bg-surface-container-lowest border-b border-outline-variant px-margin-mobile py-sm flex justify-between items-center sticky top-0 z-20">
 
@@ -427,6 +433,7 @@ tailwind.config = {
 
     <button
         type="button"
+        onclick="toggleMobileMenu()"
         class="text-on-surface p-sm rounded-lg hover:bg-surface-container-low">
 
         <span class="material-symbols-outlined">
@@ -456,6 +463,8 @@ tailwind.config = {
                 </span>
 
                 <input
+                    id="globalUserSearch"
+                    onkeyup="filterUsers()"
                     class="w-full bg-surface-container-low border border-transparent rounded-full py-2 pl-10 pr-4 text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant focus:border-tertiary focus:ring-2 focus:ring-tertiary-fixed-dim focus:outline-none transition-all duration-200"
                     placeholder="Search across EventHub..."
                     type="text"
@@ -470,6 +479,7 @@ tailwind.config = {
 
             <button
                 type="button"
+                onclick="showNotifications()"
                 class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low relative">
 
                 <span class="material-symbols-outlined">
@@ -484,6 +494,7 @@ tailwind.config = {
 
             <button
                 type="button"
+                onclick="showSettings()"
                 class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low">
 
                 <span class="material-symbols-outlined">
@@ -493,11 +504,13 @@ tailwind.config = {
             </button>
 
 
-            <div class="h-8 w-px bg-outline-variant mx-2"></div>
+            <div class="h-8 w-px bg-outline-variant mx-2">
+            </div>
 
 
             <button
                 type="button"
+                onclick="logout()"
                 class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm flex items-center gap-xs">
 
                 <span>
@@ -520,7 +533,7 @@ tailwind.config = {
     <div class="flex-1 p-margin-mobile md:p-margin-desktop md:pt-[calc(64px+32px)] pt-margin-mobile max-w-[1600px] w-full mx-auto flex flex-col gap-lg">
 
 
-        <!-- Page Header & Actions -->
+        <!-- Page Header -->
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
 
@@ -579,9 +592,10 @@ tailwind.config = {
 
             <div class="flex items-center gap-sm">
 
-                <button
-                    type="button"
-                    class="bg-primary text-on-primary px-lg py-2 rounded-lg font-body-sm text-body-sm hover:bg-primary-container transition-colors flex items-center gap-sm shadow-sm">
+                <a
+                    href="<%= request.getContextPath() %>/admin/add_user/addUser.jsp"
+                   class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
 
                     <span class="material-symbols-outlined text-[18px]">
                         person_add
@@ -589,11 +603,12 @@ tailwind.config = {
 
                     Add User
 
-                </button>
+                </a>
 
 
                 <button
                     type="button"
+                    onclick="exportUsersCSV()"
                     class="border border-outline-variant bg-surface-container-lowest text-on-surface px-md py-2 rounded-lg font-body-sm text-body-sm hover:border-tertiary hover:text-tertiary transition-colors flex items-center gap-sm shadow-sm">
 
                     <span class="material-symbols-outlined text-[18px]">
@@ -613,6 +628,7 @@ tailwind.config = {
 
         <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-sm flex flex-col sm:flex-row gap-sm items-center">
 
+
             <div class="relative w-full sm:max-w-xs flex-1">
 
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
@@ -620,6 +636,8 @@ tailwind.config = {
                 </span>
 
                 <input
+                    id="userSearch"
+                    onkeyup="filterUsers()"
                     class="w-full bg-surface-container-low border border-transparent rounded-lg py-2 pl-10 pr-4 text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant focus:border-tertiary focus:ring-2 focus:ring-tertiary-fixed-dim focus:outline-none transition-all duration-200"
                     placeholder="Search users by name, email..."
                     type="text"
@@ -634,20 +652,15 @@ tailwind.config = {
                 <!-- Role Filter -->
 
                 <select
+                    id="roleFilter"
+                    onchange="filterUsers()"
                     class="bg-surface-container-low border border-transparent rounded-lg py-2 pl-3 pr-8 text-body-sm font-body-sm text-on-surface focus:border-tertiary focus:ring-2 focus:ring-tertiary-fixed-dim focus:outline-none transition-all duration-200 appearance-none min-w-[120px]">
 
-                    <option value="">
+                    <option value="ALL">
                         All Roles
                     </option>
 
-                    <option value="admin">
-                        Admin
-                    </option>
-
-                    <option value="manager">
-                        Event Manager
-                    </option>
-
+                    <!-- EVENT_USERS table has no ROLE column -->
                     <option value="user">
                         Standard User
                     </option>
@@ -658,17 +671,19 @@ tailwind.config = {
                 <!-- Status Filter -->
 
                 <select
+                    id="statusFilter"
+                    onchange="filterUsers()"
                     class="bg-surface-container-low border border-transparent rounded-lg py-2 pl-3 pr-8 text-body-sm font-body-sm text-on-surface focus:border-tertiary focus:ring-2 focus:ring-tertiary-fixed-dim focus:outline-none transition-all duration-200 appearance-none min-w-[120px]">
 
-                    <option value="">
+                    <option value="ALL">
                         All Status
                     </option>
 
-                    <option value="active">
+                    <option value="ACTIVE">
                         Active
                     </option>
 
-                    <option value="blocked">
+                    <option value="BLOCKED">
                         Blocked
                     </option>
 
@@ -677,12 +692,43 @@ tailwind.config = {
 
                 <button
                     type="button"
+                    onclick="toggleAdvancedFilters()"
                     class="text-on-surface-variant p-sm rounded-lg hover:bg-surface-container-low hover:text-primary transition-colors flex-shrink-0"
                     title="Advanced Filters">
 
                     <span class="material-symbols-outlined">
                         tune
                     </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Advanced Filter Panel -->
+
+        <div
+            id="advancedFilterPanel"
+            class="hidden bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+
+            <div class="flex flex-wrap items-center gap-sm">
+
+                <span class="font-label-caps text-label-caps text-on-surface-variant">
+                    Advanced Filter
+                </span>
+
+                <button
+                    type="button"
+                    onclick="clearUserFilters()"
+                    class="flex items-center gap-xs px-md py-xs border border-outline-variant rounded-lg bg-surface-container-lowest hover:bg-surface-container-low transition-colors font-label-caps text-label-caps">
+
+                    <span class="material-symbols-outlined text-[16px]">
+                        filter_alt_off
+                    </span>
+
+                    Clear Filters
 
                 </button>
 
@@ -706,6 +752,8 @@ tailwind.config = {
                             <th class="py-3 px-md font-semibold w-12 text-center">
 
                                 <input
+                                    id="selectAllUsers"
+                                    onclick="toggleAllUsers(this)"
                                     class="rounded border-outline-variant text-primary focus:ring-tertiary-fixed-dim"
                                     type="checkbox"
                                 />
@@ -747,30 +795,32 @@ tailwind.config = {
 
                     <tbody class="font-body-sm text-body-sm text-on-surface">
 
-<%
-    java.util.List<java.util.Map<String, Object>> userList =
-        (java.util.List<java.util.Map<String, Object>>)
-        request.getAttribute("userList");
 
-    if (userList != null && !userList.isEmpty()) {
+<%
+    if (!userList.isEmpty()) {
 
         for (java.util.Map<String, Object> user : userList) {
 
-            int userId = (Integer) user.get("userId");
+            int userId =
+                    (Integer) user.get("userId");
 
-            String name = user.get("name") != null
+            String name =
+                    user.get("name") != null
                     ? user.get("name").toString()
                     : "";
 
-            String email = user.get("email") != null
+            String email =
+                    user.get("email") != null
                     ? user.get("email").toString()
                     : "";
 
-            String contact = user.get("contact") != null
+            String contact =
+                    user.get("contact") != null
                     ? user.get("contact").toString()
                     : "";
 
-            String status = user.get("status") != null
+            String status =
+                    user.get("status") != null
                     ? user.get("status").toString()
                     : "";
 
@@ -778,55 +828,79 @@ tailwind.config = {
 
             if (!name.trim().isEmpty()) {
 
-                String[] parts = name.trim().split("\\s+");
+                String[] parts =
+                        name.trim().split("\\s+");
 
                 if (parts.length == 1) {
 
-                    initials = parts[0]
+                    initials =
+                            parts[0]
                             .substring(0, 1)
                             .toUpperCase();
 
                 } else {
 
                     initials =
-                        (parts[0].substring(0, 1)
-                        + parts[parts.length - 1].substring(0, 1))
-                        .toUpperCase();
+                            (
+                                parts[0]
+                                .substring(0, 1)
+                                +
+                                parts[parts.length - 1]
+                                .substring(0, 1)
+                            ).toUpperCase();
                 }
             }
 
             boolean active =
                     "ACTIVE".equalsIgnoreCase(status);
 
+            String normalisedStatus =
+                    active
+                    ? "ACTIVE"
+                    : "BLOCKED";
+
             String statusClass;
+
             String statusText;
 
             if (active) {
 
                 statusClass =
-                    "bg-[#e6f4ea] text-[#137333]";
+                        "bg-[#e6f4ea] text-[#137333]";
 
-                statusText = "Active";
+                statusText =
+                        "Active";
 
             } else {
 
                 statusClass =
-                    "bg-[#fce8e6] text-[#c5221f]";
+                        "bg-[#fce8e6] text-[#c5221f]";
 
                 statusText =
-                    status.isEmpty()
-                    ? "Unknown"
-                    : status;
+                        status.isEmpty()
+                        ? "Blocked"
+                        : status;
             }
 %>
 
-<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors">
+
+<tr
+    class="user-row border-b border-outline-variant hover:bg-surface-bright transition-colors"
+    data-user-id="<%= userId %>"
+    data-name="<%= name.toLowerCase() %>"
+    data-email="<%= email.toLowerCase() %>"
+    data-contact="<%= contact.toLowerCase() %>"
+    data-status="<%= normalisedStatus %>"
+    data-role="user">
+
 
     <td class="py-2 px-md text-center">
 
         <input
-            class="rounded border-outline-variant text-primary focus:ring-tertiary-fixed-dim"
-            type="checkbox"/>
+            class="user-checkbox rounded border-outline-variant text-primary focus:ring-tertiary-fixed-dim"
+            type="checkbox"
+            value="<%= userId %>"
+        />
 
     </td>
 
@@ -882,7 +956,8 @@ tailwind.config = {
 
     <td class="py-2 px-sm text-center">
 
-        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold <%= statusClass %>">
+        <span
+            class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold <%= statusClass %>">
 
             <%= statusText %>
 
@@ -901,7 +976,7 @@ tailwind.config = {
             <a
                 class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded transition-colors"
                 title="View"
-                href="#">
+                href="<%= request.getContextPath() %>/ManageUsersServlet?action=view&userId=<%= userId %>">
 
                 <span class="material-symbols-outlined text-[18px]">
                     visibility
@@ -915,7 +990,7 @@ tailwind.config = {
             <a
                 class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded transition-colors"
                 title="Edit"
-                href="#">
+                href="<%= request.getContextPath() %>/ManageUsersServlet?action=edit&userId=<%= userId %>">
 
                 <span class="material-symbols-outlined text-[18px]">
                     edit
@@ -926,7 +1001,9 @@ tailwind.config = {
 
             <!-- Block / Unblock -->
 
-            <% if (active) { %>
+<%
+            if (active) {
+%>
 
             <a
                 href="<%= request.getContextPath() %>/ManageUsersServlet?action=block&userId=<%= userId %>"
@@ -940,10 +1017,13 @@ tailwind.config = {
 
             </a>
 
-            <% } else { %>
+<%
+            } else {
+%>
 
             <a
                 href="<%= request.getContextPath() %>/ManageUsersServlet?action=unblock&userId=<%= userId %>"
+                onclick="return confirm('Do you want to unblock this user?');"
                 class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded transition-colors"
                 title="Unblock">
 
@@ -953,14 +1033,16 @@ tailwind.config = {
 
             </a>
 
-            <% } %>
+<%
+            }
+%>
 
 
             <!-- Delete -->
 
             <a
                 href="<%= request.getContextPath() %>/ManageUsersServlet?action=delete&userId=<%= userId %>"
-                onclick="return confirm('Are you sure you want to delete this user?');"
+                onclick="return confirm('Are you sure you want to permanently delete this user?');"
                 class="p-1 text-on-surface-variant hover:text-error hover:bg-error-container rounded transition-colors"
                 title="Delete">
 
@@ -975,6 +1057,7 @@ tailwind.config = {
     </td>
 
 </tr>
+
 
 <%
         }
@@ -1009,15 +1092,11 @@ tailwind.config = {
 
             <div class="border-t border-outline-variant bg-surface-container-lowest p-sm flex items-center justify-between">
 
-                <div class="text-body-sm font-body-sm text-on-surface-variant">
+                <div
+                    id="paginationInfo"
+                    class="text-body-sm font-body-sm text-on-surface-variant">
 
-                    Showing
-
-                    <span class="font-semibold text-on-surface">
-                        <%= userList != null ? userList.size() : 0 %>
-                    </span>
-
-                    users
+                    Showing 0 users
 
                 </div>
 
@@ -1025,7 +1104,9 @@ tailwind.config = {
                 <div class="flex items-center gap-xs">
 
                     <button
+                        id="previousPage"
                         type="button"
+                        onclick="changeUserPage(-1)"
                         class="p-1 rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled>
 
@@ -1036,18 +1117,22 @@ tailwind.config = {
                     </button>
 
 
-                    <button
-                        type="button"
-                        class="w-8 h-8 rounded-md bg-primary text-on-primary font-semibold text-sm flex items-center justify-center">
+                    <span
+                        id="currentPage"
+                        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
 
                         1
 
-                    </button>
+                    </span>
 
 
                     <button
+                        id="nextPage"
                         type="button"
-                        class="p-1 rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors">
+                        onclick="changeUserPage(1)"
+                        class="p-1 rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled>
 
                         <span class="material-symbols-outlined text-[20px]">
                             chevron_right
@@ -1064,6 +1149,571 @@ tailwind.config = {
     </div>
 
 </main>
+
+
+<script>
+
+/* ==========================================
+   USER FILTER + PAGINATION
+   ========================================== */
+
+let currentUserPage = 1;
+
+const usersPerPage = 10;
+
+
+function filterUsers() {
+
+    currentUserPage = 1;
+
+    renderUsers();
+
+}
+
+
+function renderUsers() {
+
+    const searchBox =
+        document.getElementById("userSearch");
+
+    const globalSearchBox =
+        document.getElementById("globalUserSearch");
+
+    const roleFilter =
+        document.getElementById("roleFilter");
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+
+    const searchValue =
+        (
+            searchBox.value ||
+            globalSearchBox.value ||
+            ""
+        ).toLowerCase().trim();
+
+
+    const roleValue =
+        roleFilter.value;
+
+
+    const statusValue =
+        statusFilter.value;
+
+
+    const rows =
+        Array.from(
+            document.querySelectorAll(".user-row")
+        );
+
+
+    const filteredRows =
+        rows.filter(function(row) {
+
+            const name =
+                row.dataset.name || "";
+
+            const email =
+                row.dataset.email || "";
+
+            const contact =
+                row.dataset.contact || "";
+
+            const status =
+                row.dataset.status || "";
+
+            const role =
+                row.dataset.role || "user";
+
+
+            if (
+                searchValue &&
+                !name.includes(searchValue) &&
+                !email.includes(searchValue) &&
+                !contact.includes(searchValue)
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                roleValue !== "ALL" &&
+                role !== roleValue
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                statusValue !== "ALL" &&
+                status !== statusValue
+            ) {
+
+                return false;
+
+            }
+
+
+            return true;
+
+        });
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredRows.length /
+                usersPerPage
+            )
+        );
+
+
+    if (currentUserPage > totalPages) {
+
+        currentUserPage =
+            totalPages;
+
+    }
+
+
+    rows.forEach(function(row) {
+
+        row.style.display =
+            "none";
+
+    });
+
+
+    const start =
+        (currentUserPage - 1) *
+        usersPerPage;
+
+
+    const end =
+        start +
+        usersPerPage;
+
+
+    filteredRows
+        .slice(start, end)
+        .forEach(function(row) {
+
+            row.style.display =
+                "";
+
+        });
+
+
+    document
+        .getElementById("previousPage")
+        .disabled =
+            currentUserPage === 1;
+
+
+    document
+        .getElementById("nextPage")
+        .disabled =
+            currentUserPage >= totalPages;
+
+
+    document
+        .getElementById("currentPage")
+        .textContent =
+            currentUserPage;
+
+
+    let from = 0;
+    let to = 0;
+
+
+    if (filteredRows.length > 0) {
+
+        from =
+            start + 1;
+
+        to =
+            Math.min(
+                end,
+                filteredRows.length
+            );
+
+    }
+
+
+    document
+        .getElementById("paginationInfo")
+        .textContent =
+            "Showing " +
+            from +
+            "-" +
+            to +
+            " of " +
+            filteredRows.length +
+            " users";
+
+
+    updateSelectAllState();
+
+}
+
+
+function changeUserPage(direction) {
+
+    currentUserPage +=
+        direction;
+
+    renderUsers();
+
+}
+
+
+/* ==========================================
+   SELECT ALL
+   ========================================== */
+
+function toggleAllUsers(source) {
+
+    const visibleRows =
+        Array.from(
+            document.querySelectorAll(
+                ".user-row"
+            )
+        ).filter(function(row) {
+
+            return row.style.display !== "none";
+
+        });
+
+
+    visibleRows.forEach(function(row) {
+
+        const checkbox =
+            row.querySelector(
+                ".user-checkbox"
+            );
+
+        checkbox.checked =
+            source.checked;
+
+    });
+
+}
+
+
+function updateSelectAllState() {
+
+    const visibleRows =
+        Array.from(
+            document.querySelectorAll(
+                ".user-row"
+            )
+        ).filter(function(row) {
+
+            return row.style.display !== "none";
+
+        });
+
+
+    const selectAll =
+        document.getElementById(
+            "selectAllUsers"
+        );
+
+
+    if (
+        visibleRows.length === 0
+    ) {
+
+        selectAll.checked = false;
+        selectAll.indeterminate = false;
+
+        return;
+
+    }
+
+
+    const checkboxes =
+        visibleRows.map(function(row) {
+
+            return row.querySelector(
+                ".user-checkbox"
+            );
+
+        });
+
+
+    const checkedCount =
+        checkboxes.filter(function(box) {
+
+            return box.checked;
+
+        }).length;
+
+
+    selectAll.checked =
+        checkedCount ===
+        checkboxes.length;
+
+
+    selectAll.indeterminate =
+        checkedCount > 0 &&
+        checkedCount < checkboxes.length;
+
+}
+
+
+/* ==========================================
+   ADVANCED FILTER
+   ========================================== */
+
+function toggleAdvancedFilters() {
+
+    document
+        .getElementById(
+            "advancedFilterPanel"
+        )
+        .classList.toggle(
+            "hidden"
+        );
+
+}
+
+
+function clearUserFilters() {
+
+    document.getElementById(
+        "userSearch"
+    ).value = "";
+
+    document.getElementById(
+        "globalUserSearch"
+    ).value = "";
+
+    document.getElementById(
+        "roleFilter"
+    ).value = "ALL";
+
+    document.getElementById(
+        "statusFilter"
+    ).value = "ALL";
+
+
+    currentUserPage = 1;
+
+    renderUsers();
+
+}
+
+
+/* ==========================================
+   EXPORT CSV
+   ========================================== */
+
+function exportUsersCSV() {
+
+    const rows =
+        Array.from(
+            document.querySelectorAll(
+                ".user-row"
+            )
+        );
+
+
+    const visibleRows =
+        rows.filter(function(row) {
+
+            return row.style.display !== "none";
+
+        });
+
+
+    let csv =
+        "User ID,Name,Email,Contact,Status\n";
+
+
+    visibleRows.forEach(function(row) {
+
+        const cells =
+            row.querySelectorAll("td");
+
+
+        if (cells.length < 7) {
+            return;
+        }
+
+
+        const userId =
+            cells[1].innerText
+                .trim();
+
+
+        const name =
+            cells[2].innerText
+                .trim();
+
+
+        const email =
+            cells[3].innerText
+                .trim();
+
+
+        const contact =
+            cells[4].innerText
+                .trim();
+
+
+        const status =
+            cells[6].innerText
+                .trim();
+
+
+        csv +=
+            csvEscape(userId) + "," +
+            csvEscape(name) + "," +
+            csvEscape(email) + "," +
+            csvEscape(contact) + "," +
+            csvEscape(status) +
+            "\n";
+
+    });
+
+
+    const blob =
+        new Blob(
+            [csv],
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href =
+        url;
+
+
+    link.download =
+        "eventhub-users.csv";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+function csvEscape(value) {
+
+    return "\"" +
+        value
+            .replace(/"/g, '""') +
+        "\"";
+
+}
+
+
+/* ==========================================
+   NOTIFICATIONS
+   ========================================== */
+
+function showNotifications() {
+
+    alert(
+        "Notifications are not configured yet."
+    );
+
+}
+
+
+/* ==========================================
+   SETTINGS
+   ========================================== */
+
+function showSettings() {
+
+    alert(
+        "Settings are not configured yet."
+    );
+
+}
+
+
+/* ==========================================
+   MOBILE MENU
+   ========================================== */
+
+function toggleMobileMenu() {
+
+    alert(
+        "Use the desktop navigation to access the Admin modules."
+    );
+
+}
+
+
+/* ==========================================
+   LOGOUT
+   ========================================== */
+
+function logout() {
+
+    if (
+        confirm(
+            "Are you sure you want to logout?"
+        )
+    ) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/admin/admin_login/adminLogin.html";
+
+    }
+
+}
+
+
+/* ==========================================
+   INITIAL LOAD
+   ========================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        renderUsers();
+
+    }
+);
+
+</script>
+
 
 </body>
 </html>

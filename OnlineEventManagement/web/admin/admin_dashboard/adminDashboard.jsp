@@ -1072,7 +1072,8 @@ Real-time metrics and recent activity for the EventHub ecosystem.
 <button
 type="button"
 id="exportReportBtn"
-class="hidden sm:flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:opacity-90 transition-opacity shadow-sm">
+class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
 
 <span class="material-symbols-outlined text-[18px]">
 download

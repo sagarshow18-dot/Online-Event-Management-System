@@ -227,12 +227,12 @@ tailwind.config = {
         </a>
 
 
-        <!-- Events - Not connected yet -->
+        <!-- Events  -->
 
-        <li>
+        
 
             <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+                class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
                  href="<%= request.getContextPath() %>/ManageEventsServlet">
 
                 <span class="material-symbols-outlined">
@@ -245,7 +245,7 @@ tailwind.config = {
 
             </a>
 
-        </li>
+        
 
 
         <!-- Accessories -->
@@ -280,13 +280,13 @@ tailwind.config = {
         </a>
 
 
-        <!-- Reports -->
+     
       <!-- Reports -->
 
-        <li>
+        
 
             <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+               class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
                 href="<%= request.getContextPath() %>/ReportsServlet">
 
                 <span class="material-symbols-outlined">
@@ -299,7 +299,7 @@ tailwind.config = {
 
             </a>
 
-        </li>
+        
 
         <!-- Profile - Active -->
         <a
@@ -639,7 +639,8 @@ rows="3"><%= request.getAttribute("bio") != null ? request.getAttribute("bio") :
 
     <button
         type="submit"
-        class="px-lg py-sm font-body-sm text-body-sm font-bold text-on-primary bg-primary rounded shadow-sm hover:opacity-90 transition-opacity duration-200 flex items-center gap-xs">
+        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
 
         <span class="material-symbols-outlined text-[18px]">
             save
@@ -762,7 +763,8 @@ Password must be at least 12 characters long and include a mix of uppercase, low
 
     <button
         type="submit"
-        class="px-lg py-sm font-body-sm text-body-sm font-bold text-on-primary bg-primary rounded shadow-sm hover:opacity-90 transition-opacity duration-200 flex items-center gap-xs">
+        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
 
         <span class="material-symbols-outlined text-[18px]">
             lock
