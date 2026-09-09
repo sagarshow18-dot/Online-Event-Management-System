@@ -966,16 +966,19 @@ notifications
 </button>
 
 
-<button
-type="button"
-onclick="showSettings()"
-class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low">
+ <button
+                type="button"
+                onclick="openSettings()"
+                title="Settings"
+                class="p-xs text-on-surface-variant hover:text-primary transition-colors hover:scale-95">
 
-<span class="material-symbols-outlined">
-settings
-</span>
+                <span class="material-symbols-outlined">
 
-</button>
+                    settings
+
+                </span>
+
+            </button>
 
 
 <div class="h-6 w-px bg-outline-variant mx-sm">
@@ -1852,8 +1855,10 @@ function toggleMenu() {
     alert("Mobile navigation is available on the desktop sidebar.");
 }
 
-function showNotifications() {
-    alert("No new notifications.");
+function openSettings() {
+
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
 }
 
 function showSettings() {

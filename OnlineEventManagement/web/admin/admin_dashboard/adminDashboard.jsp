@@ -38,7 +38,8 @@
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-
+String imageSource =
+        request.getContextPath() + "/images/default-profile.png";
     try {
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -51,36 +52,51 @@
 
 
         /* =====================================================
-           ADMIN NAME
-           ===================================================== */
+   ADMIN PROFILE
+   ===================================================== */
 
-        try {
 
-            ps = con.prepareStatement(
-                    "SELECT NAME " +
-                    "FROM ADMIN " +
-                    "WHERE ROWNUM = 1"
-            );
 
-            rs = ps.executeQuery();
+try {
 
-            if (rs.next()) {
+    ps = con.prepareStatement(
+            "SELECT NAME, PROFILE_IMAGE " +
+            "FROM ADMIN " +
+            "WHERE ROWNUM = 1"
+    );
 
-                String name =
-                        rs.getString("NAME");
+    rs = ps.executeQuery();
 
-                if (name != null &&
-                    !name.trim().isEmpty()) {
+    if (rs.next()) {
 
-                    adminName = name;
-                }
-            }
+        // Get current admin name
+        String name = rs.getString("NAME");
 
-            rs.close();
-            ps.close();
+        if (name != null &&
+            !name.trim().isEmpty()) {
 
-        } catch (Exception ignored) {
+            adminName = name;
         }
+
+        // Get current admin profile image
+        String profileImage =
+                rs.getString("PROFILE_IMAGE");
+
+        if (profileImage != null &&
+            !profileImage.trim().isEmpty()) {
+
+            imageSource =
+        request.getContextPath()
+        + "/"
+        + profileImage;
+        }
+    }
+
+    rs.close();
+    ps.close();
+
+} catch (Exception ignored) {
+}
 
 
         /* =====================================================
@@ -917,9 +933,10 @@ Profile
 <div class="flex items-center gap-sm px-sm">
 
 <img
-alt="Admin User Profile"
-class="w-10 h-10 rounded-full object-cover border border-outline-variant"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmWjQlQiPT8Ht2WgZJpB_njmItpaOXp-B1oTvE5Za_BiCmajL8RB-qViARSzD9fLXEA3yrLN0ruKBK7kjRYfmM4YxLuMe7mY3_OK71h91h6MgqKksIekcrnhr1KzVsNf6AI-g-zvikNJ4IRzwtz8zQaIJ-D7z7vRCxAaSLTwkPdf8h-1R08oy5_tJ3dgCI677-sY221NVbD7JlqICG8-2TmtFj9QntD74AL23ddCkEKCLIwNFtjotvPw"/>
+            id="sidebarProfileImage"
+            alt="Admin User Profile"
+            class="w-10 h-10 rounded-lg object-cover"
+           src="<%= imageSource %>"/>
 
 <div>
 
@@ -1384,6 +1401,27 @@ Date trend unavailable
 
 
 <script>
+/*
+ * PROFILE IMAGE PREVIEW
+ */
+function previewProfileImage(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const sidebarImage =
+                document.getElementById("sidebarProfileImage");
+
+            if (sidebarImage) {
+                sidebarImage.src = e.target.result;
+            }
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 

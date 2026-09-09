@@ -1,12 +1,17 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java"
+         contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
 <title>Edit Manager - EventHub</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -57,6 +62,7 @@ tailwind.config = {
                 "primary-fixed-dim": "#bec6e0",
                 "surface-dim": "#d8dadc",
                 "primary-fixed": "#dae2fd",
+                "secondary-fixed": "#d5e3fd",
                 "secondary-fixed-dim": "#b9c7e0",
                 "on-secondary-fixed": "#0d1c2f",
                 "inverse-primary": "#bec6e0",
@@ -146,10 +152,99 @@ tailwind.config = {
 
 <body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
 
-<!-- SideNavBar -->
-<aside class="bg-surface-container-lowest dark:bg-surface-container-lowest fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline-variant flex flex-col py-lg px-md z-20 hidden md:flex">
+<%
+    /*
+     * =========================================================
+     * ADMIN INFORMATION
+     * =========================================================
+     */
+
+    String adminName =
+            session.getAttribute("adminName") != null
+                    ? session.getAttribute("adminName").toString()
+                    : "Admin User";
+
+
+    /*
+     * =========================================================
+     * MANAGER INFORMATION
+     * These values are loaded by EditManagerServlet.
+     * =========================================================
+     */
+
+    Object managerIdObject =
+            request.getAttribute("managerId");
+
+    String managerId =
+            managerIdObject != null
+                    ? managerIdObject.toString()
+                    : "";
+
+
+    String name =
+            request.getAttribute("name") != null
+                    ? request.getAttribute("name").toString()
+                    : "";
+
+
+    String email =
+            request.getAttribute("email") != null
+                    ? request.getAttribute("email").toString()
+                    : "";
+
+
+    String contact =
+            request.getAttribute("contact") != null
+                    ? request.getAttribute("contact").toString()
+                    : "";
+
+
+    String address =
+            request.getAttribute("address") != null
+                    ? request.getAttribute("address").toString()
+                    : "";
+
+
+    String status =
+            request.getAttribute("status") != null
+                    ? request.getAttribute("status").toString()
+                    : "INACTIVE";
+
+
+    java.sql.Date dateAdded =
+            (java.sql.Date) request.getAttribute("dateAdded");
+
+
+    java.sql.Timestamp lastLogin =
+            (java.sql.Timestamp) request.getAttribute("lastLogin");
+
+
+    Object eventsManagedObject =
+            request.getAttribute("eventsManaged");
+
+
+    String eventsManaged =
+            eventsManagedObject != null
+                    ? eventsManagedObject.toString()
+                    : "0";
+
+
+    boolean active =
+            "ACTIVE".equalsIgnoreCase(status);
+
+%>
+
+
+<!-- =========================================================
+     SIDE NAVIGATION
+     ========================================================= -->
+
+<aside
+    class="bg-surface-container-lowest dark:bg-surface-container-lowest fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline-variant flex flex-col py-lg px-md z-20 hidden md:flex">
+
 
     <div class="mb-xl px-sm">
+
         <h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-on-primary-fixed">
             EventHub
         </h1>
@@ -157,100 +252,152 @@ tailwind.config = {
         <p class="font-body-sm text-body-sm text-on-surface-variant">
             Enterprise Admin
         </p>
+
     </div>
+
 
     <nav class="flex flex-col gap-xs flex-1">
 
-        <!-- Dashboard -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
 
-            <span class="material-symbols-outlined">dashboard</span>
-            <span class="font-title-md text-title-md">Dashboard</span>
+        <!-- Dashboard -->
+
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
+
+            <span class="material-symbols-outlined">
+                dashboard
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Dashboard
+            </span>
 
         </a>
 
 
         <!-- Users -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="<%= request.getContextPath() %>/ManageUsersServlet">
 
-            <span class="material-symbols-outlined">group</span>
-            <span class="font-title-md text-title-md">Users</span>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageUsersServlet">
 
-        </a>
+            <span class="material-symbols-outlined">
+                group
+            </span>
 
-
-        <!-- Event Managers - Active -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low"
-           href="<%= request.getContextPath() %>/ManageEventManagersServlet">
-
-            <span class="material-symbols-outlined">badge</span>
-            <span class="font-title-md text-title-md">Event Managers</span>
+            <span class="font-title-md text-title-md">
+                Users
+            </span>
 
         </a>
 
 
-        <!-- Events - Not connected yet -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
+        <!-- Event Managers -->
 
-            <span class="material-symbols-outlined">calendar_today</span>
-            <span class="font-title-md text-title-md">Events</span>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low"
+            href="<%= request.getContextPath() %>/ManageEventManagersServlet">
 
-        </a>
+            <span class="material-symbols-outlined">
+                badge
+            </span>
 
-
-        <!-- Accessories  -->
-        <li>
-
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/AccessoriesServlet">
-
-                <span class="material-symbols-outlined">
-                    inventory_2
-                </span>
-
-                <span>
-                    Accessories
-                </span>
-
-            </a>
-
-        </li>
-
-
-        <!-- Bookings - Not connected yet -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
-
-            <span class="material-symbols-outlined">confirmation_number</span>
-            <span class="font-title-md text-title-md">Bookings</span>
+            <span class="font-title-md text-title-md">
+                Event Managers
+            </span>
 
         </a>
 
 
-        <!-- Reports - Not connected yet -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="#">
+        <!-- Events -->
 
-            <span class="material-symbols-outlined">assessment</span>
-            <span class="font-title-md text-title-md">Reports</span>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageEventsServlet">
+
+            <span class="material-symbols-outlined">
+                calendar_today
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Events
+            </span>
+
+        </a>
+
+
+        <!-- Accessories -->
+
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/AccessoriesServlet">
+
+            <span class="material-symbols-outlined">
+                inventory_2
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Accessories
+            </span>
+
+        </a>
+
+
+        <!-- Bookings -->
+
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageBookingsServlet">
+
+            <span class="material-symbols-outlined">
+                confirmation_number
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Bookings
+            </span>
+
+        </a>
+
+
+        <!-- Reports -->
+
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ReportsServlet">
+
+            <span class="material-symbols-outlined">
+                assessment
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Reports
+            </span>
 
         </a>
 
 
         <!-- Profile -->
-        <a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-           href="<%= request.getContextPath() %>/AdminProfileServlet">
 
-            <span class="material-symbols-outlined">account_circle</span>
-            <span class="font-title-md text-title-md">Profile</span>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/AdminProfileServlet">
+
+            <span class="material-symbols-outlined">
+                account_circle
+            </span>
+
+            <span class="font-title-md text-title-md">
+                Profile
+            </span>
 
         </a>
 
     </nav>
+
+
+    <!-- CURRENT ADMIN -->
 
     <div class="mt-auto px-sm pt-lg border-t border-outline-variant flex items-center gap-md">
 
@@ -266,7 +413,11 @@ tailwind.config = {
         <div class="overflow-hidden">
 
             <p class="font-body-md text-body-md font-bold truncate">
-                Admin User
+                <%= adminName %>
+            </p>
+
+            <p class="font-label-caps text-label-caps text-on-surface-variant">
+                Enterprise Admin
             </p>
 
         </div>
@@ -275,92 +426,151 @@ tailwind.config = {
 
 </aside>
 
-<!-- Main Content Area -->
+
+<!-- =========================================================
+     MAIN AREA
+     ========================================================= -->
+
 <div class="flex-1 flex flex-col md:ml-[280px] w-full min-w-0">
 
-    <!-- TopNavBar -->
-    <header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant h-16 flex justify-between items-center px-lg z-10 shrink-0 sticky top-0">
 
-        <div class="flex items-center gap-md md:hidden">
-            <button class="p-sm text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+    <!-- TOP NAVIGATION -->
 
-            <span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">
-                EventHub
-            </span>
-        </div>
+    <header
+        class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant h-16 flex justify-between items-center px-lg z-10 shrink-0 sticky top-0">
+
 
         <div class="hidden md:flex items-center flex-1">
 
             <div class="relative w-64">
+
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">
                     search
                 </span>
 
+
                 <input
+                    id="pageSearch"
+                    onkeyup="searchPage()"
                     class="w-full bg-surface-container-low border border-transparent rounded-full py-2 pl-10 pr-4 font-body-sm text-body-sm focus:bg-surface focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all outline-none"
                     placeholder="Search..."
                     type="text"/>
+
             </div>
 
         </div>
 
+
         <div class="flex items-center gap-sm">
 
-            <button class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors">
-                <span class="material-symbols-outlined">notifications</span>
+
+            <!-- NOTIFICATIONS -->
+
+            <button
+                type="button"
+                onclick="showNotifications()"
+                class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors"
+                aria-label="Notifications">
+
+                <span class="material-symbols-outlined">
+                    notifications
+                </span>
+
             </button>
 
-            <button class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors">
-                <span class="material-symbols-outlined">settings</span>
+
+            <!-- SETTINGS -->
+
+            <button
+                type="button"
+                onclick="showSettings()"
+                class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors"
+                aria-label="Settings">
+
+                <span class="material-symbols-outlined">
+                    settings
+                </span>
+
             </button>
 
-            <div class="h-6 w-px bg-outline-variant mx-2 hidden sm:block"></div>
 
-            <button class="hidden sm:flex items-center gap-xs px-md py-2 font-body-sm text-body-sm font-semibold text-secondary hover:text-primary transition-colors">
-                <span>Logout</span>
-            </button>
-
-            <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden ml-2 sm:hidden cursor-pointer">
-                <img
-                    alt="Admin Profile"
-                    class="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVYv88qOQRhBu94qIFQ4vaOXuS7Qi5wLVr96tzyQ9SzfkAOienIqfm-8PVTWhRMXZMtOobKalASfvRg9E4MJBSiAwxzGkX3Qhtd2kc8DCdRmC_pJWgv3WEmidyH4dvklWLJBchfEBTGtBIVqv-HJDEpjWdg5NIApdGTL-VQ3uQWF4eX7OemvcowLL8BzienhaVxH0axlPxu3CTfxT1WJowrouIuvNHWc_1zbrzkDHzPt1wsnFxevlhDw"/>
+            <div class="h-6 w-px bg-outline-variant mx-2 hidden sm:block">
             </div>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                type="button"
+                onclick="logout()"
+                class="hidden sm:flex items-center gap-xs px-md py-2 font-body-sm text-body-sm font-semibold text-secondary hover:text-primary transition-colors">
+
+                <span>
+                    Logout
+                </span>
+
+                <span class="material-symbols-outlined text-[18px]">
+                    logout
+                </span>
+
+            </button>
 
         </div>
 
     </header>
 
 
-    <!-- Canvas -->
-    <main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-background">
+    <!-- =====================================================
+         PAGE CONTENT
+         ===================================================== -->
+
+    <main
+        class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-background">
+
 
         <div class="max-w-4xl mx-auto">
 
-            <!-- FORM START -->
-            <form action="<%= request.getContextPath() %>/EditManagerServlet"
-                  method="post">
+
+            <!-- =================================================
+                 EDIT FORM
+                 ================================================= -->
+
+            <form
+                action="<%= request.getContextPath() %>/EditManagerServlet"
+                method="post"
+                onsubmit="return validateForm();">
+
 
                 <input
                     type="hidden"
                     name="managerId"
-                    value="<%= request.getAttribute("managerId") != null ? request.getAttribute("managerId") : "" %>"/>
+                    value="<%= managerId %>"/>
 
 
-                <!-- Breadcrumbs & Header -->
+                <!-- =================================================
+                     HEADER
+                     ================================================= -->
+
                 <div class="mb-lg">
 
-                    <nav class="flex items-center gap-xs font-label-caps text-label-caps text-on-surface-variant mb-md">
 
-                        <a class="hover:text-primary transition-colors" href="#">
+                    <nav
+                        class="flex items-center gap-xs font-label-caps text-label-caps text-on-surface-variant mb-md">
+
+
+                        <a
+                            class="hover:text-primary transition-colors"
+                            href="<%= request.getContextPath() %>/ManageEventManagersServlet">
+
                             Event Managers
+
                         </a>
+
 
                         <span class="material-symbols-outlined text-[16px]">
                             chevron_right
                         </span>
+
 
                         <span class="text-primary">
                             Edit Manager
@@ -369,19 +579,26 @@ tailwind.config = {
                     </nav>
 
 
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+
 
                         <div>
 
-                            <h2 class="font-display-lg text-display-lg text-on-background">
+                            <h2
+                                class="font-display-lg text-display-lg text-on-background">
+
                                 Edit Manager
+
                             </h2>
 
-                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+
+                            <p
+                                class="font-body-md text-body-md text-on-surface-variant mt-1">
+
                                 Update details and permissions for
-                                <%= request.getAttribute("name") != null
-                                    ? request.getAttribute("name")
-                                    : "Event Manager" %>.
+                                <strong><%= name %></strong>.
+
                             </p>
 
                         </div>
@@ -389,17 +606,31 @@ tailwind.config = {
 
                         <div class="flex gap-sm">
 
+
+                            <!-- CANCEL -->
+
                             <button
                                 type="button"
-                                onclick="window.history.back()"
+                                onclick="cancelEdit()"
                                 class="px-md py-2 border border-outline rounded font-body-sm text-body-sm font-semibold text-on-surface hover:bg-surface-container-low transition-colors">
+
                                 Cancel
+
                             </button>
+
+
+                            <!-- SAVE -->
 
                             <button
                                 type="submit"
                                 class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
+                                <span class="material-symbols-outlined text-[18px]">
+                                    save
+                                </span>
+
                                 Save Changes
+
                             </button>
 
                         </div>
@@ -409,27 +640,45 @@ tailwind.config = {
                 </div>
 
 
-                <!-- Form Content -->
+                <!-- =================================================
+                     FORM CONTENT
+                     ================================================= -->
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
 
 
-                    <!-- Left Column -->
+                    <!-- =================================================
+                         LEFT COLUMN
+                         ================================================= -->
+
                     <div class="lg:col-span-2 flex flex-col gap-gutter">
 
 
-                        <!-- Profile Card -->
-                        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+                        <!-- BASIC INFORMATION -->
 
-                            <h3 class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+                        <div
+                            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+
+
+                            <h3
+                                class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+
                                 Basic Information
+
                             </h3>
 
 
-                            <div class="flex flex-col sm:flex-row gap-lg mb-lg items-center sm:items-start">
+                            <div
+                                class="flex flex-col sm:flex-row gap-lg mb-lg items-center sm:items-start">
+
+
+                                <!-- MANAGER IMAGE -->
 
                                 <div class="relative group">
 
-                                    <div class="w-24 h-24 rounded-full bg-surface-container-high overflow-hidden border-2 border-surface">
+                                    <div
+                                        class="w-24 h-24 rounded-full bg-surface-container-high overflow-hidden border-2 border-surface">
+
 
                                         <img
                                             alt="Manager Profile"
@@ -438,68 +687,77 @@ tailwind.config = {
 
                                     </div>
 
-                                    <button
-                                        type="button"
-                                        class="absolute bottom-0 right-0 p-1.5 bg-surface-container-lowest border border-outline-variant rounded-full text-on-surface-variant hover:text-primary transition-colors shadow-sm">
-
-                                        <span class="material-symbols-outlined text-[18px]">
-                                            edit
-                                        </span>
-
-                                    </button>
-
                                 </div>
 
 
-                                <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-md">
+                                <!-- MANAGER BASIC FIELDS -->
+
+                                <div
+                                    class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-md">
 
 
-                                    <div class="flex flex-col gap-xs sm:col-span-2">
+                                    <!-- NAME -->
 
-                                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                    <div
+                                        class="flex flex-col gap-xs sm:col-span-2">
+
+
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant">
+
                                             Full Name
+
                                         </label>
+
 
                                         <input
                                             class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"
                                             type="text"
                                             name="name"
-                                            value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>"
+                                            value="<%= name %>"
                                             required/>
 
                                     </div>
 
 
-                                    <!-- UI-only field -->
+                                    <!-- ROLE TITLE -->
+
                                     <div class="flex flex-col gap-xs">
 
-                                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant">
+
                                             Role Title
+
                                         </label>
 
+
                                         <input
-                                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"
+                                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md"
                                             type="text"
-                                            value="Senior Event Director"/>
+                                            value="Event Manager"
+                                            readonly/>
 
                                     </div>
 
 
-                                    <!-- UI-only field -->
+                                    <!-- DEPARTMENT -->
+
                                     <div class="flex flex-col gap-xs">
 
-                                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant">
+
                                             Department
+
                                         </label>
 
-                                        <select
-                                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all appearance-none">
 
-                                            <option>Corporate Events</option>
-                                            <option selected>Exhibitions</option>
-                                            <option>Private Functions</option>
-
-                                        </select>
+                                        <input
+                                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md"
+                                            type="text"
+                                            value="Event Management"
+                                            readonly/>
 
                                     </div>
 
@@ -510,34 +768,53 @@ tailwind.config = {
                         </div>
 
 
-                        <!-- Contact Details -->
-                        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+                        <!-- CONTACT DETAILS -->
 
-                            <h3 class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+                        <div
+                            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+
+
+                            <h3
+                                class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+
                                 Contact Details
+
                             </h3>
 
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-2 gap-md">
 
 
-                                <div class="flex flex-col gap-xs">
+                                <!-- EMAIL -->
 
-                                    <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                <div
+                                    class="flex flex-col gap-xs">
+
+
+                                    <label
+                                        class="font-label-caps text-label-caps text-on-surface-variant">
+
                                         Email Address
+
                                     </label>
+
 
                                     <div class="relative w-full">
 
-                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+                                        <span
+                                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+
                                             mail
+
                                         </span>
+
 
                                         <input
                                             class="w-full bg-surface-container-lowest border border-outline-variant rounded py-sm pl-10 pr-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"
                                             type="email"
                                             name="email"
-                                            value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"
+                                            value="<%= email %>"
                                             required/>
 
                                     </div>
@@ -545,51 +822,140 @@ tailwind.config = {
                                 </div>
 
 
-                                <div class="flex flex-col gap-xs">
+                                <!-- CONTACT -->
 
-                                    <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                <div
+                                    class="flex flex-col gap-xs">
+
+
+                                    <label
+                                        class="font-label-caps text-label-caps text-on-surface-variant">
+
                                         Phone Number
+
                                     </label>
+
 
                                     <div class="relative w-full">
 
-                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+                                        <span
+                                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+
                                             phone
+
                                         </span>
+
 
                                         <input
                                             class="w-full bg-surface-container-lowest border border-outline-variant rounded py-sm pl-10 pr-sm font-data-mono text-data-mono focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"
                                             type="tel"
                                             name="contact"
-                                            value="<%= request.getAttribute("contact") != null ? request.getAttribute("contact") : "" %>"/>
+                                            value="<%= contact %>"/>
 
                                     </div>
 
                                 </div>
 
 
-                                <div class="flex flex-col gap-xs sm:col-span-2">
+                                <!-- ADDRESS -->
 
-                                    <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                <div
+                                    class="flex flex-col gap-xs sm:col-span-2">
+
+
+                                    <label
+                                        class="font-label-caps text-label-caps text-on-surface-variant">
+
                                         Office Location
+
                                     </label>
+
 
                                     <div class="relative w-full">
 
-                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+                                        <span
+                                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
+
                                             location_on
+
                                         </span>
+
 
                                         <input
                                             class="w-full bg-surface-container-lowest border border-outline-variant rounded py-sm pl-10 pr-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"
                                             type="text"
                                             name="address"
-                                            value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>"/>
+                                            value="<%= address %>"/>
 
                                     </div>
 
                                 </div>
 
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div
+                            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+
+
+                            <h3
+                                class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+
+                                Account Password
+
+                            </h3>
+
+
+                            <div class="flex flex-col gap-xs">
+
+
+                                <label
+                                    class="font-label-caps text-label-caps text-on-surface-variant">
+
+                                    New Password
+
+                                </label>
+
+
+                                <div class="relative">
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Leave blank to keep current password"
+                                        class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm pr-10 font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all"/>
+
+
+                                    <button
+                                        type="button"
+                                        onclick="togglePassword()"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary">
+
+                                        <span
+                                            id="passwordIcon"
+                                            class="material-symbols-outlined text-[20px]">
+
+                                            visibility
+
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
+
+                                <p
+                                    class="font-body-sm text-body-sm text-on-surface-variant">
+
+                                    Leave blank to keep the current password.
+
+                                </p>
 
                             </div>
 
@@ -598,65 +964,87 @@ tailwind.config = {
                     </div>
 
 
-                    <!-- Right Column -->
+                    <!-- =================================================
+                         RIGHT COLUMN
+                         ================================================= -->
+
                     <div class="flex flex-col gap-gutter">
 
 
-                        <!-- Account Status -->
-                        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+                        <!-- ACCOUNT STATUS -->
 
-                            <h3 class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+                        <div
+                            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+
+
+                            <h3
+                                class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+
                                 Account Status
+
                             </h3>
 
 
                             <div class="flex flex-col gap-md">
 
 
-                                <div class="flex items-center justify-between p-sm border border-outline-variant rounded bg-surface-container-low">
+                                <div
+                                    class="flex items-center justify-between p-sm border border-outline-variant rounded bg-surface-container-low">
 
-                                    <div class="flex items-center gap-sm">
 
-                                        <div class="w-3 h-3 rounded-full bg-primary"></div>
+                                    <div
+                                        class="flex items-center gap-sm">
 
-                                        <span class="font-body-sm text-body-sm font-semibold">
-                                            Active
+
+                                        <div
+                                            id="statusDot"
+                                            class="w-3 h-3 rounded-full <%= active ? "bg-primary" : "bg-error" %>">
+                                        </div>
+
+
+                                        <span
+                                            id="statusText"
+                                            class="font-body-sm text-body-sm font-semibold">
+
+                                            <%= active ? "Active" : "Inactive" %>
+
                                         </span>
 
                                     </div>
 
 
-                                    <label class="relative inline-flex items-center cursor-pointer">
+                                    <label
+                                        class="relative inline-flex items-center cursor-pointer">
+
 
                                         <input
                                             class="sr-only peer"
                                             type="checkbox"
                                             name="status"
                                             value="ACTIVE"
-                                            <%= "ACTIVE".equals(request.getAttribute("status")) ? "checked" : "" %> />
+                                            id="statusToggle"
+                                            <%= active ? "checked" : "" %>
+                                            onchange="updateStatusDisplay()"/>
 
-                                        <div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+
+                                        <div
+                                            class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary">
+                                        </div>
 
                                     </label>
 
                                 </div>
 
 
-                                <!-- UI-only field -->
-                                <div class="flex flex-col gap-xs">
+                                <div
+                                    class="bg-surface-container-low p-sm rounded border border-outline-variant">
 
-                                    <label class="font-label-caps text-label-caps text-on-surface-variant">
-                                        Access Level
-                                    </label>
+                                    <p
+                                        class="font-body-sm text-body-sm text-on-surface-variant">
 
-                                    <select
-                                        class="w-full bg-surface-container-lowest border border-outline-variant rounded p-sm font-body-md text-body-md focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all appearance-none">
+                                        Turn the switch off to make this manager inactive.
 
-                                        <option>Read-Only</option>
-                                        <option>Standard Editor</option>
-                                        <option selected>Full Admin</option>
-
-                                    </select>
+                                    </p>
 
                                 </div>
 
@@ -665,61 +1053,97 @@ tailwind.config = {
                         </div>
 
 
-                        <!-- System Metadata -->
-                        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+                        <!-- SYSTEM DATA -->
 
-                            <h3 class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+                        <div
+                            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+
+
+                            <h3
+                                class="font-title-md text-title-md mb-md border-b border-outline-variant pb-sm">
+
                                 System Data
+
                             </h3>
 
-                            <dl class="flex flex-col gap-sm font-body-sm text-body-sm">
 
-                                <div class="flex justify-between py-xs border-b border-surface-container-highest">
+                            <dl
+                                class="flex flex-col gap-sm font-body-sm text-body-sm">
+
+
+                                <!-- MANAGER ID -->
+
+                                <div
+                                    class="flex justify-between py-xs border-b border-surface-container-highest">
 
                                     <dt class="text-on-surface-variant">
                                         Manager ID
                                     </dt>
 
-                                    <dd class="font-data-mono text-data-mono font-medium">
-                                        <%= request.getAttribute("managerId") != null
-                                            ? request.getAttribute("managerId")
-                                            : "" %>
+                                    <dd
+                                        class="font-data-mono text-data-mono font-medium">
+
+                                        <%= managerId %>
+
                                     </dd>
 
                                 </div>
 
-                                <div class="flex justify-between py-xs border-b border-surface-container-highest">
+
+                                <!-- DATE ADDED -->
+
+                                <div
+                                    class="flex justify-between py-xs border-b border-surface-container-highest">
 
                                     <dt class="text-on-surface-variant">
                                         Date Added
                                     </dt>
 
                                     <dd class="font-medium">
-                                        Not Available
+
+                                        <%= dateAdded != null
+                                                ? dateAdded
+                                                : "Not Available" %>
+
                                     </dd>
 
                                 </div>
 
-                                <div class="flex justify-between py-xs border-b border-surface-container-highest">
+
+                                <!-- LAST LOGIN -->
+
+                                <div
+                                    class="flex justify-between py-xs border-b border-surface-container-highest">
 
                                     <dt class="text-on-surface-variant">
                                         Last Login
                                     </dt>
 
                                     <dd class="font-medium">
-                                        Not Available
+
+                                        <%= lastLogin != null
+                                                ? lastLogin
+                                                : "Not Available" %>
+
                                     </dd>
 
                                 </div>
 
-                                <div class="flex justify-between py-xs">
+
+                                <!-- EVENTS MANAGED -->
+
+                                <div
+                                    class="flex justify-between py-xs">
 
                                     <dt class="text-on-surface-variant">
                                         Events Managed
                                     </dt>
 
-                                    <dd class="font-data-mono text-data-mono font-medium">
-                                        Not Available
+                                    <dd
+                                        class="font-data-mono text-data-mono font-medium">
+
+                                        <%= eventsManaged %>
+
                                     </dd>
 
                                 </div>
@@ -729,22 +1153,51 @@ tailwind.config = {
                         </div>
 
 
-                        <!-- Danger Zone -->
-                        <div class="bg-error-container/20 border border-error/30 rounded-xl p-lg mt-auto">
+                        <!-- DANGER ZONE -->
 
-                            <h3 class="font-title-md text-title-md text-error mb-sm">
+                        <div
+                            class="bg-error-container/20 border border-error/30 rounded-xl p-lg mt-auto">
+
+
+                            <h3
+                                class="font-title-md text-title-md text-error mb-sm">
+
                                 Danger Zone
+
                             </h3>
 
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mb-md">
+
+                            <p
+                                class="font-body-sm text-body-sm text-on-surface-variant mb-md">
+
                                 Deactivating will revoke all access immediately.
+
                             </p>
+
+
+                            <% if (active) { %>
 
                             <button
                                 type="button"
+                                onclick="deactivateManager()"
                                 class="w-full px-md py-2 border border-error text-error rounded font-body-sm text-body-sm font-semibold hover:bg-error-container transition-colors">
+
                                 Deactivate Manager
+
                             </button>
+
+                            <% } else { %>
+
+                            <button
+                                type="button"
+                                onclick="activateManager()"
+                                class="w-full px-md py-2 border border-primary text-primary rounded font-body-sm text-body-sm font-semibold hover:bg-surface-container-low transition-colors">
+
+                                Activate Manager
+
+                            </button>
+
+                            <% } %>
 
                         </div>
 
@@ -760,6 +1213,330 @@ tailwind.config = {
 
 </div>
 
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+
+/*
+ * =========================================================
+ * CANCEL
+ * =========================================================
+ */
+
+function cancelEdit() {
+
+    window.location.href =
+        "<%= request.getContextPath() %>/ManageEventManagersServlet";
+
+}
+
+
+/*
+ * =========================================================
+ * FORM VALIDATION
+ * =========================================================
+ */
+
+function validateForm() {
+
+    const name =
+        document.querySelector(
+            'input[name="name"]'
+        ).value.trim();
+
+
+    const email =
+        document.querySelector(
+            'input[name="email"]'
+        ).value.trim();
+
+
+    if (name === "") {
+
+        alert(
+            "Please enter the manager name."
+        );
+
+        return false;
+
+    }
+
+
+    if (email === "") {
+
+        alert(
+            "Please enter the manager email."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/*
+ * =========================================================
+ * STATUS DISPLAY
+ * =========================================================
+ */
+
+function updateStatusDisplay() {
+
+    const toggle =
+        document.getElementById(
+            "statusToggle"
+        );
+
+
+    const statusText =
+        document.getElementById(
+            "statusText"
+        );
+
+
+    const statusDot =
+        document.getElementById(
+            "statusDot"
+        );
+
+
+    if (toggle.checked) {
+
+        statusText.textContent =
+            "Active";
+
+
+        statusDot.classList.remove(
+            "bg-error"
+        );
+
+
+        statusDot.classList.add(
+            "bg-primary"
+        );
+
+    } else {
+
+        statusText.textContent =
+            "Inactive";
+
+
+        statusDot.classList.remove(
+            "bg-primary"
+        );
+
+
+        statusDot.classList.add(
+            "bg-error"
+        );
+
+    }
+
+}
+
+
+/*
+ * =========================================================
+ * DEACTIVATE
+ * =========================================================
+ */
+
+function deactivateManager() {
+
+    if (
+        !confirm(
+            "Are you sure you want to deactivate this manager?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "<%= request.getContextPath() %>/EditManagerServlet"
+        + "?action=disable"
+        + "&managerId=<%= managerId %>";
+
+}
+
+
+/*
+ * =========================================================
+ * ACTIVATE
+ * =========================================================
+ */
+
+function activateManager() {
+
+    if (
+        !confirm(
+            "Do you want to activate this manager?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "<%= request.getContextPath() %>/EditManagerServlet"
+        + "?action=enable"
+        + "&managerId=<%= managerId %>";
+
+}
+
+
+/*
+ * =========================================================
+ * PASSWORD VISIBILITY
+ * =========================================================
+ */
+
+function togglePassword() {
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+
+    const icon =
+        document.getElementById(
+            "passwordIcon"
+        );
+
+
+    if (
+        password.type === "password"
+    ) {
+
+        password.type =
+            "text";
+
+        icon.textContent =
+            "visibility_off";
+
+    } else {
+
+        password.type =
+            "password";
+
+        icon.textContent =
+            "visibility";
+
+    }
+
+}
+
+
+/*
+ * =========================================================
+ * SEARCH
+ * =========================================================
+ */
+
+function searchPage() {
+
+    const value =
+        document.getElementById(
+            "pageSearch"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    if (value.includes("manager")) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ManageEventManagersServlet";
+
+    }
+
+}
+
+
+/*
+ * =========================================================
+ * NOTIFICATIONS
+ * =========================================================
+ */
+
+function showNotifications() {
+
+    alert(
+        "No new notifications."
+    );
+
+}
+
+
+/*
+ * =========================================================
+ * SETTINGS
+ * =========================================================
+ */
+
+function showSettings() {
+
+    alert(
+        "Settings are not configured yet."
+    );
+
+}
+
+
+/*
+ * =========================================================
+ * LOGOUT
+ * =========================================================
+ */
+
+function logout() {
+
+    if (
+        confirm(
+            "Are you sure you want to logout?"
+        )
+    ) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/admin/admin_login/adminLogin.html";
+
+    }
+
+}
+
+
+/*
+ * =========================================================
+ * INITIALIZATION
+ * =========================================================
+ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        updateStatusDisplay();
+
+    }
+);
+
+</script>
+
+
 </body>
+
 </html>
 

@@ -11,6 +11,13 @@
     }
 %>
 
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
 <!DOCTYPE html>
 
 <html class="light" lang="en">
@@ -247,8 +254,10 @@ tailwind.config = {
             <img
                 alt="Admin User Profile"
                 class="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZBbefcqGnMmILB3aFlU4bKG419JImIKGtBNkuyelWGLO23H2p31-eX9gTHvxIGsigBOkexzlrD9Wx9h4YglqzUGyteGIGNEtaS9F3Snp3N_JYl59676AghMxYIo_9SkACOF1EWxuqAWSpwgnQdfnqirp_joKJf8DgN9to1_V_nGRMW-NPyDxeZ5JZU6sn6xF_qa1cE3fpgivPiVvQ3NgGubo-BqZyYBVXQxRaGw5ROh5R2Lt41R0CRQ"/>
-
+                src="<%= request.getAttribute("imageSource") %>"/>
+            
+            
+            
         </div>
 
         <div class="flex flex-col">
@@ -492,13 +501,16 @@ tailwind.config = {
             </button>
 
 
-            <button
+             <button
                 type="button"
-                onclick="showSettings()"
-                class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low">
+                onclick="openSettings()"
+                title="Settings"
+                class="p-xs text-on-surface-variant hover:text-primary transition-colors hover:scale-95">
 
                 <span class="material-symbols-outlined">
+
                     settings
+
                 </span>
 
             </button>
@@ -1657,12 +1669,10 @@ function showNotifications() {
    SETTINGS
    ========================================== */
 
-function showSettings() {
+function openSettings() {
 
-    alert(
-        "Settings are not configured yet."
-    );
-
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
 }
 
 

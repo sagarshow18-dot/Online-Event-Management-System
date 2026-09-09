@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.*;
@@ -23,7 +24,22 @@ public class ManageUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
+           HttpSession session = request.getSession(false);
 
+if (session == null ||
+        session.getAttribute("adminId") == null) {
+
+    response.sendRedirect(
+            request.getContextPath()
+            + "/admin/admin_login/adminLogin.html"
+    );
+
+    return;
+}
+
+int adminId = Integer.parseInt(
+        session.getAttribute("adminId").toString()
+);
         String action = request.getParameter("action");
         String userIdParam = request.getParameter("userId");
 
@@ -42,7 +58,43 @@ public class ManageUsersServlet extends HttpServlet {
                     USER,
                     PASSWORD
             );
+String profileSql =
+        "SELECT PROFILE_IMAGE " +
+        "FROM ADMIN " +
+        "WHERE ADMIN_ID = ?";
 
+try (PreparedStatement profilePs =
+        con.prepareStatement(profileSql)) {
+
+    profilePs.setInt(1, adminId);
+
+    try (ResultSet profileRs =
+            profilePs.executeQuery()) {
+
+        String imageSource =
+                request.getContextPath()
+                + "/images/default-profile.png";
+
+        if (profileRs.next()) {
+            String profileImage =
+                    profileRs.getString("PROFILE_IMAGE");
+
+            if (profileImage != null &&
+                    !profileImage.trim().isEmpty()) {
+
+                imageSource =
+                        request.getContextPath()
+                        + "/"
+                        + profileImage;
+            }
+        }
+
+        request.setAttribute(
+                "imageSource",
+                imageSource
+        );
+    }
+}
 
             /*
              * ==========================================

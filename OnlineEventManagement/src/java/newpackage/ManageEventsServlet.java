@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.*;
@@ -15,153 +16,684 @@ import java.util.Map;
 
 public class ManageEventsServlet extends HttpServlet {
 
-    private final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-    private final String USER = "system";
-    private final String PASSWORD = "manager";
+    private static final String URL =
+            "jdbc:oracle:thin:@localhost:1521:XE";
+
+    private static final String USER =
+            "system";
+
+    private static final String PASSWORD =
+            "manager";
+
+
+    // =========================================================
+    // GET
+    // =========================================================
 
     @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
+HttpSession session = request.getSession(false);
 
-        String action = request.getParameter("action");
-        String eventIdParam = request.getParameter("eventId");
+if (session == null ||
+        session.getAttribute("adminId") == null) {
+
+    response.sendRedirect(
+            request.getContextPath()
+            + "/admin/admin_login/adminLogin.html"
+    );
+
+    return;
+}
+
+int adminId = Integer.parseInt(
+        session.getAttribute("adminId").toString()
+);
+        String action =
+                request.getParameter("action");
+
+        String eventIdParam =
+                request.getParameter("eventId");
+
 
         Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+
 
         try {
 
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+            // -------------------------------------------------
+            // Load Oracle JDBC Driver
+            // -------------------------------------------------
 
-            con = DriverManager.getConnection(
-                    URL,
-                    USER,
-                    PASSWORD
+            Class.forName(
+                    "oracle.jdbc.driver.OracleDriver"
             );
 
-            /*
-             * APPROVE EVENT
-             */
-            if ("approve".equalsIgnoreCase(action)
-                    && eventIdParam != null
-                    && !eventIdParam.isEmpty()) {
 
-                int eventId = Integer.parseInt(eventIdParam);
+            // -------------------------------------------------
+            // Connect to Oracle
+            // -------------------------------------------------
 
-                String updateSql =
-                        "UPDATE EVENTS "
-                        + "SET STATUS = ? "
-                        + "WHERE EVENT_ID = ?";
+            con =
+                    DriverManager.getConnection(
+                            URL,
+                            USER,
+                            PASSWORD
+                    );
+String profileSql =
+        "SELECT PROFILE_IMAGE " +
+        "FROM ADMIN " +
+        "WHERE ADMIN_ID = ?";
 
-                ps = con.prepareStatement(updateSql);
+try (PreparedStatement profilePs =
+        con.prepareStatement(profileSql)) {
 
-                ps.setString(1, "APPROVED");
-                ps.setInt(2, eventId);
+    profilePs.setInt(1, adminId);
 
-                ps.executeUpdate();
+    try (ResultSet profileRs =
+            profilePs.executeQuery()) {
 
-                ps.close();
-                ps = null;
+        String imageSource =
+                request.getContextPath()
+                + "/images/default-profile.png";
+
+        if (profileRs.next()) {
+            String profileImage =
+                    profileRs.getString("PROFILE_IMAGE");
+
+            if (profileImage != null &&
+                    !profileImage.trim().isEmpty()) {
+
+                imageSource =
+                        request.getContextPath()
+                        + "/"
+                        + profileImage;
+            }
+        }
+
+        request.setAttribute(
+                "imageSource",
+                imageSource
+        );
+    }
+}
+
+            // =================================================
+            // APPROVE
+            // =================================================
+
+            if ("approve".equalsIgnoreCase(action)) {
+
+                int eventId =
+                        getValidEventId(
+                                eventIdParam,
+                                response
+                        );
+
+                if (eventId == -1) {
+                    return;
+                }
+
+
+                String sql =
+                        "UPDATE EVENTS " +
+                        "SET STATUS = ? " +
+                        "WHERE EVENT_ID = ?";
+
+
+                try (PreparedStatement ps =
+                             con.prepareStatement(sql)) {
+
+                    ps.setString(
+                            1,
+                            "APPROVED"
+                    );
+
+                    ps.setInt(
+                            2,
+                            eventId
+                    );
+
+
+                    int updated =
+                            ps.executeUpdate();
+
+
+                    if (updated == 0) {
+
+                        response.sendError(
+                                HttpServletResponse.SC_NOT_FOUND,
+                                "Event not found."
+                        );
+
+                        return;
+                    }
+                }
+
+
+                // Prevent duplicate request on refresh
+                response.sendRedirect(
+                        request.getContextPath()
+                        + "/ManageEventsServlet"
+                );
+
+                return;
             }
 
 
-            /*
-             * REJECT EVENT
-             */
-            else if ("reject".equalsIgnoreCase(action)
-                    && eventIdParam != null
-                    && !eventIdParam.isEmpty()) {
+            // =================================================
+            // REJECT
+            // =================================================
 
-                int eventId = Integer.parseInt(eventIdParam);
+            if ("reject".equalsIgnoreCase(action)) {
 
-                String updateSql =
-                        "UPDATE EVENTS "
-                        + "SET STATUS = ? "
-                        + "WHERE EVENT_ID = ?";
+                int eventId =
+                        getValidEventId(
+                                eventIdParam,
+                                response
+                        );
 
-                ps = con.prepareStatement(updateSql);
+                if (eventId == -1) {
+                    return;
+                }
 
-                ps.setString(1, "REJECTED");
-                ps.setInt(2, eventId);
 
-                ps.executeUpdate();
+                String sql =
+                        "UPDATE EVENTS " +
+                        "SET STATUS = ? " +
+                        "WHERE EVENT_ID = ?";
 
-                ps.close();
-                ps = null;
+
+                try (PreparedStatement ps =
+                             con.prepareStatement(sql)) {
+
+                    ps.setString(
+                            1,
+                            "REJECTED"
+                    );
+
+                    ps.setInt(
+                            2,
+                            eventId
+                    );
+
+
+                    int updated =
+                            ps.executeUpdate();
+
+
+                    if (updated == 0) {
+
+                        response.sendError(
+                                HttpServletResponse.SC_NOT_FOUND,
+                                "Event not found."
+                        );
+
+                        return;
+                    }
+                }
+
+
+                response.sendRedirect(
+                        request.getContextPath()
+                        + "/ManageEventsServlet"
+                );
+
+                return;
             }
 
 
-            /*
-             * DELETE EVENT
-             */
-            else if ("delete".equalsIgnoreCase(action)
-                    && eventIdParam != null
-                    && !eventIdParam.isEmpty()) {
+            // =================================================
+            // DELETE
+            // =================================================
 
-                int eventId = Integer.parseInt(eventIdParam);
+            if ("delete".equalsIgnoreCase(action)) {
 
-                /*
-                 * First delete related bookings because BOOKINGS
-                 * contains EVENT_ID.
-                 */
-                String deleteBookingsSql =
-                        "DELETE FROM BOOKINGS "
-                        + "WHERE EVENT_ID = ?";
+                int eventId =
+                        getValidEventId(
+                                eventIdParam,
+                                response
+                        );
 
-                ps = con.prepareStatement(deleteBookingsSql);
-
-                ps.setInt(1, eventId);
-
-                ps.executeUpdate();
-
-                ps.close();
-                ps = null;
+                if (eventId == -1) {
+                    return;
+                }
 
 
                 /*
-                 * Delete event-accessory relationships if present.
+                 * Use a transaction because the event has
+                 * related records in BOOKINGS and
+                 * EVENT_ACCESSORIES.
                  */
-                String deleteEventAccessoriesSql =
-                        "DELETE FROM EVENT_ACCESSORIES "
-                        + "WHERE EVENT_ID = ?";
 
-                ps = con.prepareStatement(deleteEventAccessoriesSql);
+                try {
 
-                ps.setInt(1, eventId);
-
-                ps.executeUpdate();
-
-                ps.close();
-                ps = null;
+                    con.setAutoCommit(false);
 
 
-                /*
-                 * Finally delete the event.
-                 */
-                String deleteEventSql =
-                        "DELETE FROM EVENTS "
-                        + "WHERE EVENT_ID = ?";
+                    // -----------------------------------------
+                    // Delete bookings
+                    // -----------------------------------------
 
-                ps = con.prepareStatement(deleteEventSql);
+                    String deleteBookings =
+                            "DELETE FROM BOOKINGS " +
+                            "WHERE EVENT_ID = ?";
 
-                ps.setInt(1, eventId);
 
-                ps.executeUpdate();
+                    try (PreparedStatement ps =
+                                 con.prepareStatement(
+                                         deleteBookings
+                                 )) {
 
-                ps.close();
-                ps = null;
+                        ps.setInt(
+                                1,
+                                eventId
+                        );
+
+                        ps.executeUpdate();
+                    }
+
+
+                    // -----------------------------------------
+                    // Delete event-accessory relationships
+                    // -----------------------------------------
+
+                    String deleteAccessories =
+                            "DELETE FROM EVENT_ACCESSORIES " +
+                            "WHERE EVENT_ID = ?";
+
+
+                    try (PreparedStatement ps =
+                                 con.prepareStatement(
+                                         deleteAccessories
+                                 )) {
+
+                        ps.setInt(
+                                1,
+                                eventId
+                        );
+
+                        ps.executeUpdate();
+                    }
+
+
+                    // -----------------------------------------
+                    // Delete actual event
+                    // -----------------------------------------
+
+                    String deleteEvent =
+                            "DELETE FROM EVENTS " +
+                            "WHERE EVENT_ID = ?";
+
+
+                    int deleted;
+
+
+                    try (PreparedStatement ps =
+                                 con.prepareStatement(
+                                         deleteEvent
+                                 )) {
+
+                        ps.setInt(
+                                1,
+                                eventId
+                        );
+
+                        deleted =
+                                ps.executeUpdate();
+                    }
+
+
+                    if (deleted == 0) {
+
+                        con.rollback();
+
+                        response.sendError(
+                                HttpServletResponse.SC_NOT_FOUND,
+                                "Event not found."
+                        );
+
+                        return;
+                    }
+
+
+                    con.commit();
+
+
+                } catch (SQLException e) {
+
+                    try {
+                        con.rollback();
+                    } catch (SQLException ignored) {
+                    }
+
+                    throw e;
+
+                } finally {
+
+                    try {
+                        con.setAutoCommit(true);
+                    } catch (SQLException ignored) {
+                    }
+                }
+
+
+                response.sendRedirect(
+                        request.getContextPath()
+                        + "/ManageEventsServlet"
+                );
+
+                return;
             }
 
 
+            // =================================================
+            // VIEW
+            // =================================================
+
             /*
-             * LOAD EVENTS
+             * Your current JSP sends:
              *
-             * EVENT_MANAGERS.NAME is used as Organizer.
+             * ManageEventsServlet?action=view&eventId=ID
              *
-             * BOOKINGS count is calculated for each event.
+             * The old servlet did not handle this action.
+             *
+             * We load the event here and put its values into
+             * request attributes.
+             *
+             * This JSP path must exist in your project:
+             *
+             * /admin/manage_events/viewEvent.jsp
              */
+
+            if ("view".equalsIgnoreCase(action)) {
+
+                int eventId =
+                        getValidEventId(
+                                eventIdParam,
+                                response
+                        );
+
+                if (eventId == -1) {
+                    return;
+                }
+
+
+                String sql =
+                        "SELECT e.EVENT_ID, " +
+                        "e.EVENT_NAME, " +
+                        "e.DESCRIPTION, " +
+                        "e.EVENT_DATE, " +
+                        "e.EVENT_TIME, " +
+                        "e.LOCATION, " +
+                        "e.MANAGER_ID, " +
+                        "m.NAME AS MANAGER_NAME, " +
+                        "e.CAPACITY, " +
+                        "e.PRICE, " +
+                        "e.STATUS " +
+                        "FROM EVENTS e " +
+                        "LEFT JOIN EVENT_MANAGERS m " +
+                        "ON e.MANAGER_ID = m.MANAGER_ID " +
+                        "WHERE e.EVENT_ID = ?";
+
+
+                try (PreparedStatement ps =
+                             con.prepareStatement(sql)) {
+
+                    ps.setInt(
+                            1,
+                            eventId
+                    );
+
+
+                    try (ResultSet rs =
+                                 ps.executeQuery()) {
+
+                        if (!rs.next()) {
+
+                            response.sendError(
+                                    HttpServletResponse.SC_NOT_FOUND,
+                                    "Event not found."
+                            );
+
+                            return;
+                        }
+
+
+                        request.setAttribute(
+                                "eventId",
+                                rs.getInt("EVENT_ID")
+                        );
+
+
+                        request.setAttribute(
+                                "eventName",
+                                rs.getString("EVENT_NAME")
+                        );
+
+
+                        request.setAttribute(
+                                "description",
+                                rs.getString("DESCRIPTION")
+                        );
+
+
+                        request.setAttribute(
+                                "eventDate",
+                                rs.getDate("EVENT_DATE")
+                        );
+
+
+                        request.setAttribute(
+                                "eventTime",
+                                rs.getString("EVENT_TIME")
+                        );
+
+
+                        request.setAttribute(
+                                "location",
+                                rs.getString("LOCATION")
+                        );
+
+
+                        request.setAttribute(
+                                "managerId",
+                                rs.getInt("MANAGER_ID")
+                        );
+
+
+                        request.setAttribute(
+                                "managerName",
+                                rs.getString(
+                                        "MANAGER_NAME"
+                                )
+                        );
+
+
+                        request.setAttribute(
+                                "capacity",
+                                rs.getInt("CAPACITY")
+                        );
+
+
+                        request.setAttribute(
+                                "price",
+                                rs.getBigDecimal("PRICE")
+                        );
+
+
+                        request.setAttribute(
+                                "status",
+                                rs.getString("STATUS")
+                        );
+                    }
+                }
+
+
+                /*
+                 * Only use this if viewEvent.jsp actually exists.
+                 */
+                request.getRequestDispatcher(
+                        "/admin/manage_events/viewEvent.jsp"
+                ).forward(
+                        request,
+                        response
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // EDIT
+            // =================================================
+
+            /*
+             * Your current JSP sends:
+             *
+             * ManageEventsServlet?action=edit&eventId=ID
+             *
+             * This loads the event values into request
+             * attributes for the edit JSP.
+             *
+             * The destination JSP must exist:
+             *
+             * /admin/manage_events/editEvent.jsp
+             */
+
+            if ("edit".equalsIgnoreCase(action)) {
+
+                int eventId =
+                        getValidEventId(
+                                eventIdParam,
+                                response
+                        );
+
+                if (eventId == -1) {
+                    return;
+                }
+
+
+                String sql =
+                        "SELECT EVENT_ID, " +
+                        "EVENT_NAME, " +
+                        "DESCRIPTION, " +
+                        "EVENT_DATE, " +
+                        "EVENT_TIME, " +
+                        "LOCATION, " +
+                        "MANAGER_ID, " +
+                        "CAPACITY, " +
+                        "PRICE, " +
+                        "STATUS " +
+                        "FROM EVENTS " +
+                        "WHERE EVENT_ID = ?";
+
+
+                try (PreparedStatement ps =
+                             con.prepareStatement(sql)) {
+
+                    ps.setInt(
+                            1,
+                            eventId
+                    );
+
+
+                    try (ResultSet rs =
+                                 ps.executeQuery()) {
+
+                        if (!rs.next()) {
+
+                            response.sendError(
+                                    HttpServletResponse.SC_NOT_FOUND,
+                                    "Event not found."
+                            );
+
+                            return;
+                        }
+
+
+                        request.setAttribute(
+                                "eventId",
+                                rs.getInt("EVENT_ID")
+                        );
+
+
+                        request.setAttribute(
+                                "eventName",
+                                rs.getString("EVENT_NAME")
+                        );
+
+
+                        request.setAttribute(
+                                "description",
+                                rs.getString("DESCRIPTION")
+                        );
+
+
+                        request.setAttribute(
+                                "eventDate",
+                                rs.getDate("EVENT_DATE")
+                        );
+
+
+                        request.setAttribute(
+                                "eventTime",
+                                rs.getString("EVENT_TIME")
+                        );
+
+
+                        request.setAttribute(
+                                "location",
+                                rs.getString("LOCATION")
+                        );
+
+
+                        request.setAttribute(
+                                "managerId",
+                                rs.getInt("MANAGER_ID")
+                        );
+
+
+                        request.setAttribute(
+                                "capacity",
+                                rs.getInt("CAPACITY")
+                        );
+
+
+                        request.setAttribute(
+                                "price",
+                                rs.getBigDecimal("PRICE")
+                        );
+
+
+                        request.setAttribute(
+                                "status",
+                                rs.getString("STATUS")
+                        );
+                    }
+                }
+
+
+                /*
+                 * Only use this if editEvent.jsp actually exists.
+                 */
+                request.getRequestDispatcher(
+                        "/admin/manage_events/editEvent.jsp"
+                ).forward(
+                        request,
+                        response
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // LOAD ALL EVENTS
+            // =================================================
+
             String sql =
                     "SELECT e.EVENT_ID, "
                     + "e.EVENT_NAME, "
@@ -186,79 +718,94 @@ public class ManageEventsServlet extends HttpServlet {
                     + "e.STATUS, "
                     + "e.MANAGER_ID, "
                     + "m.NAME "
-                    + "ORDER BY e.EVENT_DATE DESC, e.EVENT_ID DESC";
+                    + "ORDER BY "
+                    + "e.EVENT_DATE DESC, "
+                    + "e.EVENT_ID DESC";
 
-            ps = con.prepareStatement(sql);
-
-            rs = ps.executeQuery();
 
             List<Map<String, Object>> eventList =
                     new ArrayList<>();
 
 
-            while (rs.next()) {
+            try (PreparedStatement ps =
+                         con.prepareStatement(sql);
 
-                Map<String, Object> event =
-                        new HashMap<>();
-
-
-                event.put(
-                        "eventId",
-                        rs.getInt("EVENT_ID")
-                );
+                 ResultSet rs =
+                         ps.executeQuery()) {
 
 
-                event.put(
-                        "eventName",
-                        rs.getString("EVENT_NAME")
-                );
+                while (rs.next()) {
+
+                    Map<String, Object> event =
+                            new HashMap<>();
 
 
-                event.put(
-                        "eventDate",
-                        rs.getDate("EVENT_DATE")
-                );
+                    event.put(
+                            "eventId",
+                            rs.getInt("EVENT_ID")
+                    );
 
 
-                event.put(
-                        "location",
-                        rs.getString("LOCATION")
-                );
+                    event.put(
+                            "eventName",
+                            rs.getString("EVENT_NAME")
+                    );
 
 
-                event.put(
-                        "capacity",
-                        rs.getInt("CAPACITY")
-                );
+                    event.put(
+                            "eventDate",
+                            rs.getDate("EVENT_DATE")
+                    );
 
 
-                event.put(
-                        "status",
-                        rs.getString("STATUS")
-                );
+                    event.put(
+                            "location",
+                            rs.getString("LOCATION")
+                    );
 
 
-                event.put(
-                        "managerId",
-                        rs.getInt("MANAGER_ID")
-                );
+                    event.put(
+                            "capacity",
+                            rs.getInt("CAPACITY")
+                    );
 
 
-                event.put(
-                        "managerName",
-                        rs.getString("MANAGER_NAME")
-                );
+                    event.put(
+                            "status",
+                            rs.getString("STATUS")
+                    );
 
 
-                event.put(
-                        "bookingCount",
-                        rs.getInt("BOOKING_COUNT")
-                );
+                    event.put(
+                            "managerId",
+                            rs.getInt("MANAGER_ID")
+                    );
 
 
-                eventList.add(event);
+                    event.put(
+                            "managerName",
+                            rs.getString(
+                                    "MANAGER_NAME"
+                            )
+                    );
+
+
+                    event.put(
+                            "bookingCount",
+                            rs.getInt("BOOKING_COUNT")
+                    );
+
+
+                    eventList.add(
+                            event
+                    );
+                }
             }
 
+
+            // -------------------------------------------------
+            // Send eventList to JSP
+            // -------------------------------------------------
 
             request.setAttribute(
                     "eventList",
@@ -266,54 +813,99 @@ public class ManageEventsServlet extends HttpServlet {
             );
 
 
-            /*
-             * Forward to JSP
-             */
+            // -------------------------------------------------
+            // Open Manage Events JSP
+            // -------------------------------------------------
+
             request.getRequestDispatcher(
                     "/admin/manage_events/manageEvents.jsp"
-            ).forward(request, response);
+            ).forward(
+                    request,
+                    response
+            );
 
-        }
 
-        catch (Exception e) {
+        } catch (NumberFormatException e) {
 
-            throw new ServletException(e);
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "Invalid Event ID."
+            );
 
-        }
 
-        finally {
+        } catch (SQLException e) {
+
+            throw new ServletException(
+                    "Database error while managing events.",
+                    e
+            );
+
+
+        } catch (ClassNotFoundException e) {
+
+            throw new ServletException(
+                    "Oracle JDBC Driver not found.",
+                    e
+            );
+
+
+        } catch (Exception e) {
+
+            throw new ServletException(
+                    "Error while managing events.",
+                    e
+            );
+
+
+        } finally {
 
             try {
-                if (rs != null) {
-                    rs.close();
-                }
-            }
 
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
                 if (con != null) {
                     con.close();
                 }
-            }
 
-            catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ignored) {
             }
+        }
+    }
+
+
+    // =========================================================
+    // VALIDATE EVENT ID
+    // =========================================================
+
+    private int getValidEventId(
+            String eventIdParam,
+            HttpServletResponse response)
+            throws IOException {
+
+        if (eventIdParam == null ||
+                eventIdParam.trim().isEmpty()) {
+
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "Event ID is required."
+            );
+
+            return -1;
+        }
+
+
+        try {
+
+            return Integer.parseInt(
+                    eventIdParam.trim()
+            );
+
+        } catch (NumberFormatException e) {
+
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "Invalid Event ID."
+            );
+
+            return -1;
         }
     }
 }

@@ -436,16 +436,19 @@ tailwind.config = {
         </button>
 
 
-        <button
-            type="button"
-            onclick="showSettings()"
-            class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low active:scale-95">
+         <button
+                type="button"
+                onclick="openSettings()"
+                title="Settings"
+                class="p-xs text-on-surface-variant hover:text-primary transition-colors hover:scale-95">
 
-            <span class="material-symbols-outlined">
-                settings
-            </span>
+                <span class="material-symbols-outlined">
 
-        </button>
+                    settings
+
+                </span>
+
+            </button>
 
 
         <div class="h-6 w-[1px] bg-outline-variant mx-sm">
@@ -523,7 +526,7 @@ tailwind.config = {
 
         <a
             href="<%= request.getContextPath() %>/admin/add_accessory/addAccessory.jsp"
-            class="bg-primary text-on-primary px-lg py-sm rounded-DEFAULT font-body-md text-body-md font-semibold hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm flex items-center gap-sm">
+            class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
 
             <span class="material-symbols-outlined text-[20px]">
                 add
@@ -1310,11 +1313,10 @@ function showNotifications() {
    SETTINGS
    ========================================== */
 
-function showSettings() {
+function openSettings() {
 
-    alert(
-        "Settings are not configured yet."
-    );
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
 }
 
 

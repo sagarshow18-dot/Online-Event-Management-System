@@ -1,26 +1,95 @@
+<%@ page language="java"
+         contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String adminName =
+            request.getAttribute("name") != null
+                    ? request.getAttribute("name").toString()
+                    : (session.getAttribute("adminName") != null
+                        ? session.getAttribute("adminName").toString()
+                        : "Admin User");
+
+    String adminEmail =
+            request.getAttribute("email") != null
+                    ? request.getAttribute("email").toString()
+                    : (session.getAttribute("adminEmail") != null
+                        ? session.getAttribute("adminEmail").toString()
+                        : "");
+
+    String adminContact =
+            request.getAttribute("contact") != null
+                    ? request.getAttribute("contact").toString()
+                    : "";
+
+    String adminAddress =
+            request.getAttribute("address") != null
+                    ? request.getAttribute("address").toString()
+                    : "";
+
+    String adminBio =
+            request.getAttribute("bio") != null
+                    ? request.getAttribute("bio").toString()
+                    : "";
+
+    String profileImage =
+            request.getAttribute("profileImage") != null
+                    ? request.getAttribute("profileImage").toString()
+                    : "";
+
+    boolean active =
+            !"INACTIVE".equalsIgnoreCase(
+                    request.getAttribute("status") != null
+                            ? request.getAttribute("status").toString()
+                            : "ACTIVE"
+            );
+
+    String imageSource;
+
+    if (profileImage != null && !profileImage.trim().isEmpty()) {
+        imageSource =
+                request.getContextPath()
+                + "/"
+                + profileImage;
+    } else {
+        imageSource =
+                "https://via.placeholder.com/300x300.png?text=Admin";
+    }
+%>
 
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
 <title>Admin Profile - EventHub</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono&display=swap"
+    rel="stylesheet"/>
 
 <script id="tailwind-config">
+
 tailwind.config = {
+
     darkMode: "class",
+
     theme: {
+
         extend: {
+
             colors: {
+
                 "on-secondary-fixed-variant": "#3a485c",
                 "on-secondary-container": "#57657b",
                 "error-container": "#ffdad6",
@@ -58,10 +127,9 @@ tailwind.config = {
                 "surface-dim": "#d8dadc",
                 "primary-fixed": "#dae2fd",
                 "secondary-fixed": "#d5e3fd",
-                "primary-fixed": "#dae2fd",
+                "on-primary": "#ffffff",
                 "secondary-fixed-dim": "#b9c7e0",
                 "on-secondary-fixed": "#0d1c2f",
-                "inverse-primary": "#bec6e0",
                 "background": "#f7f9fb",
                 "on-tertiary": "#ffffff",
                 "primary": "#000000",
@@ -101,6 +169,7 @@ tailwind.config = {
             },
 
             fontSize: {
+
                 "headline-lg": ["32px", {
                     "lineHeight": "40px",
                     "letterSpacing": "-0.01em",
@@ -147,31 +216,50 @@ tailwind.config = {
         }
     }
 }
+
 </script>
+
+<style>
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+</style>
 
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen">
 
-<!-- SideNavBar -->
 
-<nav class="hidden md:flex bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-on-primary-fixed font-body-md text-body-md fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline-variant flex-col py-lg px-md z-20">
+<!-- ==============================
+     SIDE NAVIGATION
+     ============================== -->
+
+<nav class="hidden md:flex bg-surface-container-lowest text-primary fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant flex-col py-lg px-md z-20">
 
     <div class="mb-xl flex items-center gap-md px-md">
 
         <img
+            id="sidebarProfileImage"
             alt="Admin User Profile"
             class="w-10 h-10 rounded-lg object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWsP8cPfcxEBGsxEEwc2o0V6ympZvHBgXqb55h38cWju89-7-ByFOXpxFtSCDm1DTT8oky5tRojLd03AlvNMrZfv4lctaXGv4FIbv9dNiNkO1QPr7QZ4TXtYzg5dXDfTgHSQO8tRIV4q2RAUXECAkhTIy4oY_wNqitOKZAHL1OMBdRWiC531ZFs-qi2UrwczICp4zWPSzv5I9K_QJoSBRX8rfP3O_l0JuGp4zN1qbWZIUP041xWoWnRQ"/>
+            src="<%= imageSource %>"/>
 
         <div>
-            <h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-on-primary-fixed">
+
+            <h1 class="font-headline-lg text-headline-lg font-bold text-primary">
                 EventHub
             </h1>
 
             <p class="font-label-caps text-label-caps text-on-surface-variant">
                 Enterprise Admin
             </p>
+
         </div>
 
     </div>
@@ -179,7 +267,6 @@ tailwind.config = {
 
     <div class="flex-1 space-y-sm">
 
-        <!-- Dashboard -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
@@ -195,7 +282,6 @@ tailwind.config = {
         </a>
 
 
-        <!-- Users -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/ManageUsersServlet">
@@ -211,7 +297,6 @@ tailwind.config = {
         </a>
 
 
-        <!-- Event Managers -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/ManageEventManagersServlet">
@@ -227,28 +312,21 @@ tailwind.config = {
         </a>
 
 
-        <!-- Events  -->
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-        
+            <span class="material-symbols-outlined">
+                calendar_today
+            </span>
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-                 href="<%= request.getContextPath() %>/ManageEventsServlet">
+            <span>
+                Events
+            </span>
 
-                <span class="material-symbols-outlined">
-                    calendar_today
-                </span>
-
-                <span>
-                    Events
-                </span>
-
-            </a>
-
-        
+        </a>
 
 
-        <!-- Accessories -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/AccessoriesServlet">
@@ -264,7 +342,6 @@ tailwind.config = {
         </a>
 
 
-        <!-- Bookings -->
         <a
             class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/ManageBookingsServlet">
@@ -280,35 +357,28 @@ tailwind.config = {
         </a>
 
 
-     
-      <!-- Reports -->
-
-        
-
-            <a
-               class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-                href="<%= request.getContextPath() %>/ReportsServlet">
-
-                <span class="material-symbols-outlined">
-                    assessment
-                </span>
-
-                <span>
-                    Reports
-                </span>
-
-            </a>
-
-        
-
-        <!-- Profile - Active -->
         <a
-            class="flex items-center gap-md px-md py-sm rounded text-primary dark:text-on-primary-fixed font-bold border-r-4 border-primary bg-surface-container-low opacity-80"
+            class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ReportsServlet">
+
+            <span class="material-symbols-outlined">
+                assessment
+            </span>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+
+        <a
+            class="flex items-center gap-md px-md py-sm rounded text-primary font-bold border-r-4 border-primary bg-surface-container-low opacity-80"
             href="<%= request.getContextPath() %>/AdminProfileServlet">
 
             <span
                 class="material-symbols-outlined"
-                style="font-variation-settings: 'FILL' 1;">
+                style="font-variation-settings:'FILL' 1;">
 
                 account_circle
 
@@ -324,484 +394,899 @@ tailwind.config = {
 
 </nav>
 
-<!-- TopNavBar -->
 
-<header class="hidden md:flex bg-surface-container-lowest text-primary fixed top-0 right-0 w-[calc(100%-280px)] h-16 border-b border-outline-variant justify-between items-center px-lg ml-[280px] z-10">
+<!-- ==============================
+     TOP NAVIGATION
+     ============================== -->
 
-<div class="flex items-center gap-md w-1/3">
+<header class="hidden md:flex bg-surface-container-lowest text-primary fixed top-0 right-0 w-[calc(100%-280px)] h-16 border-b border-outline-variant justify-between items-center px-lg z-10">
 
-<div class="relative w-full">
+    <div class="flex items-center gap-md w-1/3">
 
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">
-search
-</span>
+        <div class="relative w-full">
 
-<input
-class="w-full bg-surface-container-low border border-outline-variant rounded py-sm pl-xl pr-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
-placeholder="Search..."
-type="text"/>
+            <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">
+                search
+            </span>
 
-</div>
+            <input
+                id="profileSearch"
+                onkeyup="searchProfile()"
+                class="w-full bg-surface-container-low border border-outline-variant rounded py-sm pl-xl pr-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
+                placeholder="Search..."
+                type="text"/>
 
-</div>
+        </div>
+
+    </div>
 
 
-<div class="flex items-center gap-lg">
+    <div class="flex items-center gap-lg">
 
-<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-xs">
+        <button
+            type="button"
+            onclick="showNotifications()"
+            aria-label="Notifications"
+            title="Notifications"
+            class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-xs">
 
-<span class="material-symbols-outlined">
-notifications
-</span>
+            <span class="material-symbols-outlined">
+                notifications
+            </span>
 
-</button>
+        </button>
 
-<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-xs">
 
-<span class="material-symbols-outlined">
-settings
-</span>
+        <button
+            type="button"
+            onclick="showSettings()"
+            aria-label="Settings"
+            title="Settings"
+            class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-xs">
 
-</button>
+            <span class="material-symbols-outlined">
+                settings
+            </span>
 
-<div class="h-8 w-px bg-outline-variant"></div>
+        </button>
 
-<button class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps flex items-center gap-xs">
 
-<span class="material-symbols-outlined text-[18px]">
-logout
-</span>
+        <div class="h-8 w-px bg-outline-variant">
+        </div>
 
-Logout
 
-</button>
+        <button
+            type="button"
+            onclick="logoutAdmin()"
+            class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps flex items-center gap-xs">
 
-<img
-alt="Admin Profile"
-class="w-8 h-8 rounded-full border border-outline-variant object-cover"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqvjSohgOVNDlnbfJKfc24EPxR28cHlxohZpzvXqsdSlcuxEXVPAyqbKU5eKfIN_c2zno3s-IhYD3qdYHexrLlqyWwttxBriLTapClhiPiUID_n2JHiyv4VWagmthKjRy0XKuQPH26R0drCYi9p3XRLLvfsFb4Hick-8UjQzdff1cHMc9EZq5Zgp59m-zJVI0EsP0-fAIMpX716brm6VnbjNcBxiUm6XpgFVGHKrFN6BuRjBKUZ26LTw"/>
+            <span class="material-symbols-outlined text-[18px]">
+                logout
+            </span>
 
-</div>
+            Logout
+
+        </button>
+
+
+        <img
+            id="topProfileImage"
+            alt="Admin Profile"
+            class="w-8 h-8 rounded-full border border-outline-variant object-cover"
+            src="<%= imageSource %>"/>
+
+    </div>
 
 </header>
 
 
-<!-- Main Content -->
+<!-- ==============================
+     MAIN CONTENT
+     ============================== -->
 
 <main class="md:ml-[280px] pt-16 min-h-screen flex flex-col p-margin-desktop gap-gutter">
 
-<div class="mb-md">
+    <div class="mb-md">
 
-<nav class="font-label-caps text-label-caps text-on-surface-variant mb-xs flex items-center gap-xs">
+        <nav class="font-label-caps text-label-caps text-on-surface-variant mb-xs flex items-center gap-xs">
 
-<span>EventHub</span>
+            <span>
+                EventHub
+            </span>
 
-<span class="material-symbols-outlined text-[12px]">
-chevron_right
-</span>
+            <span class="material-symbols-outlined text-[12px]">
+                chevron_right
+            </span>
 
-<span>Admin</span>
+            <span>
+                Admin
+            </span>
 
-<span class="material-symbols-outlined text-[12px]">
-chevron_right
-</span>
+            <span class="material-symbols-outlined text-[12px]">
+                chevron_right
+            </span>
 
-<span class="text-primary font-bold">
-Profile Settings
-</span>
+            <span class="text-primary font-bold">
+                Profile Settings
+            </span>
 
-</nav>
+        </nav>
 
-<h2 class="font-headline-lg text-headline-lg font-bold">
-Administrator Profile
-</h2>
 
-</div>
+        <h2 class="font-headline-lg text-headline-lg font-bold">
+            Administrator Profile
+        </h2>
 
+    </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
 
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
 
-<!-- Left Column -->
 
-<div class="lg:col-span-4 flex flex-col gap-gutter">
+        <!-- LEFT COLUMN -->
 
-<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col items-center text-center">
+        <div class="lg:col-span-4 flex flex-col gap-gutter">
 
-<div class="relative mb-md">
 
-<img
-alt="Admin Avatar Large"
-class="w-32 h-32 rounded-full border border-outline-variant object-cover"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAOQjLNk-_H29lF4FbX7AwlhpsT_sOBJGVxgKWqbsaIQmI0txRKziuxlUaVE8NFDC2h5K9zpfEiUDMVVgFJW5FWrhUAx4EyR7KGR4uJROW5fVbJ5p_v2ZALzi0xFcl_Uetou1eCG5BeBxFmQ7AlPLZfnjwa8MYaYtWPjlYelY48hqsr20O3wWEKVsB77Y-2Cj4h9iHfGypfSKs0hzfXR83bFOZe23_nqEeLcyhC1uD6FjQasQuTMlCSg"/>
+            <!-- PROFILE CARD -->
 
-<button class="absolute bottom-0 right-0 bg-surface-container-lowest border border-outline-variant text-primary rounded-full p-xs hover:bg-surface-container-low transition-colors shadow-sm">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col items-center text-center">
 
-<span class="material-symbols-outlined text-[16px]">
-edit
-</span>
 
-</button>
+                <div class="relative mb-md">
 
-</div>
 
+                    <img
+                        id="mainProfileImage"
+                        alt="Admin Avatar Large"
+                        class="w-32 h-32 rounded-full border border-outline-variant object-cover"
+                        src="<%= imageSource %>"/>
 
-<h3 class="font-title-md text-title-md font-bold mb-xs">
-    <%= request.getAttribute("name") != null
-        ? request.getAttribute("name")
-        : "" %>
-</h3>
 
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">
-Chief Operations Administrator
-</p>
+                    <button
+                        type="button"
+                        onclick="document.getElementById('profileImageInput').click()"
+                        class="absolute bottom-0 right-0 bg-surface-container-lowest border border-outline-variant text-primary rounded-full p-xs hover:bg-surface-container-low transition-colors shadow-sm"
+                        title="Change profile image">
 
-<div class="w-full h-px bg-outline-variant mb-md"></div>
+                        <span class="material-symbols-outlined text-[16px]">
+                            edit
+                        </span>
 
+                    </button>
 
-<div class="w-full text-left font-body-sm text-body-sm space-y-sm">
 
-<div class="flex items-center gap-sm text-on-surface-variant">
+                </div>
 
-<span class="material-symbols-outlined text-[18px]">
-mail
-</span>
 
-<span class="font-data-mono text-data-mono">
-    <%= request.getAttribute("email") != null
-        ? request.getAttribute("email")
-        : "" %>
-</span>
+                <h3 class="font-title-md text-title-md font-bold mb-xs">
 
-</div>
+                    <%= adminName %>
 
+                </h3>
 
-<div class="flex items-center gap-sm text-on-surface-variant">
 
-<span class="material-symbols-outlined text-[18px]">
-phone
-</span>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-md">
 
-<span class="font-data-mono text-data-mono">
-    <%= request.getAttribute("contact") != null
-        ? request.getAttribute("contact")
-        : "" %>
-</span>
-</div>
+                    Chief Operations Administrator
 
+                </p>
 
-<div class="flex items-center gap-sm text-on-surface-variant">
 
-    <span class="material-symbols-outlined text-[18px]">
-        location_on
-    </span>
+                <div class="w-full h-px bg-outline-variant mb-md">
+                </div>
 
-    <span>
-        <%= request.getAttribute("address") != null
-            ? request.getAttribute("address")
-            : "" %>
-    </span>
 
-</div>
+                <div class="w-full text-left font-body-sm text-body-sm space-y-sm">
 
 
-<div class="mt-lg w-full flex items-center justify-between bg-surface-container-low p-sm rounded border border-outline-variant">
+                    <div class="flex items-center gap-sm text-on-surface-variant">
 
-<span class="font-label-caps text-label-caps text-on-surface-variant">
-Account Status
-</span>
+                        <span class="material-symbols-outlined text-[18px]">
+                            mail
+                        </span>
 
-<div class="flex items-center gap-xs px-sm py-xs bg-secondary-container text-on-secondary-container rounded-full">
+                        <span class="font-data-mono text-data-mono">
+                            <%= adminEmail %>
+                        </span>
 
-<div class="w-2 h-2 rounded-full bg-[#008ebf]"></div>
+                    </div>
 
-<span class="font-label-caps text-label-caps" style="font-size: 10px;">
-Active
-</span>
 
-</div>
+                    <div class="flex items-center gap-sm text-on-surface-variant">
 
-</div>
+                        <span class="material-symbols-outlined text-[18px]">
+                            phone
+                        </span>
 
-</div>
+                        <span class="font-data-mono text-data-mono">
+                            <%= adminContact %>
+                        </span>
 
-</div>
+                    </div>
 
 
-<!-- Right Column -->
+                    <div class="flex items-center gap-sm text-on-surface-variant">
 
-<div class="lg:col-span-8 flex flex-col gap-gutter">
+                        <span class="material-symbols-outlined text-[18px]">
+                            location_on
+                        </span>
 
+                        <span>
+                            <%= adminAddress %>
+                        </span>
 
-<!-- Edit Profile Form -->
+                    </div>
 
-<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
 
-<h3 class="font-title-md text-title-md font-bold mb-md border-b border-outline-variant pb-xs">
-Edit Profile Information
-</h3>
+                    <div class="mt-lg w-full flex items-center justify-between bg-surface-container-low p-sm rounded border border-outline-variant">
 
-<form class="space-y-md"
-      action="<%= request.getContextPath() %>/AdminProfileServlet"
-      method="post">
+                        <span class="font-label-caps text-label-caps text-on-surface-variant">
+                            Account Status
+                        </span>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 
-<div class="flex flex-col gap-xs">
+                        <div class="flex items-center gap-xs px-sm py-xs bg-secondary-container text-on-secondary-container rounded-full">
 
-    <label class="font-label-caps text-label-caps text-on-surface-variant">
-        Name
-    </label>
+                            <div class="w-2 h-2 rounded-full <%= active ? "bg-[#008ebf]" : "bg-error" %>">
+                            </div>
 
-    <input
-        class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
-        type="text"
-        name="name"
-        value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>"
-        required/>
+                            <span
+                                class="font-label-caps text-label-caps"
+                                style="font-size:10px;">
 
-</div>
+                                <%= active ? "Active" : "Inactive" %>
 
-</div>
+                            </span>
 
+                        </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                    </div>
 
-<div class="flex flex-col gap-xs">
 
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-Email Address
-</label>
+                </div>
 
-<input
-class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
-type="email"
-name="email"
-value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"
-required/>
+            </div>
 
-</div>
 
+        </div>
 
-<div class="flex flex-col gap-xs">
 
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-    Contact Number
-</label>
+        <!-- RIGHT COLUMN -->
 
-<input
-class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
-type="tel"
-name="contact"
-value="<%= request.getAttribute("contact") != null ? request.getAttribute("contact") : "" %>"/>
+        <div class="lg:col-span-8 flex flex-col gap-gutter">
 
-</div>
 
-</div>
+            <!-- EDIT PROFILE -->
 
-<div class="flex flex-col gap-xs">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
 
-    <label class="font-label-caps text-label-caps text-on-surface-variant">
-        Address
-    </label>
+                <h3 class="font-title-md text-title-md font-bold mb-md border-b border-outline-variant pb-xs">
+                    Edit Profile Information
+                </h3>
 
-    <input
-    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
-    type="text"
-    name="address"
-    value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>"
-    placeholder="Enter your address"/>
 
-</div>
+                <form
+                    id="profileForm"
+                    class="space-y-md"
+                    action="<%= request.getContextPath() %>/AdminProfileServlet"
+                    method="post"
+                    enctype="multipart/form-data">
 
-<div class="flex flex-col gap-xs">
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-    Bio
-</label>
-<textarea
-class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all resize-none"
-name="bio"
-rows="3"><%= request.getAttribute("bio") != null ? request.getAttribute("bio") : "" %></textarea>
 
+                    <input
+                        type="hidden"
+                        name="action"
+                        value="updateProfile"/>
 
 
-</div>
+                    <input
+                        type="hidden"
+                        name="adminId"
+                        value="<%= session.getAttribute("adminId") != null ? session.getAttribute("adminId") : "" %>"/>
 
-<!-- Action Buttons -->
 
-<div class="flex justify-end gap-md mt-sm">
+                    <!-- Hidden Image Input -->
 
-    <button
-        type="button"
-        class="px-lg py-sm font-body-sm text-body-sm font-bold text-tertiary border border-outline-variant bg-surface-container-lowest rounded hover:bg-surface-container-low transition-colors duration-200">
-        Cancel
-    </button>
+                    <input
+                        type="file"
+                        id="profileImageInput"
+                        name="profileImage"
+                        accept="image/*"
+                        class="hidden"
+                        onchange="previewProfileImage(event)"/>
 
-    <button
-        type="submit"
-        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
 
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 
-        <span class="material-symbols-outlined text-[18px]">
-            save
-        </span>
 
-        Save Changes
+                        <div class="flex flex-col gap-xs">
 
-    </button>
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                Name
+                            </label>
 
-</div>
+                            <input
+                                class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
+                                type="text"
+                                name="name"
+                                value="<%= adminName %>"
+                                required/>
 
-</form>
+                        </div>
 
-</div>
+                    </div>
 
 
-<!-- Change Password -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 
-<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
 
-<h3 class="font-title-md text-title-md font-bold mb-md border-b border-outline-variant pb-xs">
-Security &amp; Password
-</h3>
+                        <div class="flex flex-col gap-xs">
 
-<form class="space-y-md"
-      action="<%= request.getContextPath() %>/AdminProfileServlet"
-      method="post">
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                Email Address
+                            </label>
 
-    <input type="hidden" name="action" value="changePassword">
+                            <input
+                                class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
+                                type="email"
+                                name="email"
+                                value="<%= adminEmail %>"
+                                required/>
 
-<div class="flex flex-col gap-xs w-full md:w-1/2">
+                        </div>
 
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-Current Password
-</label>
 
-<div class="relative">
+                        <div class="flex flex-col gap-xs">
 
-<input
-    id="currentPassword"
-    name="currentPassword"
-    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
-    placeholder="••••••••"
-    type="password"/>
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                Contact Number
+                            </label>
 
-<span
-    class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
-    onclick="togglePassword('currentPassword', this)">
-    visibility
-</span>
+                            <input
+                                class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
+                                type="tel"
+                                name="contact"
+                                value="<%= adminContact %>"/>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                    <div class="flex flex-col gap-xs">
 
-<div class="flex flex-col gap-xs">
+                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                            Address
+                        </label>
 
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-New Password
-</label>
+                        <input
+                            class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all"
+                            type="text"
+                            name="address"
+                            value="<%= adminAddress %>"
+                            placeholder="Enter your address"/>
 
-<div class="relative">
+                    </div>
 
-<input
-    id="newPassword"
-    name="newPassword"
-    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
-    type="password"/>
 
-<span
-    class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
-    onclick="togglePassword('newPassword', this)">
-    visibility_off
-</span>
+                    <div class="flex flex-col gap-xs">
 
-</div>
+                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                            Bio
+                        </label>
 
-</div>
+                        <textarea
+                            class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all resize-none"
+                            name="bio"
+                            rows="3"><%= adminBio %></textarea>
 
+                    </div>
 
-<div class="flex flex-col gap-xs">
 
-<label class="font-label-caps text-label-caps text-on-surface-variant">
-Confirm New Password
-</label>
+                    <!-- ACTION BUTTONS -->
 
-<div class="relative">
+                    <div class="flex justify-end gap-md mt-sm">
 
-<input
-    id="confirmPassword"
-    name="confirmPassword"
-    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
-    type="password"/>
+                        <button
+                            type="button"
+                            onclick="resetProfileForm()"
+                            class="px-lg py-sm font-body-sm text-body-sm font-bold text-tertiary border border-outline-variant bg-surface-container-lowest rounded hover:bg-surface-container-low transition-colors duration-200">
 
-<span
-    class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
-    onclick="togglePassword('confirmPassword', this)">
-    visibility_off
-</span>
-</div>
+                            Cancel
 
-</div>
+                        </button>
 
-</div>
 
+                        <button
+                            type="submit"
+                            class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
 
-<p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-xs">
-Password must be at least 12 characters long and include a mix of uppercase, lowercase, numbers, and symbols to meet enterprise security standards.
-</p>
-<div class="flex justify-end gap-md mt-sm">
+                            <span class="material-symbols-outlined text-[18px]">
+                                save
+                            </span>
 
-    <button
-        type="reset"
-        class="px-lg py-sm font-body-sm text-body-sm font-bold text-tertiary border border-outline-variant bg-surface-container-lowest rounded hover:bg-surface-container-low transition-colors duration-200">
-        Cancel
-    </button>
+                            Save Changes
 
-    <button
-        type="submit"
-        class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+                        </button>
 
+                    </div>
 
-        <span class="material-symbols-outlined text-[18px]">
-            lock
-        </span>
 
-        Change Password
+                </form>
 
-    </button>
+            </div>
 
-</div>
-</form>
 
-</div>
+            <!-- CHANGE PASSWORD -->
 
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
 
+                <h3 class="font-title-md text-title-md font-bold mb-md border-b border-outline-variant pb-xs">
+                    Security &amp; Password
+                </h3>
 
 
+                <form
+                    id="passwordForm"
+                    class="space-y-md"
+                    action="<%= request.getContextPath() %>/AdminProfileServlet"
+                    method="post">
 
-</div>
 
-</div>
+                    <input
+                        type="hidden"
+                        name="action"
+                        value="changePassword"/>
+
+
+                    <div class="flex flex-col gap-xs w-full md:w-1/2">
+
+                        <label class="font-label-caps text-label-caps text-on-surface-variant">
+                            Current Password
+                        </label>
+
+                        <div class="relative">
+
+                            <input
+                                id="currentPassword"
+                                name="currentPassword"
+                                class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
+                                placeholder="••••••••"
+                                type="password"/>
+
+                            <span
+                                class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
+                                onclick="togglePassword('currentPassword', this)">
+
+                                visibility
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+
+
+                        <div class="flex flex-col gap-xs">
+
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                New Password
+                            </label>
+
+                            <div class="relative">
+
+                                <input
+                                    id="newPassword"
+                                    name="newPassword"
+                                    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
+                                    type="password"/>
+
+                                <span
+                                    class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
+                                    onclick="togglePassword('newPassword', this)">
+
+                                    visibility
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex flex-col gap-xs">
+
+                            <label class="font-label-caps text-label-caps text-on-surface-variant">
+                                Confirm New Password
+                            </label>
+
+                            <div class="relative">
+
+                                <input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    class="w-full bg-surface border border-outline-variant rounded px-sm py-sm text-body-sm font-body-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all pr-xl"
+                                    type="password"/>
+
+                                <span
+                                    class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary text-[18px]"
+                                    onclick="togglePassword('confirmPassword', this)">
+
+                                    visibility
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-xs">
+
+                        Password must be at least 12 characters long and include a mix of uppercase, lowercase, numbers, and symbols to meet enterprise security standards.
+
+                    </p>
+
+
+                    <div class="flex justify-end gap-md mt-sm">
+
+
+                        <button
+                            type="reset"
+                            class="px-lg py-sm font-body-sm text-body-sm font-bold text-tertiary border border-outline-variant bg-surface-container-lowest rounded hover:bg-surface-container-low transition-colors duration-200">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="bg-black text-white px-lg py-2 rounded-lg font-body-sm text-body-sm font-semibold hover:bg-gray-800 transition-colors flex items-center gap-sm shadow-sm">
+
+                            <span class="material-symbols-outlined text-[18px]">
+                                lock
+                            </span>
+
+                            Change Password
+
+                        </button>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </main>
+
+
+<!-- ==============================
+     JAVASCRIPT
+     ============================== -->
+
 <script>
+
 function togglePassword(inputId, icon) {
 
-    const input = document.getElementById(inputId);
+    const input =
+        document.getElementById(inputId);
 
     if (input.type === "password") {
+
         input.type = "text";
-        icon.textContent = "visibility_off";
+
+        icon.textContent =
+            "visibility_off";
+
     } else {
+
         input.type = "password";
-        icon.textContent = "visibility";
+
+        icon.textContent =
+            "visibility";
+
     }
 }
-</script>
-</body>
-</html>
 
+
+/*
+ * PROFILE IMAGE PREVIEW
+ */
+
+function previewProfileImage(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select a valid image file.");
+
+        event.target.value = "";
+
+        return;
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e) {
+
+            document.getElementById(
+                "mainProfileImage"
+            ).src = e.target.result;
+
+            document.getElementById(
+                "sidebarProfileImage"
+            ).src = e.target.result;
+
+            document.getElementById(
+                "topProfileImage"
+            ).src = e.target.result;
+
+        };
+
+    reader.readAsDataURL(file);
+}
+
+
+/*
+ * PROFILE FORM CANCEL
+ */
+
+function resetProfileForm() {
+
+    window.location.reload();
+
+}
+
+
+/*
+ * SEARCH
+ */
+
+function searchProfile() {
+
+    const value =
+        document.getElementById(
+            "profileSearch"
+        ).value
+        .toLowerCase()
+        .trim();
+
+    if (value === "") {
+        return;
+    }
+
+    if (
+        value.includes("user")
+        ||
+        value.includes("users")
+    ) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ManageUsersServlet";
+
+        return;
+    }
+
+    if (
+        value.includes("manager")
+        ||
+        value.includes("event manager")
+    ) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ManageEventManagersServlet";
+
+        return;
+    }
+
+    if (value.includes("event")) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ManageEventsServlet";
+
+        return;
+    }
+
+    if (value.includes("accessor")) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/AccessoriesServlet";
+
+        return;
+    }
+
+    if (value.includes("booking")) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ManageBookingsServlet";
+
+        return;
+    }
+
+    if (value.includes("report")) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/ReportsServlet";
+
+        return;
+    }
+
+    if (value.includes("profile")) {
+
+        return;
+    }
+}
+
+
+/*
+ * NOTIFICATIONS
+ */
+
+function showNotifications() {
+
+    alert(
+        "No new notifications."
+    );
+
+}
+
+
+/*
+ * SETTINGS
+ */
+
+function openSettings() {
+
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
+}
+
+
+/*
+ * LOGOUT
+ */
+
+function logoutAdmin() {
+
+    if (
+        confirm(
+            "Are you sure you want to logout?"
+        )
+    ) {
+
+        window.location.href =
+            "<%= request.getContextPath() %>/AdminLogoutServlet";
+
+    }
+
+}
+
+
+/*
+ * PASSWORD VALIDATION
+ */
+
+document
+    .getElementById("passwordForm")
+    .addEventListener("submit", function(event) {
+
+        const currentPassword =
+            document.getElementById(
+                "currentPassword"
+            ).value;
+
+        const newPassword =
+            document.getElementById(
+                "newPassword"
+            ).value;
+
+        const confirmPassword =
+            document.getElementById(
+                "confirmPassword"
+            ).value;
+
+
+        if (
+            currentPassword.trim() === ""
+            ||
+            newPassword.trim() === ""
+            ||
+            confirmPassword.trim() === ""
+        ) {
+
+            alert(
+                "Please fill all password fields."
+            );
+
+            event.preventDefault();
+
+            return;
+        }
+
+
+        if (
+            newPassword !==
+            confirmPassword
+        ) {
+
+            alert(
+                "New password and confirm password do not match."
+            );
+
+            event.preventDefault();
+
+            return;
+        }
+
+
+        if (newPassword.length < 12) {
+
+            alert(
+                "Password must be at least 12 characters long."
+            );
+
+            event.preventDefault();
+
+            return;
+        }
+
+
+        const hasUppercase =
+            /[A-Z]/.test(newPassword);
+
+        const hasLowercase =
+            /[a-z]/.test(newPassword);
+
+        const hasNumber =
+            /[0-9]/.test(newPassword);
+
+        const hasSymbol =
+            /[^A-Za-z0-9]/.test(newPassword);
+
+
+        if (
+            !hasUppercase
+            ||
+            !hasLowercase
+            ||
+            !hasNumber
+            ||
+            !hasSymbol
+        ) {
+
+            alert(
+                "Password must contain uppercase, lowercase, number and symbol."
+            );
+
+            event.preventDefault();
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>

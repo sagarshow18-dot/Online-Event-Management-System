@@ -87,7 +87,24 @@ public class AdminDashboardServlet extends HttpServlet {
 
         String adminName =
                 bean.getAdminName();
+        
+        String profileImage =
+        bean.getProfileImage();
 
+String imageSource =
+        request.getContextPath()
+        + "/images/default-profile.png";
+
+if (profileImage != null &&
+    !profileImage.trim().isEmpty()) {
+
+    imageSource =
+            request.getContextPath()
+            + "/uploads/admin/"
+            + profileImage;
+}
+     request.setAttribute("adminName", adminName);
+request.setAttribute("imageSource", imageSource);
 
         // =====================================================
         // CALCULATE TRENDS
@@ -353,6 +370,11 @@ request.setAttribute(
                 "adminName",
                 adminName
         );
+        
+        request.setAttribute(
+        "imageSource",
+        imageSource
+);
 
 
         // =====================================================

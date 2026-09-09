@@ -13,6 +13,10 @@ public class AdminDashboardBean {
 
     private static final String PASSWORD =
             "manager";
+     
+    private String profileImage;
+    
+    
 
 
     // =========================================================
@@ -562,38 +566,40 @@ public int getPreviousMonthUsers() {
 
     public String getAdminName() {
 
-        String name = "Admin User";
+    String name = "Admin User";
 
-        String sql =
-                "SELECT NAME " +
-                "FROM ADMIN " +
-                "WHERE ROWNUM = 1";
+    String sql =
+            "SELECT NAME, PROFILE_IMAGE " +
+            "FROM ADMIN " +
+            "WHERE ROWNUM = 1";
 
-        try (
-                Connection con = getConnection();
-                PreparedStatement ps =
-                        con.prepareStatement(sql);
-                ResultSet rs =
-                        ps.executeQuery()
-        ) {
+    try (
+        Connection con = getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()
+    ) {
 
-            if (rs.next()) {
+        if (rs.next()) {
 
-                String dbName =
-                        rs.getString("NAME");
+            String dbName = rs.getString("NAME");
 
-                if (dbName != null &&
-                    !dbName.trim().isEmpty()) {
+            if (dbName != null &&
+                !dbName.trim().isEmpty()) {
 
-                    name = dbName;
-                }
+                name = dbName;
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            profileImage =
+                    rs.getString("PROFILE_IMAGE");
         }
 
-        return name;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-}
 
+    return name;
+}
+public String getProfileImage() {
+    return profileImage;
+}
+}

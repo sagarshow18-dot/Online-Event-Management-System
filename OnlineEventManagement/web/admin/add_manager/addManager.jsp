@@ -192,114 +192,145 @@ tailwind.config = {
 
     </div>
 
-    <ul class="flex flex-col gap-xs flex-1">
+    <ul class="flex-1 space-y-sm overflow-y-auto pr-sm">
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    dashboard
-                </span>
+<li>
 
-                <span class="font-body-md text-body-md">
-                    Dashboard
-                </span>
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-l-4 border-primary bg-surface-container-low transition-colors duration-200"
+href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
 
-            </a>
-        </li>
+<span
+class="material-symbols-outlined"
+style="font-variation-settings: 'FILL' 1;">
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="#">
+dashboard
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    group
-                </span>
+</span>
 
-                <span class="font-body-md text-body-md">
-                    Users
-                </span>
+<span>
+Dashboard
+</span>
 
-            </a>
-        </li>
+</a>
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg bg-surface-container-low text-primary font-bold border-r-4 border-primary group"
-               href="<%= request.getContextPath() %>/ManageEventManagersServlet">
+</li>
 
-                <span class="material-symbols-outlined text-primary">
-                    badge
-                </span>
 
-                <span class="font-body-md text-body-md opacity-80">
-                    Event Managers
-                </span>
+<li>
 
-            </a>
-        </li>
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/ManageUsersServlet">
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="#">
+<span class="material-symbols-outlined">
+group
+</span>
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    calendar_today
-                </span>
+<span>
+Users
+</span>
 
-                <span class="font-body-md text-body-md">
-                    Events
-                </span>
+</a>
 
-            </a>
-        </li>
+</li>
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="#">
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    inventory_2
-                </span>
+<li>
 
-                <span class="font-body-md text-body-md">
-                    Accessories
-                </span>
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/ManageEventManagersServlet">
 
-            </a>
-        </li>
+<span class="material-symbols-outlined">
+badge
+</span>
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="#">
+<span>
+Event Managers
+</span>
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    confirmation_number
-                </span>
+</a>
 
-                <span class="font-body-md text-body-md">
-                    Bookings
-                </span>
+</li>
 
-            </a>
-        </li>
 
-        <li>
-            <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group"
-               href="#">
+<li>
 
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">
-                    assessment
-                </span>
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-                <span class="font-body-md text-body-md">
-                    Reports
-                </span>
+<span class="material-symbols-outlined">
+calendar_today
+</span>
 
-            </a>
-        </li>
+<span>
+Events
+</span>
 
-    </ul>
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/AccessoriesServlet">
+
+<span class="material-symbols-outlined">
+inventory_2
+</span>
+
+<span>
+Accessories
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/ManageBookingsServlet">
+
+<span class="material-symbols-outlined">
+confirmation_number
+</span>
+
+<span>
+Bookings
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
+href="<%= request.getContextPath() %>/ReportsServlet">
+
+<span class="material-symbols-outlined">
+assessment
+</span>
+
+<span>
+Reports
+</span>
+
+</a>
+
+</li>
+   
 
     <div class="mt-auto">
 
@@ -369,41 +400,50 @@ tailwind.config = {
         <!-- Trailing Actions -->
         <div class="flex items-center gap-md">
 
-            <button
+            <div class="flex items-center gap-md">
+
+        <button
+            type="button"
+            onclick="showNotifications()"
+            aria-label="notifications"
+            class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low">
+
+            <span class="material-symbols-outlined">
+                notifications
+            </span>
+
+        </button>
+
+
+        <button
                 type="button"
-                class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low active:scale-95">
+                onclick="openSettings()"
+                title="Settings"
+                class="p-xs text-on-surface-variant hover:text-primary transition-colors hover:scale-95">
 
                 <span class="material-symbols-outlined">
-                    notifications
-                </span>
 
-            </button>
-
-            <button
-                type="button"
-                class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low active:scale-95">
-
-                <span class="material-symbols-outlined">
                     settings
+
                 </span>
 
             </button>
 
-            <div class="h-6 w-px bg-outline-variant mx-sm"></div>
 
-            <button
-                type="button"
-                class="font-label-caps text-label-caps text-secondary border border-outline-variant px-md py-1.5 rounded-lg hover:bg-surface-container-low transition-colors flex items-center gap-xs">
+        <div class="h-6 w-px bg-outline-variant mx-sm"></div>
 
-                <span class="material-symbols-outlined text-[16px]">
-                    logout
-                </span>
 
-                Logout
+        <button
+            type="button"
+            onclick="logout()"
+            class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm">
 
-            </button>
+            Logout
 
-        </div>
+        </button>
+
+    </div>
+
 
     </header>
 
@@ -729,6 +769,58 @@ function togglePassword() {
 
     }
 }
+
+
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+function showNotifications() {
+
+    alert(
+        "No new booking notifications."
+    );
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function openSettings() {
+
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+function logoutAdmin() {
+
+    if (
+        !confirm(
+            "Are you sure you want to logout?"
+        )
+    ) {
+
+        return;
+    }
+
+
+    /*
+     * Uses your existing login page.
+     *
+     * A dedicated LogoutServlet can later be used
+     * to invalidate the session completely.
+     */
+
+    window.location.href =
+        "<%= request.getContextPath() %>/admin/admin_login/adminLogin.html";
+}
+
 </script>
 
 </body>

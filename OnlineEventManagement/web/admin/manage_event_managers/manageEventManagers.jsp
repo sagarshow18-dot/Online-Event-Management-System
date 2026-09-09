@@ -50,6 +50,8 @@ tailwind.config = {
                 "on-tertiary-container": "#008ebf",
                 "on-secondary": "#ffffff",
                 "tertiary-fixed": "#c4e7ff",
+                "inverse-on-surface": "#eff1f3",
+                "on-secondary-fixed": "#0d1c2f",
                 "on-error-container": "#93000a",
                 "surface-container-lowest": "#ffffff",
                 "on-primary-fixed": "#131b2e",
@@ -61,7 +63,6 @@ tailwind.config = {
                 "primary-fixed": "#dae2fd",
                 "secondary-fixed": "#d5e3fd",
                 "secondary-fixed-dim": "#b9c7e0",
-                "inverse-primary": "#bec6e0",
                 "background": "#f7f9fb",
                 "on-tertiary": "#ffffff",
                 "primary": "#000000",
@@ -69,13 +70,15 @@ tailwind.config = {
                 "primary-container": "#131b2e",
                 "on-tertiary-fixed-variant": "#004c69"
             },
-            "borderRadius": {
+
+            borderRadius: {
                 "DEFAULT": "0.125rem",
                 "lg": "0.25rem",
                 "xl": "0.5rem",
                 "full": "0.75rem"
             },
-            "spacing": {
+
+            spacing: {
                 "margin-mobile": "16px",
                 "gutter": "24px",
                 "base": "4px",
@@ -86,7 +89,8 @@ tailwind.config = {
                 "xl": "40px",
                 "xs": "4px"
             },
-            "fontFamily": {
+
+            fontFamily: {
                 "headline-lg": ["Hanken Grotesk"],
                 "title-md": ["Hanken Grotesk"],
                 "body-md": ["Inter"],
@@ -96,7 +100,8 @@ tailwind.config = {
                 "body-sm": ["Inter"],
                 "headline-lg-mobile": ["Hanken Grotesk"]
             },
-            "fontSize": {
+
+            fontSize: {
                 "headline-lg": ["32px", {
                     "lineHeight": "40px",
                     "letterSpacing": "-0.01em",
@@ -155,8 +160,8 @@ tailwind.config = {
 <%
     String adminName =
             session.getAttribute("adminName") != null
-            ? session.getAttribute("adminName").toString()
-            : "Admin User";
+                    ? session.getAttribute("adminName").toString()
+                    : "Admin User";
 
     java.util.Calendar cal =
             java.util.Calendar.getInstance();
@@ -165,183 +170,152 @@ tailwind.config = {
             cal.get(java.util.Calendar.YEAR);
 %>
 
-<!-- SideNavBar -->
+
+<!-- =========================
+     SIDE NAVBAR
+     ========================= -->
 
 <nav class="bg-surface-container-lowest fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant flex flex-col py-lg px-md z-20">
 
-    <div class="mb-xl px-sm">
+      <div class="mb-xl flex items-center gap-sm px-sm">
 
-        <h1 class="font-headline-lg text-headline-lg font-bold text-primary">
-            EventHub
-        </h1>
+<span class="material-symbols-outlined text-primary text-[32px]">
+event
+</span>
 
-        <p class="font-label-caps text-label-caps text-on-surface-variant mt-xs">
-            Enterprise Admin
-        </p>
+<div>
 
-    </div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">
+EventHub
+</h1>
+
+<p class="font-label-caps text-label-caps text-on-surface-variant">
+Enterprise Admin
+</p>
+
+</div>
+
+</div>
+
 
     <ul class="flex-1 space-y-xs">
 
-        <!-- Dashboard -->
+    <!-- Dashboard -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
 
-        <li>
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-                href="<%= request.getContextPath() %>/admin/admin_dashboard/adminDashboard.jsp">
+            <span class="material-symbols-outlined">
+                dashboard
+            </span>
 
-                <span class="material-symbols-outlined text-[20px]">
-                    dashboard
-                </span>
+            <span>Dashboard</span>
+        </a>
+    </li>
 
-                Dashboard
+    <!-- Users -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageUsersServlet">
 
-            </a>
-        </li>
+            <span class="material-symbols-outlined">
+                group
+            </span>
 
+            <span>Users</span>
+        </a>
+    </li>
 
-        <!-- Users -->
+    <!-- Event Managers - Active -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low/50"
+            href="<%= request.getContextPath() %>/ManageEventManagersServlet">
 
-        <li>
+            <span class="material-symbols-outlined">
+                badge
+            </span>
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/ManageUsersServlet">
+            <span>Event Managers</span>
+        </a>
+    </li>
 
-                <span class="material-symbols-outlined">
-                    group
-                </span>
+    <!-- Events -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageEventsServlet">
 
-                <span>
-                    Users
-                </span>
+            <span class="material-symbols-outlined">
+                calendar_today
+            </span>
 
-            </a>
+            <span>Events</span>
+        </a>
+    </li>
 
-        </li>
+    <!-- Accessories -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/AccessoriesServlet">
 
+            <span class="material-symbols-outlined">
+                inventory_2
+            </span>
 
-        <!-- Event Managers - Active -->
+            <span>Accessories</span>
+        </a>
+    </li>
 
-        <li>
+    <!-- Bookings -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ManageBookingsServlet">
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low/50"
-                href="<%= request.getContextPath() %>/ManageEventManagersServlet">
+            <span class="material-symbols-outlined">
+                confirmation_number
+            </span>
 
-                <span class="material-symbols-outlined text-[20px]">
-                    badge
-                </span>
+            <span>Bookings</span>
+        </a>
+    </li>
 
-                Event Managers
+    <!-- Reports -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/ReportsServlet">
 
-            </a>
+            <span class="material-symbols-outlined">
+                assessment
+            </span>
 
-        </li>
+            <span>Reports</span>
+        </a>
+    </li>
 
+    <!-- Profile -->
+    <li>
+        <a
+            class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="<%= request.getContextPath() %>/AdminProfileServlet">
 
-        <!-- Events -->
+            <span class="material-symbols-outlined">
+                account_circle
+            </span>
 
-        <li>
+            <span>Profile</span>
+        </a>
+    </li>
 
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/ManageEventsServlet">
-
-                <span class="material-symbols-outlined">
-                    calendar_today
-                </span>
-
-                <span>
-                    Events
-                </span>
-
-            </a>
-
-        </li>
-
-
-        <!-- Accessories -->
-
-        <li>
-
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/AccessoriesServlet">
-
-                <span class="material-symbols-outlined">
-                    inventory_2
-                </span>
-
-                <span>
-                    Accessories
-                </span>
-
-            </a>
-
-        </li>
-
-
-        <!-- Bookings -->
-
-        <li>
-
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-                href="<%= request.getContextPath() %>/ManageBookingsServlet">
-
-                <span class="material-symbols-outlined text-[20px]">
-                    confirmation_number
-                </span>
-
-                Bookings
-
-            </a>
-
-        </li>
+</ul>
 
 
-        <!-- Reports -->
-
-        <li>
-
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 border-l-4 border-transparent hover:border-outline-variant"
-                href="<%= request.getContextPath() %>/ReportsServlet">
-
-                <span class="material-symbols-outlined">
-                    assessment
-                </span>
-
-                <span>
-                    Reports
-                </span>
-
-            </a>
-
-        </li>
-
-
-        <!-- Profile -->
-
-        <li>
-
-            <a
-                class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
-                href="<%= request.getContextPath() %>/AdminProfileServlet">
-
-                <span class="material-symbols-outlined text-[20px]">
-                    account_circle
-                </span>
-
-                Profile
-
-            </a>
-
-        </li>
-
-    </ul>
-
+    <!-- Logged-in Admin -->
 
     <div class="mt-auto pt-lg border-t border-outline-variant">
 
@@ -354,11 +328,16 @@ tailwind.config = {
 
             <div class="flex-1 min-w-0">
 
-                <p class="font-body-sm text-body-sm truncate text-on-surface">
-                    <%= adminName %>
-                </p>
+               
+<p class="font-body-sm text-body-sm font-semibold">
+<%= adminName %>
+</p>
 
-            </div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">
+System Admin
+</p>
+
+</div>
 
         </div>
 
@@ -367,7 +346,9 @@ tailwind.config = {
 </nav>
 
 
-<!-- TopNavBar -->
+<!-- =========================
+     TOP NAVBAR
+     ========================= -->
 
 <header class="bg-surface-container-lowest fixed top-0 right-0 w-[calc(100%-280px)] h-16 border-b border-outline-variant flex justify-between items-center px-lg z-10">
 
@@ -407,20 +388,21 @@ tailwind.config = {
 
 
         <button
-            type="button"
-            onclick="showSettings()"
-            aria-label="settings"
-            class="text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low">
+                type="button"
+                onclick="openSettings()"
+                title="Settings"
+                class="p-xs text-on-surface-variant hover:text-primary transition-colors hover:scale-95">
 
-            <span class="material-symbols-outlined">
-                settings
-            </span>
+                <span class="material-symbols-outlined">
 
-        </button>
+                    settings
+
+                </span>
+
+            </button>
 
 
-        <div class="h-6 w-px bg-outline-variant mx-sm">
-        </div>
+        <div class="h-6 w-px bg-outline-variant mx-sm"></div>
 
 
         <button
@@ -437,16 +419,21 @@ tailwind.config = {
 </header>
 
 
-<!-- Main Content -->
+<!-- =========================
+     MAIN CONTENT
+     ========================= -->
 
 <main class="ml-[280px] mt-16 flex-1 overflow-y-auto p-margin-desktop bg-surface w-[calc(100%-280px)]">
+
+    <!-- PAGE HEADER -->
 
     <div class="flex justify-between items-center mb-lg">
 
         <div>
 
-            <nav aria-label="Breadcrumb"
-                 class="flex text-on-surface-variant font-label-caps text-label-caps mb-xs">
+            <nav
+                aria-label="Breadcrumb"
+                class="flex text-on-surface-variant font-label-caps text-label-caps mb-xs">
 
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
 
@@ -470,8 +457,12 @@ tailwind.config = {
                                 chevron_right
                             </span>
 
-                            <span aria-current="page" class="text-on-surface">
+                            <span
+                                aria-current="page"
+                                class="text-on-surface">
+
                                 Event Managers
+
                             </span>
 
                         </div>
@@ -505,20 +496,24 @@ tailwind.config = {
     </div>
 
 
-    <!-- Data Table Container -->
+    <!-- DATA TABLE -->
 
     <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
 
 
-        <!-- Table Header Tools -->
+        <!-- TABLE TOOLS -->
 
         <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
 
             <div class="relative w-64">
 
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">
+
                     search
+
                 </span>
+
 
                 <input
                     id="tableManagerSearch"
@@ -564,7 +559,7 @@ tailwind.config = {
         </div>
 
 
-        <!-- Filter Panel -->
+        <!-- FILTER PANEL -->
 
         <div
             id="filterPanel"
@@ -572,9 +567,13 @@ tailwind.config = {
 
             <div class="flex items-center gap-sm">
 
-                <label class="font-label-caps text-label-caps text-on-surface-variant">
+                <label
+                    class="font-label-caps text-label-caps text-on-surface-variant">
+
                     Status
+
                 </label>
+
 
                 <select
                     id="managerStatusFilter"
@@ -604,7 +603,7 @@ tailwind.config = {
         </div>
 
 
-        <!-- Table -->
+        <!-- TABLE -->
 
         <div class="overflow-x-auto">
 
@@ -669,20 +668,24 @@ tailwind.config = {
             "manager"
         );
 
+
         String sql =
             "SELECT m.MANAGER_ID, " +
             "m.NAME, " +
             "m.EMAIL, " +
             "m.CONTACT, " +
             "m.STATUS, " +
-            "(SELECT COUNT(*) FROM EVENTS e " +
+            "(SELECT COUNT(*) " +
+            " FROM EVENTS e " +
             " WHERE e.MANAGER_ID = m.MANAGER_ID) AS EVENT_COUNT " +
             "FROM EVENT_MANAGERS m " +
             "ORDER BY m.MANAGER_ID";
 
+
         ps = con.prepareStatement(sql);
 
         rs = ps.executeQuery();
+
 
         while (rs.next()) {
 
@@ -724,6 +727,7 @@ tailwind.config = {
 
             String initials = "";
 
+
             if (!name.trim().isEmpty()) {
 
                 String[] parts =
@@ -742,8 +746,11 @@ tailwind.config = {
                         (
                             parts[0].substring(0, 1)
                             +
-                            parts[parts.length - 1].substring(0, 1)
-                        ).toUpperCase();
+                            parts[parts.length - 1]
+                                .substring(0, 1)
+                        )
+                        .toUpperCase();
+
                 }
             }
 
@@ -751,8 +758,11 @@ tailwind.config = {
             boolean active =
                 "ACTIVE".equalsIgnoreCase(status);
 
+
             String statusClass;
+
             String statusText;
+
             String normalizedStatus;
 
 
@@ -781,29 +791,43 @@ tailwind.config = {
                     status.isEmpty()
                     ? "INACTIVE"
                     : status.toUpperCase();
+
             }
+
 %>
 
 
 <tr
     class="manager-row table-row-hover bg-surface-container-lowest transition-colors"
+
     data-name="<%= name.toLowerCase() %>"
+
     data-email="<%= email.toLowerCase() %>"
+
     data-contact="<%= contact.toLowerCase() %>"
+
     data-status="<%= normalizedStatus %>"
+
     data-manager-id="<%= managerId %>">
 
 
+    <!-- MANAGER ID -->
+
     <td class="py-2.5 px-md font-data-mono text-data-mono text-on-surface-variant">
+
         <%= managerId %>
+
     </td>
 
+
+    <!-- NAME -->
 
     <td class="py-2.5 px-md font-semibold">
 
         <div class="flex items-center gap-sm">
 
-            <div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps text-label-caps">
+            <div
+                class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps text-label-caps">
 
                 <%= initials %>
 
@@ -818,19 +842,30 @@ tailwind.config = {
     </td>
 
 
+    <!-- EMAIL -->
+
     <td class="py-2.5 px-md text-on-surface-variant">
+
         <%= email %>
+
     </td>
 
+
+    <!-- CONTACT -->
 
     <td class="py-2.5 px-md text-on-surface-variant">
+
         <%= contact %>
+
     </td>
 
+
+    <!-- STATUS -->
 
     <td class="py-2.5 px-md">
 
-        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide <%= statusClass %>">
+        <span
+            class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide <%= statusClass %>">
 
             <%= statusText %>
 
@@ -839,12 +874,16 @@ tailwind.config = {
     </td>
 
 
+    <!-- EVENTS -->
+
     <td class="py-2.5 px-md font-data-mono text-data-mono text-right text-on-surface-variant">
 
         <%= eventCount %>
 
     </td>
 
+
+    <!-- ACTIONS -->
 
     <td class="py-2.5 px-md text-right">
 
@@ -856,7 +895,7 @@ tailwind.config = {
             <a
                 class="p-1 text-on-surface-variant hover:text-primary transition-colors"
                 title="View"
-                href="<%= request.getContextPath() %>/EditManagerServlet?managerId=<%= managerId %>&action=view">
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet?action=view&managerId=<%= managerId %>">
 
                 <span class="material-symbols-outlined text-[18px]">
                     visibility
@@ -868,25 +907,25 @@ tailwind.config = {
             <!-- Edit -->
 
             <a
-                class="p-1 text-on-surface-variant hover:text-primary transition-colors"
-                title="Edit"
-                href="<%= request.getContextPath() %>/EditManagerServlet?managerId=<%= managerId %>&action=edit">
+    href="<%= request.getContextPath() %>/EditManagerServlet?action=edit&managerId=<%= managerId %>"
+    class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+    title="Edit">
 
-                <span class="material-symbols-outlined text-[18px]">
-                    edit
-                </span>
+    <span class="material-symbols-outlined text-[18px]">
+        edit
+    </span>
 
-            </a>
+</a>
 
 
-            <!-- Disable / Enable -->
+            <!-- Disable -->
 
             <% if (active) { %>
 
             <a
                 class="p-1 text-on-surface-variant hover:text-error transition-colors"
                 title="Disable"
-                href="<%= request.getContextPath() %>/EditManagerServlet?managerId=<%= managerId %>&action=disable"
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet?action=disable&managerId=<%= managerId %>"
                 onclick="return confirm('Are you sure you want to disable this manager?');">
 
                 <span class="material-symbols-outlined text-[18px]">
@@ -897,10 +936,12 @@ tailwind.config = {
 
             <% } else { %>
 
+            <!-- Enable -->
+
             <a
                 class="p-1 text-on-surface-variant hover:text-primary transition-colors"
                 title="Enable"
-                href="<%= request.getContextPath() %>/EditManagerServlet?managerId=<%= managerId %>&action=enable"
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet?action=enable&managerId=<%= managerId %>"
                 onclick="return confirm('Do you want to enable this manager?');">
 
                 <span class="material-symbols-outlined text-[18px]">
@@ -917,7 +958,7 @@ tailwind.config = {
             <a
                 class="p-1 text-on-surface-variant hover:text-error transition-colors"
                 title="Delete"
-                href="<%= request.getContextPath() %>/EditManagerServlet?managerId=<%= managerId %>&action=delete"
+                href="<%= request.getContextPath() %>/ManageEventManagersServlet?action=delete&managerId=<%= managerId %>"
                 onclick="return confirm('Are you sure you want to delete this manager?');">
 
                 <span class="material-symbols-outlined text-[18px]">
@@ -956,17 +997,23 @@ tailwind.config = {
     } finally {
 
         try {
-            if (rs != null) rs.close();
+            if (rs != null) {
+                rs.close();
+            }
         } catch (Exception ignored) {
         }
 
         try {
-            if (ps != null) ps.close();
+            if (ps != null) {
+                ps.close();
+            }
         } catch (Exception ignored) {
         }
 
         try {
-            if (con != null) con.close();
+            if (con != null) {
+                con.close();
+            }
         } catch (Exception ignored) {
         }
     }
@@ -979,7 +1026,7 @@ tailwind.config = {
         </div>
 
 
-        <!-- Pagination -->
+        <!-- PAGINATION -->
 
         <div class="p-md border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
 
@@ -1035,7 +1082,7 @@ tailwind.config = {
     </div>
 
 
-    <!-- Footer -->
+    <!-- FOOTER -->
 
     <footer class="mt-xl border-t border-outline-variant py-md flex justify-between items-center text-on-surface-variant font-label-caps text-label-caps">
 
@@ -1075,6 +1122,10 @@ let currentManagerPage = 1;
 const managersPerPage = 10;
 
 
+/* ==========================================
+   FILTER MANAGERS
+   ========================================== */
+
 function filterManagers() {
 
     currentManagerPage = 1;
@@ -1083,6 +1134,10 @@ function filterManagers() {
 
 }
 
+
+/* ==========================================
+   SYNC TOP + TABLE SEARCH
+   ========================================== */
 
 function syncManagerSearch() {
 
@@ -1103,6 +1158,10 @@ function syncManagerSearch() {
 
 }
 
+
+/* ==========================================
+   RENDER MANAGERS
+   ========================================== */
 
 function renderManagers() {
 
@@ -1160,6 +1219,10 @@ function renderManagers() {
                 row.dataset.status || "";
 
 
+            /*
+             * SEARCH
+             */
+
             if (
                 searchValue &&
                 !name.includes(searchValue) &&
@@ -1171,6 +1234,10 @@ function renderManagers() {
 
             }
 
+
+            /*
+             * STATUS FILTER
+             */
 
             if (
                 statusValue !== "ALL" &&
@@ -1208,6 +1275,10 @@ function renderManagers() {
     }
 
 
+    /*
+     * Hide all rows
+     */
+
     rows.forEach(function(row) {
 
         row.style.display =
@@ -1215,6 +1286,10 @@ function renderManagers() {
 
     });
 
+
+    /*
+     * Calculate page range
+     */
 
     const start =
         (
@@ -1228,6 +1303,10 @@ function renderManagers() {
         managersPerPage;
 
 
+    /*
+     * Show current page
+     */
+
     filteredRows
         .slice(start, end)
         .forEach(function(row) {
@@ -1237,6 +1316,10 @@ function renderManagers() {
 
         });
 
+
+    /*
+     * Buttons
+     */
 
     document.getElementById(
         "previousPage"
@@ -1255,6 +1338,10 @@ function renderManagers() {
     ).textContent =
         currentManagerPage;
 
+
+    /*
+     * Pagination text
+     */
 
     let from = 0;
 
@@ -1290,6 +1377,10 @@ function renderManagers() {
 
 }
 
+
+/* ==========================================
+   PAGINATION
+   ========================================== */
 
 function changeManagerPage(direction) {
 
@@ -1435,12 +1526,12 @@ function exportManagersCSV() {
 
 function csvEscape(value) {
 
-    return "\"" +
+    return '"' +
         value.replace(
             /"/g,
             '""'
         ) +
-        "\"";
+        '"';
 
 }
 
@@ -1462,12 +1553,10 @@ function showNotifications() {
    SETTINGS
    ========================================== */
 
-function showSettings() {
+function openSettings() {
 
-    alert(
-        "Admin settings opened."
-    );
-
+    window.location.href =
+        "<%= request.getContextPath() %>/AdminProfileServlet";
 }
 
 
