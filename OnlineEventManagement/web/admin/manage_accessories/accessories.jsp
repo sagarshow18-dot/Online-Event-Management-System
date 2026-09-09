@@ -11,6 +11,14 @@
     }
 %>
 
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -189,7 +197,18 @@ tailwind.config = {
 </head>
 
 <body class="bg-background text-on-background font-body-md h-screen overflow-hidden flex">
+<%
+    String adminName =
+            session.getAttribute("adminName") != null
+                    ? session.getAttribute("adminName").toString()
+                    : "Admin User";
 
+    java.util.Calendar cal =
+            java.util.Calendar.getInstance();
+
+    int currentYear =
+            cal.get(java.util.Calendar.YEAR);
+%>
 <!-- SideNavBar -->
 
 <nav class="hidden md:flex bg-surface-container-lowest dark:bg-surface-container-lowest fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline-variant flex-col py-lg px-md z-20">
@@ -372,26 +391,52 @@ tailwind.config = {
             </a>
 
         </li>
+        
 
-    </ul>
-
-
-    <div class="mt-auto pt-md border-t border-outline-variant">
-
+     <!-- Profile -->
+    <li>
         <a
             class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
             href="<%= request.getContextPath() %>/AdminProfileServlet">
 
-            <img
-                alt="Admin User Profile"
-                class="w-8 h-8 rounded-full object-cover border border-outline-variant"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxsC5eactRY7iQ9M1GkhHZ1XdB3-ym11f1-ALd-89I0gaWokKCYAgkA0jg1Q5oxYoaiyq-kZGsXSfshLBNwSV0Uxb4sFv9AN3eGdZud_YfrST9QxkH1D4O385xAHApI2QJ8k-sDO5wBhUJMFz-MEm9baC0YRnscGPuOH0Db30kl5K7oYjVL0LBrDbLhCydsbtObNG5ijIN0RIFV-0o42Oljw5xmyASjFjUd9jpnMu581TmgpdHycgjIQ"/>
-
-            <span class="font-body-md text-body-md">
-                Profile
+            <span class="material-symbols-outlined">
+                account_circle
             </span>
 
+            <span>Profile</span>
         </a>
+    </li>
+
+</ul>
+
+
+    <!-- Logged-in Admin -->
+
+    <div class="mt-auto pt-lg border-t border-outline-variant">
+
+        <div class="flex items-center gap-md px-sm">
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+href="<%= request.getContextPath() %>/AdminProfileServlet">
+            <img
+                alt="Admin User Profile"
+                class="w-8 h-8 rounded-full object-cover"
+                src="<%= request.getAttribute("imageSource") %>"/>
+
+            <div class="flex-1 min-w-0">
+
+               
+<p class="font-body-sm text-body-sm font-semibold">
+<%= adminName %>
+</p>
+
+<p class="font-label-caps text-label-caps text-on-surface-variant">
+System Admin
+</p>
+
+</div>
+
+        </div>
 
     </div>
 

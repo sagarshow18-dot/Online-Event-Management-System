@@ -2,7 +2,13 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -406,7 +412,7 @@ tailwind.config = {
             <img
                 alt="Admin User Profile"
                 class="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXbo7iHtHm56FOHVT4C1vUyEUQG-VGONo2CCY-E-WKciOZwQylZ_Jt5gx9MzNPgb9hTl-54QpfG6B05ab4EEPawSl8otvoWweyzhWsbIVyscu_BV2WBs8NQY_1kiHqDVJwZZiDtBoySmJugK47iPei6pL1RA4JsmlrBMd6U9VzGUAdAi38D1K7dAQD_VWFVk_mHGbp-rvHJh8FFHCCfzOrRU1C5VRLkh46QuybtUSlX-tOVS4cGfnrLg"/>
+                 src="<%= request.getAttribute("imageSource") %>"/>
 
         </div>
 

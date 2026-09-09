@@ -1,6 +1,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
 <!DOCTYPE html>
 
 <html class="light" lang="en">
@@ -320,11 +326,13 @@ Enterprise Admin
     <div class="mt-auto pt-lg border-t border-outline-variant">
 
         <div class="flex items-center gap-md px-sm">
-
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+href="<%= request.getContextPath() %>/AdminProfileServlet">
             <img
                 alt="Admin User Profile"
                 class="w-8 h-8 rounded-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7-_ZTDazgxf8FTS4lzGd6BrkFgbTAg5wR58_JkPT-aynBuU0byVu_iE4CQrW9I8aKwJGKrbfjXdnfeO1FK8_2QEPeaM1aorJ1noLkqkI1M0q3jSkPE0Zk5g0asOjUENA9lBQi4f4MosTzDtE6m2Hd6MDHaOnH6AGRnWf4ojjVtpTLL-QITkv5ls2xZDXs9XDM2BDQdOXt-VMZeZNg4TMk8ajA4BwPkO_G8cQOV_grnCqEY_KjrnjRPw"/>
+                src="<%= request.getAttribute("imageSource") %>"/>
 
             <div class="flex-1 min-w-0">
 

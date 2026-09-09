@@ -1,6 +1,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -282,7 +288,18 @@ body {
 
 <body class="text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row bg-background">
 
+<%
+    String adminName =
+            session.getAttribute("adminName") != null
+                    ? session.getAttribute("adminName").toString()
+                    : "Admin User";
 
+    java.util.Calendar cal =
+            java.util.Calendar.getInstance();
+
+    int currentYear =
+            cal.get(java.util.Calendar.YEAR);
+%>
 <!-- =========================================================
      DESKTOP SIDEBAR
      ========================================================= -->
@@ -492,19 +509,21 @@ body {
     <!-- Current Admin -->
 
     <div class="mt-auto pt-lg border-t border-outline-variant flex items-center gap-md">
-
+<a
+class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+href="<%= request.getContextPath() %>/AdminProfileServlet">
         <img
             alt="Admin User Profile"
             class="w-10 h-10 rounded-full object-cover border border-outline-variant"
             data-alt="A small, professional circular avatar portrait of an enterprise admin user."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB612p_Pm9KQvT4SimjfNJ4tMyHludBIXFw9ScRP6GkFvlQdH6e1s5fVUJzkGQowuBiPHEfcRoR1p7ySEoS5USOo_cNYkc-he5lpHIImcCxpxi1QQMPocc_NN9uNuKZxzQUMOUnoG0t74KxOOt0dwzrVLSIPJenLsKg7MY-VgrlwBWoKA5woy30b4CzasAs5QHch3hOTceULank6wgBmXTVmz3EtCpavxfswyNo4UykWZpSWUfZchWtrw"/>
+                src="<%= request.getAttribute("imageSource") %>"/>
 
 
         <div>
 
             <p class="font-body-sm text-body-sm font-semibold">
 
-                Admin User
+                <%= adminName %>
 
             </p>
 

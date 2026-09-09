@@ -466,7 +466,13 @@
         }
     }
 %>
-
+<%
+    String imageSource =
+            request.getAttribute("imageSource") != null
+                    ? request.getAttribute("imageSource").toString()
+                    : request.getContextPath()
+                        + "/images/default-profile.png";
+%>
 <!DOCTYPE html>
 
 <html class="h-full bg-surface-container-lowest antialiased" lang="en">
@@ -899,8 +905,7 @@ href="<%= request.getContextPath() %>/AdminProfileServlet">
 <img
 alt="Admin User Profile"
 class="w-8 h-8 rounded-full object-cover border border-outline-variant"
-src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG0jGwQ_0Pwa8W0wSuUUfgipihbtL5PKlP4TLfwp3Xl1OFPTF0RZ6BEusENpOhCSRsNrTXtQsJ6ChzZYimWZu6WmKvSKMGr3axERWQFF0AJ3l4BsTDY_Bp6oWaHw7C2kg8mq7V-Ss7j6BscpcrGBV_4MPpAdUxi95RISIqEAsIUKnZbkonmlU80sRf3r24JpvvTcOWzflHkWOIme-31flN-gRxf_WnkDfbukqlImF6cOIVWVDuFUJ2BQ">
-
+src="<%= request.getAttribute("imageSource") %>"/>
 <span class="font-body-md text-body-md">
 Profile
 </span>

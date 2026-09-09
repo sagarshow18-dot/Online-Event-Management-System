@@ -251,6 +251,7 @@ tailwind.config = {
 
         <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant flex-shrink-0">
 
+            
             <img
                 alt="Admin User Profile"
                 class="w-full h-full object-cover"
