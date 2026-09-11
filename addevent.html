@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Event - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c7c5d4",
+                        "tertiary-fixed-dim": "#c3c7cb",
+                        "primary-container": "#2e3192",
+                        "secondary-fixed": "#c6e7ff",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#464652",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#001e2e",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed": "#e1e0ff",
+                        "surface": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#83cfff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#dfe3e7",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-container": "#a6aaae",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#43474b",
+                        "on-primary-container": "#9da1ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed": "#04006d",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-container": "#004867",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-container": "#2fbcff",
+                        "on-secondary": "#ffffff",
+                        "outline": "#777683",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#171c1f",
+                        "tertiary": "#24292c",
+                        "secondary": "#00658d",
+                        "primary": "#15157d",
+                        "surface-tint": "#4f54b4",
+                        "on-secondary-fixed-variant": "#004c6c",
+                        "tertiary-container": "#3a3f42",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "code": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+        
+        .form-input-focus:focus {
+            border-color: #00ADEF !important;
+            box-shadow: 0 0 0 2px rgba(0, 173, 239, 0.2) !important;
+            outline: none !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface fixed left-0 top-0 h-full w-60 border-r border-outline-variant dark:border-outline flat no shadows flex flex-col py-md transition-colors duration-200 ease-in-out z-20 hidden md:flex">
+<div class="px-lg mb-xl">
+<h1 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed">EventHub</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mt-xs">Management Suite</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="flex flex-col space-y-sm">
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">calendar_today</span>
+                        My Events
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-secondary font-bold border-r-4 border-secondary bg-surface-container-high dark:bg-surface-container-highest transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md filled-icon">add_circle</span>
+                        Add Event
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">groups</span>
+                        Participants
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">confirmation_number</span>
+                        Bookings
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">inventory_2</span>
+                        Event Accessories
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">analytics</span>
+                        Reports
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-lg py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">account_circle</span>
+                        Profile
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-lg">
+<a class="flex items-center py-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:bg-surface-container-low dark:hover:bg-tertiary-container hover:text-secondary transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-60 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center h-16 px-xl w-full sticky top-0 z-10 transition-all duration-200">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold">EventHub Manager</span>
+</div>
+<div class="flex items-center space-x-lg">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-full text-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary bg-surface-container-lowest w-64 form-input-focus transition-all duration-200" placeholder="Search events..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-200 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm">
+<img alt="Manager Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcoew4CcY2LTNFG3mjQ3HKIjQtD7FJvwjDcqyBzNDJgrMauRk5t-oqTHtZXnIxmlg8fTpo2kSoYkxPm5H4ZB_OoipF3dQ6Tg1Dsbmg4IfyOxy4IhPG3sN1tnN-44jUz9LeU-UrjjCW4-xkfs-9RRZPhl9z5z8o99FMoRpeO4uR2LmPxPOHPHEyPVCk5UHOxsZ_KHtgxR2DZAwDGmyMMzKtDyCiGmiUJFeqVXpNcHfeMIi5G8hn7tuOOA"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-margin-mobile md:p-gutter lg:p-xl overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<div class="mb-xl flex items-center justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">Create New Event</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Fill in the details below to publish a new event to the platform.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-[0px_1px_3px_rgba(0,0,0,0.1)] p-lg md:p-xl">
+<form class="space-y-xl">
+<!-- Basic Info Section -->
+<div class="space-y-lg border-b border-surface-container pb-xl">
+<h3 class="font-title-sm text-title-sm text-primary flex items-center">
+<span class="material-symbols-outlined mr-sm text-secondary">info</span> Basic Information
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="col-span-1 md:col-span-2">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventName">Event Name <span class="text-error">*</span></label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="eventName" placeholder="e.g. Annual Tech Conference 2024" type="text"/>
+</div>
+<div class="col-span-1 md:col-span-2">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventDescription">Description</label>
+<textarea class="w-full px-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all resize-y" id="eventDescription" placeholder="Provide a detailed description of the event..." rows="4"></textarea>
+</div>
+<div class="col-span-1">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventCategory">Category</label>
+<div class="relative">
+<select class="w-full px-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all appearance-none" id="eventCategory">
+<option disabled="" selected="" value="">Select a category</option>
+<option value="conference">Conference</option>
+<option value="workshop">Workshop</option>
+<option value="networking">Networking</option>
+<option value="social">Social Gathering</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Date & Location Section -->
+<div class="space-y-lg border-b border-surface-container pb-xl">
+<h3 class="font-title-sm text-title-sm text-primary flex items-center">
+<span class="material-symbols-outlined mr-sm text-secondary">place</span> Date &amp; Location
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="col-span-1">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventDate">Date <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">calendar_month</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="eventDate" type="date"/>
+</div>
+</div>
+<div class="col-span-1">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventTime">Time <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">schedule</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="eventTime" type="time"/>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventLocation">Location Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="eventLocation" placeholder="Full venue address" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Logistics Section -->
+<div class="space-y-lg border-b border-surface-container pb-xl">
+<h3 class="font-title-sm text-title-sm text-primary flex items-center">
+<span class="material-symbols-outlined mr-sm text-secondary">settings_overscan</span> Logistics &amp; Ticketing
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="col-span-1">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="eventCapacity">Maximum Capacity</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">groups</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="eventCapacity" min="1" placeholder="e.g. 500" type="number"/>
+</div>
+</div>
+<div class="col-span-1">
+<label class="block font-body-sm font-bold text-on-surface mb-xs" for="ticketPrice">Ticket Price ($)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">payments</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-body-md form-input-focus transition-all" id="ticketPrice" min="0" placeholder="0.00" step="0.01" type="number"/>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-xs">Leave at 0 for free events</p>
+</div>
+</div>
+</div>
+<!-- Media Section -->
+<div class="space-y-lg">
+<h3 class="font-title-sm text-title-sm text-primary flex items-center">
+<span class="material-symbols-outlined mr-sm text-secondary">image</span> Event Imagery
+                            </h3>
+<div>
+<label class="block font-body-sm font-bold text-on-surface mb-xs">Event Banner Image</label>
+<div class="mt-2 flex justify-center rounded-lg border border-dashed border-outline-variant px-6 py-10 bg-surface hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm">cloud_upload</span>
+<div class="mt-4 flex text-body-sm leading-6 text-on-surface-variant justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-secondary focus-within:outline-none focus-within:ring-2 focus-within:ring-secondary hover:text-primary" for="file-upload">
+<span>Upload a file</span>
+<input accept="image/*" class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mt-xs">PNG, JPG, GIF up to 10MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-lg flex items-center justify-end space-x-md">
+<button class="px-6 py-2 rounded text-[#64748B] font-body-md font-bold hover:bg-surface-container-low transition-colors" type="button">
+                                Cancel
+                            </button>
+<button class="px-6 py-2 rounded bg-[#00ADEF] text-white font-body-md font-bold hover:opacity-90 transition-opacity shadow-sm" type="submit">
+                                Create Event
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+</div>
+</body></html>
